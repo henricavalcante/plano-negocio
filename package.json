@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/henricavalcante/plano-negocio#readme",
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.0"
   }
 }
