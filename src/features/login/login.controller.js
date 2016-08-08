@@ -1,7 +1,21 @@
 export default class LoginController {
-    constructor($scope) {
-        Object.assign(this, { $scope });
+    constructor($scope, $rootScope, FirebaseFactory) {
+        Object.assign(this, { FirebaseFactory, $rootScope });
+    }
+
+    facebook() {
+        this.FirebaseFactory.authFacebook().then((result) => {
+
+            this.$rootScope.currentUser = result.user;
+
+        }).catch((error) => {
+            this.$rootScope.currentUser = {fail:true};
+        });
+    }
+
+    twiter() {
+        this.FirebaseFactory.authTwitter();
     }
 }
 
-LoginController.$inject = ['$scope'];
+LoginController.$inject = ['$scope', '$rootScope', 'FirebaseFactory'];

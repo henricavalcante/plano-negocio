@@ -5,7 +5,9 @@ import angularUiRouter from 'angular-ui-router';
 
 import routes from './plano.routes';
 import PlanoController from './plano.controller';
-export default angular.module('app.plano', [angularUiRouter])
+import FirebaseFactory from '../../services/firebaseFactory.service';
+
+export default angular.module('app.plano', [angularUiRouter, FirebaseFactory])
     .config(routes)
     .controller('PlanoController', PlanoController)
     .name;

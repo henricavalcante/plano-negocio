@@ -1,9 +1,10 @@
 <div class="panel panel-default center-block login-screen">
   <div class="panel-heading">
     <h3 class="panel-title text-center">Login</h3>
+    {{login.$rootScope.currentUser}}
   </div>
   <div class="panel-body">
-    <form class="" action="index.html" method="post">
+
       <div class="form-group has-feedback">
         <label class="sr-only" for="">E-mail</label>
         <input class="form-control" type="text" placeholder="E-mail">
@@ -19,9 +20,11 @@
           <input type="checkbox"> Lembrar
         </label>
       </div>
+
       <button class="btn btn-primary btn-block">Entrar</button>
-      <button class="btn btn-primary btn-block">Login com Facebook</button>
+      <button class="btn btn-primary btn-block" ng-click="login.facebook()">Login com Facebook</button>
+      <button class="btn btn-primary btn-block" ng-click="login.twitter()">Login com Twitter</button>
       <a class="btn btn-link btn-block" href="#">Esqueci minha senha</a>
-    </form>
+
   </div>
 </div>
