@@ -6,6 +6,6 @@ import routes from './login.routes';
 import LoginController from './login.controller';
 
 export default angular.module('app.login', [angularUiRouter])
-    .config(routes)
-    .controller('LoginController', LoginController)
-    .name;
+  .config(routes)
+  .controller('LoginController', LoginController)
+  .name;

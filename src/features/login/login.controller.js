@@ -1,21 +1,27 @@
 export default class LoginController {
-    constructor($scope, $rootScope, FirebaseFactory) {
-        Object.assign(this, { FirebaseFactory, $rootScope });
-    }
+  constructor($scope, $rootScope, FirebaseFactory, $state) {
+    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state });
+  }
 
-    facebook() {
-        this.FirebaseFactory.authFacebook().then((result) => {
+  facebook() {
+    this.FirebaseFactory.authFacebook()
+      .then((result) => this.setCurrentUser(result.user))
+      .catch((error) => this.setCurrentUser({ fail: true }));
+  }
 
-            this.$rootScope.currentUser = result.user;
+  twitter() {
+    this.FirebaseFactory.authTwitter()
+      .then((result) => this.setCurrentUser(result.user))
+      .catch((error) => this.setCurrentUser({ fail: true }));
+  }
 
-        }).catch((error) => {
-            this.$rootScope.currentUser = {fail:true};
-        });
-    }
+  setCurrentUser(user) {
+    this.$rootScope.currentUser = user;
+    this.$rootScope.$apply();
 
-    twiter() {
-        this.FirebaseFactory.authTwitter();
-    }
+    // direcionando para o primeiro passao do plano se o login for válido
+    if (!user.fail) this.$state.go('plano01');
+  }
 }
 
-LoginController.$inject = ['$scope', '$rootScope', 'FirebaseFactory'];
+LoginController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state'];

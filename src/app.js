@@ -9,4 +9,4 @@ import login from './features/login';
 import plano from './features/plano';
 
 angular.module('app', [uirouter, navigation, FirebaseFactory, login, plano])
-    .config(config);
+  .config(config);

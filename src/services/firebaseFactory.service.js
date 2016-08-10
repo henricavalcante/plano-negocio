@@ -8,58 +8,40 @@ const STORAGE_BUCKET = "meuplanodenegocios-3a542.appspot.com";
 
 class FirebaseFactory {
 
-    constructor() {
+  constructor() {
 
-        var config = {
-            apiKey: API_KEY,
-            authDomain: AUTH_DOMAIN,
-            databaseURL: DATABASE_URL,
-            storageBucket: STORAGE_BUCKET
-        };
-        this.firebase = firebase.initializeApp(config);
-    }
+    var config = {
+      apiKey: API_KEY,
+      authDomain: AUTH_DOMAIN,
+      databaseURL: DATABASE_URL,
+      storageBucket: STORAGE_BUCKET
+    };
+    this.firebase = firebase.initializeApp(config);
+  }
 
-    set(path, data) {
-        this.firebase.database().ref(path).set(data);
-    }
+  set(path, data) {
+    this.firebase.database().ref(path).set(data);
+  }
 
-    getAuth() {
-        return this.firebase.auth().currentUser;
-    }
+  getAuth() {
+    return this.firebase.auth().currentUser;
+  }
 
-    authFacebook() {
+  authFacebook() {
 
-        var provider = new firebase.auth.FacebookAuthProvider();
-        provider.addScope('user_birthday');
+    var provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('user_birthday');
 
-        return firebase.auth().signInWithPopup(provider);
-    }
+    return firebase.auth().signInWithPopup(provider);
+  }
 
-    authTwitter() {
-        var provider = new firebase.auth.TwitterAuthProvider();
+  authTwitter() {
+    var provider = new firebase.auth.TwitterAuthProvider();
 
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-          // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-          // You can use these server side with your app's credentials to access the Twitter API.
-          var token = result.credential.accessToken;
-          var secret = result.credential.secret;
-          // The signed-in user info.
-          var user = result.user;
-          console.log(result.user);
-          // ...
-        }).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-          // ...
-        });
-    }
+    return firebase.auth().signInWithPopup(provider);
+  }
 }
 
 export default angular.module('services', [])
-.service('FirebaseFactory', FirebaseFactory)
-.name;
+  .service('FirebaseFactory', FirebaseFactory)
+  .name;

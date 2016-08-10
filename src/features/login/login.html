@@ -1,30 +1,35 @@
 <div class="panel panel-default center-block login-screen">
   <div class="panel-heading">
     <h3 class="panel-title text-center">Login</h3>
-    {{login.$rootScope.currentUser}}
   </div>
   <div class="panel-body">
+    <div class="form-group has-feedback">
+      <label class="sr-only" for="">E-mail</label>
+      <input class="form-control" type="text" placeholder="E-mail">
+      <!-- <span class="glyphicon glyphicon-ok form-control-feedback"></span> -->
+    </div>
+    <div class="form-group has-feedback">
+      <label class="sr-only" for="">Senha</label>
+      <input class="form-control" type="password" placeholder="Senha">
+      <!-- <span class="glyphicon glyphicon-ok form-control-feedback"></span> -->
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> Lembrar
+      </label>
+    </div>
 
-      <div class="form-group has-feedback">
-        <label class="sr-only" for="">E-mail</label>
-        <input class="form-control" type="text" placeholder="E-mail">
-        <!-- <span class="glyphicon glyphicon-ok form-control-feedback"></span> -->
-      </div>
-      <div class="form-group has-feedback">
-        <label class="sr-only" for="">Senha</label>
-        <input class="form-control" type="password" placeholder="Senha">
-        <!-- <span class="glyphicon glyphicon-ok form-control-feedback"></span> -->
-      </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Lembrar
-        </label>
-      </div>
-
-      <button class="btn btn-primary btn-block">Entrar</button>
-      <button class="btn btn-primary btn-block" ng-click="login.facebook()">Login com Facebook</button>
-      <button class="btn btn-primary btn-block" ng-click="login.twitter()">Login com Twitter</button>
-      <a class="btn btn-link btn-block" href="#">Esqueci minha senha</a>
-
+    <button class="btn btn-primary btn-block">Entrar</button>
+    <div class="social-buttons">
+      <button class="btn btn-facebook" ng-click="login.facebook()">
+        <img src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiBTdmcgVmVjdG9yIEljb25zIDogaHR0cDovL3d3dy5vbmxpbmV3ZWJmb250cy5jb20vaWNvbiA8L21ldGFkYXRhPgogIDxnPjxwYXRoIGQ9Ik03MzUsMzI3LjNoLTE2MFYyMjUuNmMwLTM4LjIsMjYuMS00Ny4xLDQ0LjUtNDcuMWMxOC40LDAsMTEyLjksMCwxMTIuOSwwVjEwLjZMNTc2LjgsMTBjLTE3Mi43LDAtMjEyLDEyNS4yLTIxMiwyMDUuNHYxMTEuOUgyNjV2MTczaDk5LjlWOTkwaDIxMC4xVjUwMC4zaDE0MS43TDczNSwzMjcuM3oiIHN0eWxlPSJmaWxsOiNGRkZGRkYiPjwvcGF0aD48L2c+PC9zdmc+CiAg" width="16" height="16">
+        Facebook
+      </button>
+      <button class="btn btn-twitter" ng-click="login.twitter()">
+        <img src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiBTdmcgVmVjdG9yIEljb25zIDogaHR0cDovL3d3dy5vbmxpbmV3ZWJmb250cy5jb20vaWNvbiA8L21ldGFkYXRhPgogIDxnPjxwYXRoIGQ9Ik05OTAsMTk2LjFjLTM2LDE2LTc0LjgsMjYuOC0xMTUuNSwzMS43YzQxLjUtMjQuOSw3My40LTY0LjMsODguNC0xMTEuMmMtMzguOSwyMy04MS45LDM5LjgtMTI3LjcsNDguOGMtMzYuNy0zOS4xLTg4LjktNjMuNS0xNDYuOC02My41Yy0xMTEsMC0yMDEsOTAtMjAxLDIwMWMwLDE1LjgsMS44LDMxLjEsNS4yLDQ1LjhjLTE2Ny4xLTguNC0zMTUuMi04OC40LTQxNC40LTIxMC4xQzYxLDE2OC4zLDUxLDIwMi44LDUxLDIzOS43QzUxLDMwOS40LDg2LjUsMzcxLDE0MC41LDQwN2MtMzMtMS02My45LTEwLjEtOTEuMS0yNS4xYzAsMC44LDAsMS43LDAsMi41YzAsOTcuNCw2OS4zLDE3OC43LDE2MS4zLDE5Ny4xYy0xNi45LDQuNi0zNC42LDctNTMsN2MtMTMsMC0yNS41LTEuMy0zNy44LTMuNmMyNS42LDc5LjksOTkuOCwxMzgsMTg3LjgsMTM5LjZjLTY4LjgsNTMuOS0xNTUuNSw4Ni4xLTI0OS43LDg2LjFjLTE2LjIsMC0zMi4yLTAuOS00OC0yLjhjODksNTcuMSwxOTQuNiw5MC4zLDMwOC4yLDkwLjNjMzY5LjgsMCw1NzItMzA2LjQsNTcyLTU3Mi4xYzAtOC43LTAuMi0xNy40LTAuNi0yNkM5MjguOSwyNzEuOCw5NjMsMjM2LjQsOTkwLDE5Ni4xTDk5MCwxOTYuMUw5OTAsMTk2LjF6IiBzdHlsZT0iZmlsbDojRkZGRkZGIj48L3BhdGg+PC9nPjwvc3ZnPgogIA==" width="16" height="16">
+        Twitter
+      </button>
+    </div>
+    <a class="btn btn-link btn-block" href="#">Esqueci minha senha</a>
   </div>
 </div>

@@ -7,3 +7,35 @@ body {
   margin-bottom: 60px;
   max-width: 350px;
 }
+
+/* social buttons */
+.social-buttons {
+  display: table;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.social-buttons .btn {
+  width: 49%;
+  color: #fff;
+}
+
+/* facebook button */
+.btn-facebook {
+  float: left;
+  background-color: #3a589b;
+}
+
+.btn-facebook:hover {
+  background-color: #293d6b;
+}
+
+/* twitter button */
+.btn-twitter {
+  float: right;
+  background-color: #55acee;
+}
+
+.btn-twitter:hover {
+  background-color: #3585c1;
+}
