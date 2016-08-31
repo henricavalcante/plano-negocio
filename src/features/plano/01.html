@@ -2,21 +2,38 @@
     <div class="panel-heading">
         <h3 class="panel-title">Passo 1 - Nome do Plano / Tipo de atividade</h3>
     </div>
-    <div class="panel-body">
+    <form name="form01" class="panel-body">
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="">Digite aqui o Nome do seu Negócio</label>
-                <input class="form-control" type="text">
+                <input
+                  class="form-control"
+                  type="text"
+                  ng-model="dados.nome"
+                  ng-required="true">
             </div>
             <div class="form-group col-md-6">
                 <label for="">Nome do seu grupo (Opcional)</label>
-                <input class="form-control" type="text">
+                <input
+                  class="form-control"
+                  type="text"
+                  ng-model="dados.grupo">
             </div>
         </div>
         <div class="form-group">
             <label for="">Qual a atividade que você pretende montar?</label>
-            <textarea class="form-control" rows="5"></textarea>
+            <textarea
+              class="form-control"
+              rows="5"
+              ng-model="dados.atividade"
+              ng-required="true">
+            </textarea>
         </div>
     </div>
-</div>
-<button class="btn btn-primary btn-block btn-lg">Salvar</button>
+</form>
+<button
+  class="btn btn-primary btn-block btn-lg"
+  ng-click="plano.save(dados)"
+  ng-disabled="form01.$invalid">
+  Salvar
+</button>

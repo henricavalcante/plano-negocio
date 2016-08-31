@@ -23,6 +23,10 @@ class FirebaseFactory {
     this.firebase.database().ref(path).set(data);
   }
 
+  update(path, data) {
+    this.firebase.database().ref(path).update(data);
+  }
+
   getAuth() {
     return this.firebase.auth().currentUser;
   }
@@ -42,6 +46,6 @@ class FirebaseFactory {
   }
 }
 
-export default angular.module('services', [])
+export default angular.module('services.FirebaseFactory', [])
   .service('FirebaseFactory', FirebaseFactory)
   .name;

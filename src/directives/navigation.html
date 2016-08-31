@@ -3,7 +3,7 @@
     <div class="navbar-header">
       <span class="navbar-brand">Plano de Negócio</span>
     </div>
-    <div class="collapese navbar-collapse">
+    <div class="collapese navbar-collapse" ng-if="isActive()">
       <ul class="nav navbar-nav">
 
         <li class="dropdown" ng-class="{open: showMenu}">
@@ -21,11 +21,11 @@
           </ul>
         </li>
       </ul>
-      <div class="navbar-right" ng-if="$rootScope.currentUser">
+      <div class="navbar-right" ng-if="isActive()">
         <button class="btn btn-default navbar-btn">Visualizar</button>
         <button class="btn btn-default navbar-btn">Imprimir</button>
         <button class="btn btn-success navbar-btn">Pronto p/ correção</button>
-        <button class="btn btn-default navbar-btn">Sair</button>
+        <a href="/logout" class="btn btn-default navbar-btn">Sair</a>
       </div>
     </div>
   </div>

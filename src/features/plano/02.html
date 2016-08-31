@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<form name="form02" class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Passo 2 - Produtos / Clientes</h3>
     </div>
@@ -6,12 +6,27 @@
     <div class="panel-body">
         <div class="form-group">
             <label for="">Quais os produtos que pretende fabricar e/ou comercializar?</label>
-            <textarea class="form-control" rows="5"></textarea>
+            <textarea
+              class="form-control"
+              rows="5"
+              ng-model="dados.produtos"
+              ng-required="true">
+            </textarea>
         </div>
         <div class="form-group">
             <label for="">Quem são os seus clientes?</label>
-            <textarea class="form-control" rows="5"></textarea>
+            <textarea
+              class="form-control"
+              rows="5"
+              ng-model="dados.clientes"
+              ng-required="true">
+            </textarea>
         </div>
     </div>
-</div>
-<button class="btn btn-primary btn-block btn-lg">Salvar</button>
+</form>
+<button
+  class="btn btn-primary btn-block btn-lg"
+  ng-click="plano.save(dados)"
+  ng-disabled="form02.$invalid">
+  Salvar
+</button>
