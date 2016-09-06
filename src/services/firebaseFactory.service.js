@@ -23,6 +23,10 @@ class FirebaseFactory {
     this.firebase.database().ref(path).set(data);
   }
 
+  get(path) {
+    return this.firebase.database().ref(path);
+  }
+
   update(path, data) {
     this.firebase.database().ref(path).update(data);
   }

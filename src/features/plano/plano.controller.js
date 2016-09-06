@@ -2,9 +2,19 @@ export default class PlanoController {
   constructor($scope, FirebaseFactory, $state) {
     Object.assign(this, { $scope, FirebaseFactory, $state });
 
-    this.$scope.dados = {};
+    if (!$scope.currentUser) {
+      $state.go('login');
+      return;
+    }
 
-    if (!$scope.currentUser) $state.go('login');
+    $scope.dados = {};
+
+    var data = FirebaseFactory.get($scope.currentUser.uid + '/plano');
+    data.on('value', function (snapshot) {
+      if (snapshot.val() == null) return;
+
+      $scope.dados = snapshot.val();
+    });
   }
 
   save(data) {
