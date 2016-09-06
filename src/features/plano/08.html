@@ -1,111 +1,86 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, shrink-to-fit=no">
-    <title>Plano de Negócio</title>
-    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-  </head>
-  <body>
-    <section>
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <span class="navbar-brand">Plano de Negócio</span>
-          </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Passo 8 - Receitas operacionais</h3>
+  </div>
 
-          <div class="collapese navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Passos <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="01.html">Passo 1 - Nome do Plano / Tipo de atividade</a></li>
-                  <li><a href="02.html">Passo 2 - Produtos / Clientes</a></li>
-                  <li><a href="03.html">Passo 3 - Concorrentes / Fornecedores</a></li>
-                  <li><a href="04.html">Passo 4 - Instalação / Divulgação</a></li>
-                  <li><a href="05.html">Passo 5 - Investimento Inicial</a></li>
-                  <li><a href="06.html">Passo 6 - Custos variáveis</a></li>
-                  <li><a href="07.html">Passo 7 - Custos fixos mensais</a></li>
-                  <li><a href="08.html">Passo 8 - Receitas operacionais</a></li>
-                  <li><a href="09.html">Demostrativo de resultado</a></li>
-                </ul>
-              </li>
-            </ul>
+  <form name="form8" class="panel-body">
+    <h5><strong>Quais serão as receitas operacionais mensais?</strong></h5>
+    <hr>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="">Descrição</label>
+        <input
+          class="form-control"
+          type="text"
+          ng-model="receita.descricao"
+          ng-required="true">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="">Unidade</label>
+        <input
+          class="form-control"
+          type="text"
+          ng-model="receita.unidade"
+          ng-required="true">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="">Quantidade</label>
+        <input
+          class="form-control"
+          type="number"
+          ng-model="receita.quantidade"
+          ng-required="true">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="">Valor</label>
+        <input
+          class="form-control"
+          type="number"
+          ng-model="receita.valor"
+          ng-required="true">
+      </div>
+    </div>
 
-            <div class="navbar-right">
-              <button class="btn btn-default navbar-btn">Visualizar</button>
-              <button class="btn btn-default navbar-btn">Imprimir</button>
-              <button class="btn btn-success navbar-btn">Pronto p/ correção</button>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <button
+      class="btn btn-default"
+      ng-disabled="form8.$invalid"
+      ng-click="plano.adicionarReceita(receita)">
+      Adicionar
+    </button>
 
-      <section class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Passo 8 - Receitas operacionais</h3>
-          </div>
+    <button
+      class="btn btn-danger"
+      ng-click="plano.removerReceita(dados.receitas)"
+      ng-if="plano.isReceitaSelecionada(dados.receitas)">
+      Remover
+    </button>
+  </form>
 
-          <div class="panel-body">
-            <h5><strong>Quais serão as receitas operacionais mensais?</strong></h5>
-            <hr>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label for="">Descrição</label>
-                <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="">Unidade</label>
-                <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="">Quantidade</label>
-                <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="">Valor</label>
-                <input class="form-control" type="text">
-              </div>
-            </div>
+  <table
+    class="table table-striped table-bordered"
+    ng-show="dados.receitas.length > 0">
+    <tr>
+      <th></th>
+      <th>Descrição</th>
+      <th>Unidade</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+      <th>Total</th>
+    </tr>
+    <tr ng-repeat="i in dados.receitas">
+      <td><input type="checkbox" ng-model="i.selecionado"></td>
+      <td>{{i.descricao}}</td>
+      <td>{{i.unidade}}</td>
+      <td>{{i.quantidade}}</td>
+      <td>{{i.valor}}</td>
+      <td></td>
+    </tr>
+  </table>
+</div>
 
-            <button class="btn btn-default">Adicionar</button>
-            <button class="btn btn-danger">Remover</button>
-          </div>
-
-          <table class="table table-striped table-bordered">
-            <tr>
-              <th></th>
-              <th>Descrição</th>
-              <th>Unidade</th>
-              <th>Quantidade</th>
-              <th>Valor</th>
-              <th>Total</th>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Lorem ipsum dolor sit amet.</td>
-              <td>peça</td>
-              <td>4</td>
-              <td>R$45,90</td>
-              <td>R$183,60</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Lorem ipsum dolor sit amet.</td>
-              <td>peça</td>
-              <td>4</td>
-              <td>R$45,90</td>
-              <td>R$183,60</td>
-            </tr>
-          </table>
-        </div>
-
-        <button class="btn btn-primary btn-block btn-lg">Salvar</button>
-      </section>
-    </section>
-
-    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
+<button
+  class="btn btn-primary btn-block btn-lg"
+  ng-disabled="dados.receitas == null || dados.receitas.length < 1"
+  ng-click="plano.save(dados)">
+    Salvar
+  </button>

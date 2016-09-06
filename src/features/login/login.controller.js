@@ -24,7 +24,7 @@ export default class LoginController {
     this.Session.set(user);
 
     // direcionando para o primeiro passao do plano se o login for válido
-    if (!user.fail) this.$state.go('plano05');
+    if (!user.fail) this.$state.go('planoResultado');
   }
 }
 
