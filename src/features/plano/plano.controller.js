@@ -7,14 +7,9 @@ export default class PlanoController {
       return;
     }
 
-    this.dados = {};
+    this.$scope.dados = {};
 
     this.load();
-
-    $scope.$watch('plano.dados', function (a) {
-      // console.log(a);
-      // $scope.$apply();
-    });
   }
 
   save(data) {
@@ -30,8 +25,10 @@ export default class PlanoController {
   }
 
   load () {
-    this.FirebaseFactory.get($scope.currentUser.uid + '/plano').then(function (res) {
-      console.log(res.json());
+    this.FirebaseFactory.get(this.$scope.currentUser.uid + '/plano').then((res) => {
+      res.json().then((dados) => {
+        this.$scope.dados = dados;
+      });
     });
   }
 
