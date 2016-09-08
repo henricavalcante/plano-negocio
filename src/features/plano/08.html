@@ -73,7 +73,11 @@
       <td>{{i.unidade}}</td>
       <td>{{i.quantidade}}</td>
       <td>{{i.valor}}</td>
-      <td></td>
+      <td>{{i.valor * i.quantidade}}</td>
+    </tr>
+    <tr>
+      <td colspan="5"><strong>TOTAL GERAL:</strong></td>
+      <td><strong>{{plano.totalGeral(dados.receitas)}}</strong></td>
     </tr>
   </table>
 </div>

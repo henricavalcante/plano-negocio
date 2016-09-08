@@ -8,15 +8,17 @@ const STORAGE_BUCKET = "meuplanodenegocios-3a542.appspot.com";
 
 class FirebaseFactory {
 
-  constructor() {
+  constructor(Session) {
 
-    var config = {
+    Object.assign(this, {Session});
+
+    this.config = {
       apiKey: API_KEY,
       authDomain: AUTH_DOMAIN,
       databaseURL: DATABASE_URL,
       storageBucket: STORAGE_BUCKET
     };
-    this.firebase = firebase.initializeApp(config);
+    this.firebase = firebase.initializeApp(this.config);
   }
 
   set(path, data) {
@@ -24,7 +26,7 @@ class FirebaseFactory {
   }
 
   get(path) {
-    return this.firebase.database().ref(path);
+    return fetch(`${this.config.databaseURL}/${path}.json?auth=${this.getAccessToken()}`);
   }
 
   update(path, data) {
@@ -32,7 +34,11 @@ class FirebaseFactory {
   }
 
   getAuth() {
-    return this.firebase.auth().currentUser;
+    return this.Session.get();
+  }
+
+  getAccessToken() {
+    return this.getAuth().stsTokenManager.accessToken;
   }
 
   authFacebook() {
@@ -40,13 +46,19 @@ class FirebaseFactory {
     var provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('user_birthday');
 
-    return firebase.auth().signInWithPopup(provider);
+    return firebase.auth().signInWithPopup(provider).then((user) => {
+      this.Session.set(this.firebase.auth().currentUser);
+      return this.firebase.auth().currentUser;
+    });
   }
 
   authTwitter() {
     var provider = new firebase.auth.TwitterAuthProvider();
 
-    return firebase.auth().signInWithPopup(provider);
+    return firebase.auth().signInWithPopup(provider).then((user) => {
+      this.Session.set(this.firebase.auth().currentUser);
+      return this.firebase.auth().currentUser;
+    });;
   }
 }
 

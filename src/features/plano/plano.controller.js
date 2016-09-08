@@ -7,13 +7,13 @@ export default class PlanoController {
       return;
     }
 
-    $scope.dados = {};
+    this.dados = {};
 
-    var data = FirebaseFactory.get($scope.currentUser.uid + '/plano');
-    data.on('value', function (snapshot) {
-      if (snapshot.val() == null) return;
+    this.load();
 
-      $scope.dados = snapshot.val();
+    $scope.$watch('plano.dados', function (a) {
+      // console.log(a);
+      // $scope.$apply();
     });
   }
 
@@ -27,6 +27,12 @@ export default class PlanoController {
       `${this.$scope.currentUser.uid}/plano`,
       angular.copy(data)
     );
+  }
+
+  load () {
+    this.FirebaseFactory.get($scope.currentUser.uid + '/plano').then(function (res) {
+      console.log(res.json());
+    });
   }
 
 
@@ -103,6 +109,32 @@ export default class PlanoController {
     return receitas.some(function (receita) {
       return receita.selecionado;
     });
+  }
+
+  totalGeral (dados) {
+    if (!dados) return;
+
+    var total = 0;
+
+    dados.forEach(function (dado) {
+      total += (dado.valor * dado.quantidade);
+    });
+
+    return total;
+  }
+
+  totalSimples (dados) {
+    if (!dados) return;
+
+    var total = 0;
+
+    for (var key in dados) {
+      if (dados.hasOwnProperty(key)) {
+        total += dados[key];
+      }
+    }
+
+    return total;
   }
 }
 

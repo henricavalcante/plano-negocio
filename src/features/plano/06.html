@@ -19,7 +19,7 @@
         <label for="">Unidade</label>
         <input
           class="form-control"
-          type="number"
+          type="text"
           ng-model="custo.unidade"
           ng-required="true">
       </div>
@@ -48,33 +48,37 @@
       Adicionar
   </button>
 
-  <button
+  <a href="#"
     class="btn btn-danger"
     ng-click="plano.removerCusto(dados.custos)"
     ng-if="plano.isCustoSelecionado(dados.custos)">
     Remover
-  </button>
+  </a>
 </form>
 
 <table
   class="table table-striped table-bordered"
   ng-show="dados.custos.length > 0">
-<tr>
-  <th></th>
-  <th>Descrição</th>
-  <th>Unidade</th>
-  <th>Quantidade</th>
-  <th>Valor</th>
-  <th>Total</th>
-</tr>
-<tr ng-repeat="i in dados.custos">
-  <td><input type="checkbox" ng-model="i.selecionado"></td>
-  <td>{{i.descricao}}</td>
-  <td>{{i.unidade}}</td>
-  <td>{{i.quantidade}}</td>
-  <td>{{i.valor}}</td>
-  <td></td>
-</tr>
+  <tr>
+    <th></th>
+    <th>Descrição</th>
+    <th>Unidade</th>
+    <th>Quantidade</th>
+    <th>Valor</th>
+    <th>Total</th>
+  </tr>
+  <tr ng-repeat="i in dados.custos">
+    <td><input type="checkbox" ng-model="i.selecionado"></td>
+    <td>{{i.descricao}}</td>
+    <td>{{i.unidade}}</td>
+    <td>{{i.quantidade}}</td>
+    <td>{{i.valor}}</td>
+    <td>{{i.valor * i.quantidade}}</td>
+  </tr>
+  <tr>
+    <td colspan="5"><strong>Total geral:</strong></td>
+    <td>{{plano.totalGeral(dados.custos)}}</td>
+  </tr>
 </table>
 </div>
 
