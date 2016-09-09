@@ -2,7 +2,7 @@ export default class LoginController {
   constructor($scope, $rootScope, FirebaseFactory, $state, Session) {
     Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, Session});
 
-    if (FirebaseFactory.getAuth()) $state.go('plano01');
+    if (FirebaseFactory.getAuth()) $rootScope.currentUser = FirebaseFactory.getAuth;
   }
 
   facebook () {
@@ -19,7 +19,7 @@ export default class LoginController {
     this.$rootScope.currentUser = user;
 
     // direcionando para o primeiro passao do plano se o login for válido
-    this.$state.go('plano07');
+    this.$state.go('plano01');
   }
 }
 

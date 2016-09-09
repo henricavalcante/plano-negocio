@@ -9,7 +9,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  ng-model="dados.nome"
+                  ng-model="plano.dados.nome"
                   ng-required="true">
             </div>
             <div class="form-group col-md-6">
@@ -17,7 +17,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  ng-model="dados.grupo">
+                  ng-model="plano.dados.grupo">
             </div>
         </div>
         <div class="form-group">
@@ -25,7 +25,7 @@
             <textarea
               class="form-control"
               rows="5"
-              ng-model="dados.atividade"
+              ng-model="plano.dados.atividade"
               ng-required="true">
             </textarea>
         </div>
@@ -33,9 +33,7 @@
 </form>
 <button
   class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(dados)"
+  ng-click="plano.save(plano.dados)"
   ng-disabled="form01.$invalid">
   Salvar
 </button>
-
-{{plano.dados | json}}

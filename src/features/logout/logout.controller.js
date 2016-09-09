@@ -7,7 +7,7 @@ export default class LogoutController {
 
     setTimeout(function () {
       $state.go('login');
-    }, 3000);
+    }, 1000);
   }
 }
 

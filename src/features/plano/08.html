@@ -50,15 +50,15 @@
 
     <button
       class="btn btn-danger"
-      ng-click="plano.removerReceita(dados.receitas)"
-      ng-if="plano.isReceitaSelecionada(dados.receitas)">
+      ng-click="plano.removerReceita(plano.dados.receitas)"
+      ng-if="plano.isReceitaSelecionada(plano.dados.receitas)">
       Remover
     </button>
   </form>
 
   <table
     class="table table-striped table-bordered"
-    ng-show="dados.receitas.length > 0">
+    ng-show="plano.dados.receitas.length > 0">
     <tr>
       <th></th>
       <th>Descrição</th>
@@ -67,7 +67,7 @@
       <th>Valor</th>
       <th>Total</th>
     </tr>
-    <tr ng-repeat="i in dados.receitas">
+    <tr ng-repeat="i in plano.dados.receitas">
       <td><input type="checkbox" ng-model="i.selecionado"></td>
       <td>{{i.descricao}}</td>
       <td>{{i.unidade}}</td>
@@ -77,14 +77,14 @@
     </tr>
     <tr>
       <td colspan="5"><strong>TOTAL GERAL:</strong></td>
-      <td><strong>{{plano.totalGeral(dados.receitas)}}</strong></td>
+      <td><strong>{{plano.totalGeral(plano.dados.receitas)}}</strong></td>
     </tr>
   </table>
 </div>
 
 <button
   class="btn btn-primary btn-block btn-lg"
-  ng-disabled="dados.receitas == null || dados.receitas.length < 1"
-  ng-click="plano.save(dados)">
+  ng-disabled="plano.dados.receitas == null || plano.dados.receitas.length < 1"
+  ng-click="plano.save(plano.dados)">
     Salvar
   </button>

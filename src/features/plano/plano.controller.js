@@ -1,13 +1,15 @@
 export default class PlanoController {
-  constructor($scope, FirebaseFactory, $state) {
-    Object.assign(this, { $scope, FirebaseFactory, $state });
+  constructor($scope, $rootScope, FirebaseFactory, $state) {
+    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state });
 
-    if (!$scope.currentUser) {
-      $state.go('login');
+    if (!FirebaseFactory.getAuth()) {
+      $state.go('logout');
       return;
     }
 
-    this.$scope.dados = {};
+    $rootScope.currentUser = FirebaseFactory.getAuth();
+
+    this.dados = {};
 
     this.load();
   }
@@ -25,9 +27,10 @@ export default class PlanoController {
   }
 
   load () {
-    this.FirebaseFactory.get(this.$scope.currentUser.uid + '/plano').then((res) => {
+    this.FirebaseFactory.get(this.FirebaseFactory.getAuth().uid + '/plano').then((res) => {
       res.json().then((dados) => {
-        this.$scope.dados = dados;
+        this.dados = dados;
+        this.$scope.$apply();
       });
     });
   }
@@ -35,17 +38,17 @@ export default class PlanoController {
 
   // investimento
   adicionarInvestimento (investimento) {
-    if (!this.$scope.dados.investimentos) {
-      this.$scope.dados.investimentos = [];
+    if (!this.investimentos) {
+      this.investimentos = [];
     }
 
-    this.$scope.dados.investimentos.push(angular.copy(investimento));
+    this.investimentos.push(angular.copy(investimento));
     delete this.$scope.investimento;
     this.$scope.form5.$setPristine();
   }
 
   removerInvestimento (investimentos) {
-    this.$scope.dados.investimentos = investimentos.filter(function (investimento) {
+    this.investimentos = investimentos.filter(function (investimento) {
       return !investimento.selecionado;
     });
   }
@@ -60,17 +63,17 @@ export default class PlanoController {
 
   // custos
   adicionarCusto (custo) {
-    if (!this.$scope.dados.custos) {
-      this.$scope.dados.custos = [];
+    if (!this.custos) {
+      this.custos = [];
     }
 
-    this.$scope.dados.custos.push(angular.copy(custo));
+    this.custos.push(angular.copy(custo));
     delete this.$scope.custo;
     this.$scope.form6.$setPristine();
   }
 
   removerCusto (custos) {
-    this.$scope.dados.custos = custos.filter(function (custo) {
+    this.custos = custos.filter(function (custo) {
       return !custo.selecionado;
     });
   }
@@ -85,17 +88,17 @@ export default class PlanoController {
 
   // receitas
   adicionarReceita (receita) {
-    if (!this.$scope.dados.receitas) {
-      this.$scope.dados.receitas = [];
+    if (!this.receitas) {
+      this.receitas = [];
     }
 
-    this.$scope.dados.receitas.push(angular.copy(receita));
+    this.receitas.push(angular.copy(receita));
     delete this.$scope.receita;
     this.$scope.form8.$setPristine();
   }
 
   removerReceita (receitas) {
-    this.$scope.dados.receitas = receitas.filter(function (receita) {
+    this.receitas = receitas.filter(function (receita) {
       return !receita.selecionado;
     });
   }
@@ -135,4 +138,4 @@ export default class PlanoController {
   }
 }
 
-PlanoController.$inject = ['$scope', 'FirebaseFactory', '$state'];
+PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state'];

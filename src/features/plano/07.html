@@ -17,7 +17,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.maoDeObra"
+          ng-model="plano.dados.custosFixos.maoDeObra"
           ng-required="true">
       </td>
     </tr>
@@ -27,7 +27,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.encargos"
+          ng-model="plano.dados.custosFixos.encargos"
           disabled="true">
       </td>
     </tr>
@@ -37,7 +37,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.aluguelCondominio"
+          ng-model="plano.dados.custosFixos.aluguelCondominio"
           ng-required="true">
       </td>
     </tr>
@@ -47,7 +47,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.aguaLuz"
+          ng-model="plano.dados.custosFixos.aguaLuz"
           ng-required="true">
       </td>
     </tr>
@@ -57,7 +57,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.veiculoTransporte"
+          ng-model="plano.dados.custosFixos.veiculoTransporte"
           ng-required="true">
       </td>
     </tr>
@@ -67,7 +67,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.contador"
+          ng-model="plano.dados.custosFixos.contador"
           ng-required="true">
       </td>
     </tr>
@@ -77,7 +77,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.retiradas"
+          ng-model="plano.dados.custosFixos.retiradas"
           ng-required="true">
       </td>
     </tr>
@@ -87,7 +87,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.manutemcaoLimpeza"
+          ng-model="plano.dados.custosFixos.manutemcaoLimpeza"
           ng-required="true">
       </td>
     </tr>
@@ -97,7 +97,7 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.taxaMEI"
+          ng-model="plano.dados.custosFixos.taxaMEI"
           ng-required="true">
       </td>
     </tr>
@@ -107,25 +107,25 @@
         <input
           class="form-control input-sm"
           type="number"
-          ng-model="dados.custosFixos.outros"
+          ng-model="plano.dados.custosFixos.outros"
           ng-required="true">
       </td>
     </tr>
     <tr>
       <td><strong>SUB-TOTAL</strong></td>
-      <td><strong>{{plano.totalSimples(dados.custosFixos)}}</strong></td>
+      <td><strong>{{plano.totalSimples(plano.dados.custosFixos)}}</strong></td>
     </tr>
     <tr>
       <td>Reservas de emergência (5%)</td>
       <td>
-        {{reservaDeEmergencia = ((plano.totalSimples(dados.custosFixos) * 5) / 100) || ''}}
+        {{reservaDeEmergencia = ((plano.totalSimples(plano.dados.custosFixos) * 5) / 100) || ''}}
       </td>
     </tr>
     <tr>
       <td><strong>TOTAL</strong></td>
       <td>
         <strong>
-          {{plano.totalSimples(dados.custosFixos) + reservaDeEmergencia}}
+          {{plano.totalSimples(plano.dados.custosFixos) + reservaDeEmergencia}}
         </strong>
       </td>
     </tr>
@@ -135,6 +135,6 @@
 <button
   class="btn btn-primary btn-block btn-lg"
   ng-disabled="form7.$invalid"
-  ng-click="plano.save(dados)">
+  ng-click="plano.save(plano.dados)">
   Salvar
 </button>

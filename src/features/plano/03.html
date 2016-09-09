@@ -9,7 +9,7 @@
       <textarea
         class="form-control"
         rows="5"
-        ng-model="dados.concorrentes"
+        ng-model="plano.dados.concorrentes"
         ng-required="true">
       </textarea>
     </div>
@@ -18,16 +18,16 @@
       <textarea
         class="form-control"
         rows="5"
-        ng-model="dados.fornecedores"
+        ng-model="plano.dados.fornecedores"
         ng-required="true">
       </textarea>
     </div>
   </div>
 </form>
 
-<button 
+<button
   class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(dados)"
+  ng-click="plano.save(plano.dados)"
   ng-disabled="form03.$invalid">
   Salvar
 </button>

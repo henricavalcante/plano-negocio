@@ -9,7 +9,7 @@
       <textarea
         class="form-control"
         rows="5"
-        ng-model="dados.localizacao"
+        ng-model="plano.dados.localizacao"
         ng-required="true">
       </textarea>
     </div>
@@ -18,7 +18,7 @@
       <textarea
         class="form-control"
         rows="5"
-        ng-model="dados.divulgacao"
+        ng-model="plano.dados.divulgacao"
         ng-required="true">
       </textarea>
     </div>
@@ -27,7 +27,7 @@
 
 <button
   class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(dados)"
+  ng-click="plano.save(plano.dados)"
   ng-disabled="form04.$invalid">
   Salvar
 </button>
