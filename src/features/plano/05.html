@@ -61,12 +61,12 @@
       <td><input type="checkbox" ng-model="i.selecionado"></td>
       <td>{{i.descricao}}</td>
       <td>{{i.quantidade}}</td>
-      <td>{{i.valor}}</td>
-      <td>{{i.valor * i.quantidade}}</td>
+      <td>{{i.valor | currency}}</td>
+      <td>{{i.valor * i.quantidade | currency}}</td>
     </tr>
     <tr>
       <td colspan="4"><strong>Total geral:</strong></td>
-      <td>{{plano.totalGeral(plano.dados.investimentos)}}</td>
+      <td>{{plano.totalGeral(plano.dados.investimentos) | currency}}</td>
     </tr>
   </table>
 </div>

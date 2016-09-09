@@ -113,19 +113,19 @@
     </tr>
     <tr>
       <td><strong>SUB-TOTAL</strong></td>
-      <td><strong>{{plano.totalSimples(plano.dados.custosFixos)}}</strong></td>
+      <td><strong>{{plano.totalSimples(plano.dados.custosFixos) | currency}}</strong></td>
     </tr>
     <tr>
       <td>Reservas de emergência (5%)</td>
       <td>
-        {{reservaDeEmergencia = ((plano.totalSimples(plano.dados.custosFixos) * 5) / 100) || ''}}
+        {{(reservaDeEmergencia = ((plano.totalSimples(plano.dados.custosFixos) * 5) / 100) || '') | currency}}
       </td>
     </tr>
     <tr>
       <td><strong>TOTAL</strong></td>
       <td>
         <strong>
-          {{plano.totalSimples(plano.dados.custosFixos) + reservaDeEmergencia}}
+          {{plano.totalSimples(plano.dados.custosFixos) + reservaDeEmergencia | currency}}
         </strong>
       </td>
     </tr>
