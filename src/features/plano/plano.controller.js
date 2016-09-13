@@ -38,17 +38,17 @@ export default class PlanoController {
 
   // investimento
   adicionarInvestimento (investimento) {
-    if (!this.investimentos) {
-      this.investimentos = [];
+    if (!this.dados.investimentos) {
+      this.dados.investimentos = [];
     }
 
-    this.investimentos.push(angular.copy(investimento));
+    this.dados.investimentos.push(angular.copy(investimento));
     delete this.$scope.investimento;
     this.$scope.form5.$setPristine();
   }
 
   removerInvestimento (investimentos) {
-    this.investimentos = investimentos.filter(function (investimento) {
+    this.dados.investimentos = investimentos.filter(function (investimento) {
       return !investimento.selecionado;
     });
   }
@@ -63,17 +63,17 @@ export default class PlanoController {
 
   // custos
   adicionarCusto (custo) {
-    if (!this.custos) {
-      this.custos = [];
+    if (!this.dados.custos) {
+      this.dados.custos = [];
     }
 
-    this.custos.push(angular.copy(custo));
+    this.dados.custos.push(angular.copy(custo));
     delete this.$scope.custo;
     this.$scope.form6.$setPristine();
   }
 
   removerCusto (custos) {
-    this.custos = custos.filter(function (custo) {
+    this.dados.custos = custos.filter(function (custo) {
       return !custo.selecionado;
     });
   }
@@ -88,17 +88,17 @@ export default class PlanoController {
 
   // receitas
   adicionarReceita (receita) {
-    if (!this.receitas) {
-      this.receitas = [];
+    if (!this.dados.receitas) {
+      this.dados.receitas = [];
     }
 
-    this.receitas.push(angular.copy(receita));
+    this.dados.receitas.push(angular.copy(receita));
     delete this.$scope.receita;
     this.$scope.form8.$setPristine();
   }
 
   removerReceita (receitas) {
-    this.receitas = receitas.filter(function (receita) {
+    this.dados.receitas = receitas.filter(function (receita) {
       return !receita.selecionado;
     });
   }
@@ -111,6 +111,8 @@ export default class PlanoController {
     });
   }
 
+  // retorna o resultado geral com os calculos de valor x quantidade do
+  // itens passados por parâmetro
   totalGeral (dados) {
     if (!dados) return;
 
@@ -123,6 +125,7 @@ export default class PlanoController {
     return total;
   }
 
+  // retorna um total simples baseado nos calores passados por parâmetro
   totalSimples (dados) {
     if (!dados) return;
 
@@ -136,6 +139,7 @@ export default class PlanoController {
 
     return total;
   }
+
 }
 
 PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state'];
