@@ -1,5 +1,5 @@
 import angular from 'angular';
-import Firebase from 'firebase';
+import firebase from 'firebase';
 
 const API_KEY = "AIzaSyA8-T3HWTOISE5pQzG1x9OoYXQpa7A6-Vs";
 const AUTH_DOMAIN = "meuplanodenegocios-3a542.firebaseapp.com";
