@@ -1,81 +1,95 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Passo 5 - Investimento Inicial</h3>
+<navigation></navigation>
+
+<div class="col-md-9" ng-if="!plano.passosConcluidos().plano03">
+  <div name="div02" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
+      </div>
+
+      <div class="panel-body">
+        Preencha o passo anterior!
+      </div>
   </div>
-
-  <form name="form5" class="panel-body">
-    <h5><strong>Qual o investimento inicial para montar o seu negócio?</strong></h5>
-    <hr>
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="">Descrição</label>
-        <input
-          class="form-control"
-          type="text"
-          ng-model="investimento.descricao"
-          ng-required="true">
-      </div>
-      <div class="form-group col-md-3 col-sm-6">
-        <label for="">Quantidade</label>
-        <input
-          class="form-control"
-          type="number"
-          ng-model="investimento.quantidade"
-          ng-required="true">
-      </div>
-      <div class="form-group col-md-3 col-sm-6">
-        <label for="">Valor</label>
-        <input
-          class="form-control"
-          type="number"
-          ng-model="investimento.valor"
-          ng-required="true">
-      </div>
-    </div>
-    <button
-      class="btn btn-default"
-      ng-click="plano.adicionarInvestimento(investimento)"
-      ng-disabled="form.$invalid">
-      Adicionar
-    </button>
-
-    <a href="#"
-      class="btn btn-danger"
-      ng-click="plano.removerInvestimento(plano.dados.investimentos)"
-      ng-if="plano.isInvestimentoSelecionado(plano.dados.investimentos)">
-      Remover
-    </a>
-  </form>
-
-  <table
-    class="table table-striped table-bordered"
-    ng-show="plano.dados.investimentos.length > 0">
-    <tr>
-      <th></th>
-      <th>Descrição</th>
-      <th>Quantidade</th>
-      <th>Valor</th>
-      <th>Total</th>
-    </tr>
-    <tr ng-repeat="i in plano.dados.investimentos">
-      <td><input type="checkbox" ng-model="i.selecionado"></td>
-      <td>{{i.descricao}}</td>
-      <td>{{i.quantidade}}</td>
-      <td>{{i.valor | currency}}</td>
-      <td>{{i.valor * i.quantidade | currency}}</td>
-    </tr>
-    <tr>
-      <td colspan="4"><strong>Total geral:</strong></td>
-      <td>{{plano.totalGeral(plano.dados.investimentos) | currency}}</td>
-    </tr>
-  </table>
 </div>
 
-<button
-  class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(plano.dados)"
-  ng-disabled="plano.dados.investimentos == null || plano.dados.investimentos.length < 1">
-  Salvar
-</button>
+<div class="col-md-9" ng-if="plano.passosConcluidos().plano03">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 5 - Investimento Inicial</h3>
+    </div>
 
-{{plano.investimento}}
+    <form name="form5" class="panel-body">
+      <h5><strong>Qual o investimento inicial para montar o seu negócio?</strong></h5>
+      <hr>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="">Descrição</label>
+          <input
+            class="form-control"
+            type="text"
+            ng-model="investimento.descricao"
+            ng-required="true">
+        </div>
+        <div class="form-group col-md-3 col-sm-6">
+          <label for="">Quantidade</label>
+          <input
+            class="form-control"
+            type="number"
+            ng-model="investimento.quantidade"
+            ng-required="true">
+        </div>
+        <div class="form-group col-md-3 col-sm-6">
+          <label for="">Valor</label>
+          <input
+            class="form-control"
+            type="text"
+            ng-model="investimento.valor"
+            ng-required="true">
+        </div>
+      </div>
+      <button
+        class="btn btn-default"
+        ng-click="plano.adicionarInvestimento(investimento)"
+        ng-disabled="form.$invalid">
+        Adicionar
+      </button>
+
+      <a href="#"
+        class="btn btn-danger"
+        ng-click="plano.removerInvestimento(plano.dados.investimentos)"
+        ng-if="plano.isInvestimentoSelecionado(plano.dados.investimentos)">
+        Remover
+      </a>
+    </form>
+
+    <table
+      class="table table-striped table-bordered"
+      ng-show="plano.dados.investimentos.length > 0">
+      <tr>
+        <th></th>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+        <th>Total</th>
+      </tr>
+      <tr ng-repeat="i in plano.dados.investimentos">
+        <td><input type="checkbox" ng-model="i.selecionado"></td>
+        <td>{{i.descricao}}</td>
+        <td>{{i.quantidade}}</td>
+        <td>{{i.valor | currency}}</td>
+        <td>{{i.valor * i.quantidade | currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="4"><strong>Total geral:</strong></td>
+        <td>{{plano.totalGeral(plano.dados.investimentos) | currency}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <button
+    class="btn btn-primary btn-block btn-lg"
+    ng-click="plano.save(plano.dados)"
+    ng-disabled="plano.dados.investimentos == null || plano.dados.investimentos.length < 1">
+    Salvar
+  </button>
+</div>

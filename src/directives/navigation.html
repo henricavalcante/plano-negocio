@@ -1,32 +1,87 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <span class="navbar-brand">Plano de Negócio</span>
-    </div>
-    <div class="collapese navbar-collapse" ng-if="isActive()">
-      <ul class="nav navbar-nav">
-
-        <li class="dropdown" ng-class="{open: showMenu}">
-          <a href="#" class="dropdown-toggle" ng-click="showMenu = !showMenu" aria-expanded="false">Passos <span class="caret"></span></a>
-          <ul class="dropdown-menu" ng-click="showMenu = false">
-            <li><a href="/plano/01">Passo 1 - Nome do Plano / Tipo de atividade</a></li>
-            <li><a href="/plano/02">Passo 2 - Produtos / Clientes</a></li>
-            <li><a href="/plano/03">Passo 3 - Concorrentes / Fornecedores</a></li>
-            <li><a href="/plano/04">Passo 4 - Instalação / Divulgação</a></li>
-            <li><a href="/plano/05">Passo 5 - Investimento Inicial</a></li>
-            <li><a href="/plano/06">Passo 6 - Custos variáveis</a></li>
-            <li><a href="/plano/07">Passo 7 - Custos fixos mensais</a></li>
-            <li><a href="/plano/08">Passo 8 - Receitas operacionais</a></li>
-            <li><a href="/plano/resultado">Demostrativo de resultado</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div class="navbar-right" ng-if="isActive()">
-        <button class="btn btn-default navbar-btn">Visualizar</button>
-        <button class="btn btn-default navbar-btn">Imprimir</button>
-        <button class="btn btn-success navbar-btn">Pronto p/ correção</button>
-        <a href="/logout" class="btn btn-default navbar-btn">Sair</a>
-      </div>
+<div class="col-md-3 hidden-sm hidden-xs">
+  <div>
+    <div class="list-group">
+      <a
+        class="list-group-item"
+        href="/plano/01"
+        ng-class="{'passo-success': plano.passosConcluidos().plano01}">
+        <h4 class="list-group-item-heading">Passo 01</h4>
+        <p class="list-group-item-text">
+          Nome do Plano / Tipo de atividade
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/02"
+        ng-class="{'passo-success': plano.passosConcluidos().plano02}">
+        <h4 class="list-group-item-heading">Passo 02</h4>
+        <p class="list-group-item-text">
+          Produtos / Clientes
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/03"
+        ng-class="{'passo-success': plano.passosConcluidos().plano03}">
+        <h4 class="list-group-item-heading">Passo 03</h4>
+        <p class="list-group-item-text">
+          Concorrentes / Fornecedores
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/04"
+        ng-class="{'passo-success': plano.passosConcluidos().plano04}">
+        <h4 class="list-group-item-heading">Passo 04</h4>
+        <p class="list-group-item-text">
+          Instalação / Divulgação
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/05"
+        ng-class="{'passo-success': plano.passosConcluidos().plano05}">
+        <h4 class="list-group-item-heading">Passo 05</h4>
+        <p class="list-group-item-text">
+          Investimento Inicial
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/06"
+        ng-class="{'passo-success': plano.passosConcluidos().plano06}">
+        <h4 class="list-group-item-heading">Passo 06</h4>
+        <p class="list-group-item-text">
+          Custos variáveis
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/07"
+        ng-class="{'passo-success': plano.passosConcluidos().plano07}">
+        <h4 class="list-group-item-heading">Passo 07</h4>
+        <p class="list-group-item-text">
+          Custos fixos mensais
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/08"
+        ng-class="{'passo-success': plano.passosConcluidos().plano08}">
+        <h4 class="list-group-item-heading">Passo 08</h4>
+        <p class="list-group-item-text">
+          Receitas operacionais
+        </p>
+      </a>
+      <a
+        class="list-group-item"
+        href="/plano/resultado"
+        ng-class="{'passo-success': plano.passosConcluidos().plano08}">
+        <h4 class="list-group-item-heading">Fim</h4>
+        <p class="list-group-item-text">
+          Demostrativo de resultado
+        </p>
+      </a>
     </div>
   </div>
-</nav>
+</div>

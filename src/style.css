@@ -1,0 +1,15 @@
+body {
+  padding-top: 70px;
+}
+
+.loading {
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(images/grid.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}

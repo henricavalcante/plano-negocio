@@ -1,4 +1,5 @@
 import angular from 'angular';
+import './navigation.css';
 
 function navigation() {
   const navigationController = function($scope, $rootScope, $location) {

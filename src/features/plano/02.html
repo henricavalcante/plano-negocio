@@ -1,32 +1,49 @@
-<form name="form02" class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Passo 2 - Produtos / Clientes</h3>
-    </div>
+<navigation></navigation>
 
-    <div class="panel-body">
-        <div class="form-group">
-            <label for="">Quais os produtos que pretende fabricar e/ou comercializar?</label>
-            <textarea
-              class="form-control"
-              rows="5"
-              ng-model="plano.dados.produtos"
-              ng-required="true">
-            </textarea>
-        </div>
-        <div class="form-group">
-            <label for="">Quem são os seus clientes?</label>
-            <textarea
-              class="form-control"
-              rows="5"
-              ng-model="plano.dados.clientes"
-              ng-required="true">
-            </textarea>
-        </div>
-    </div>
-</form>
-<button
-  class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(plano.dados)"
-  ng-disabled="form02.$invalid">
-  Salvar
-</button>
+<div class="col-md-9" ng-if="!plano.passosConcluidos().plano01">
+  <div name="div02" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
+      </div>
+
+      <div class="panel-body">
+        Preencha o passo anterior!
+      </div>
+  </div>
+</div>
+
+<div class="col-md-9" ng-if="plano.passosConcluidos().plano01">
+  <form name="form02" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Passo 2 - Produtos / Clientes</h3>
+      </div>
+
+      <div class="panel-body">
+          <div class="form-group">
+              <label for="">Quais os produtos que pretende fabricar e/ou comercializar?</label>
+              <textarea
+                class="form-control"
+                rows="5"
+                ng-model="plano.dados.produtos"
+                ng-required="true">
+              </textarea>
+          </div>
+          <div class="form-group">
+              <label for="">Quem são os seus clientes?</label>
+              <textarea
+                class="form-control"
+                rows="5"
+                ng-model="plano.dados.clientes"
+                ng-required="true">
+              </textarea>
+          </div>
+      </div>
+  </form>
+
+  <button
+    class="btn btn-primary btn-block btn-lg"
+    ng-click="plano.save(plano.dados)"
+    ng-disabled="form02.$invalid">
+    Salvar
+  </button>
+</div>

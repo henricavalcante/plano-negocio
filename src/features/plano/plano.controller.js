@@ -12,6 +12,21 @@ export default class PlanoController {
     this.dados = {};
 
     this.load();
+
+    this.requerimentos = [
+      'nome',
+      'atividade',
+      'produtos',
+      'clientes',
+      'concorrentes',
+      'fornecedores',
+      'localizacao',
+      'divulgacao',
+      'investimentos',
+      'custos',
+      'custosFixos',
+      'receitas'
+    ];
   }
 
   save(data) {
@@ -34,7 +49,6 @@ export default class PlanoController {
       });
     });
   }
-
 
   // investimento
   adicionarInvestimento (investimento) {
@@ -138,6 +152,43 @@ export default class PlanoController {
     }
 
     return total;
+  }
+
+  passosConcluidos () {
+    let passos = {
+      plano01: false,
+      plano02: false,
+      plano03: false,
+      plano04: false,
+      plano05: false,
+      plano06: false,
+      plano07: false,
+      plano08: false
+    }
+
+    if (!this.dados) return passos;
+
+    let stop = false;
+
+    this.requerimentos.forEach((key, i) => {
+      if (!this.dados[key]) stop = true;
+
+      if (stop) return;
+
+      switch (i) {
+        case 1: passos.plano01 = true; break;
+        case 3: passos.plano02 = true; break;
+        case 5: passos.plano03 = true; break;
+        case 7: passos.plano04 = true; break;
+        case 8: passos.plano05 = true; break;
+        case 9: passos.plano06 = true; break;
+        case 10: passos.plano07 = true; break;
+        case 11: passos.plano08 = true; break;
+      }
+    });
+
+    return passos;
+
   }
 
 }

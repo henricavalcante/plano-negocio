@@ -1,89 +1,105 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Demostrativo de resultado</h3>
+<navigation></navigation>
+
+<div class="col-md-9" ng-if="!plano.passosConcluidos().plano08">
+  <div name="div02" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
+      </div>
+
+      <div class="panel-body">
+        Preencha o passo anterior!
+      </div>
   </div>
+</div>
 
-  <table class="table table-striped table-bordered">
-    <tr>
-      <th class="text-center" colspan="2">DEMONSTRATIVO DE RESULTADOS MENSAL</th>
-    </tr>
-    <tr>
-      <th>Descrição</th>
-      <th>Valores</th>
-    </tr>
-    <tr>
-      <td>Receitas Operacionais</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td>Custos Variáveis Totais</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td><strong>MARGEM DE CONTRIBUIÇÃO</strong></td>
-      <td><strong>{{0 | currency}}</strong></td>
-    </tr>
-    <tr>
-      <td>Custos Fixos</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td><strong>RESULTADO OPERACIONAL</strong></td>
-      <td><strong>{{0 | currency}}</strong></td>
-    </tr>
-  </table>
+<div class="col-md-9" ng-if="plano.passosConcluidos().plano08">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Demostrativo de resultado</h3>
+    </div>
 
-  <hr>
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th class="text-center" colspan="2">DEMONSTRATIVO DE RESULTADOS MENSAL</th>
+      </tr>
+      <tr>
+        <th>Descrição</th>
+        <th>Valores</th>
+      </tr>
+      <tr>
+        <td>Receitas Operacionais</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Custos Variáveis Totais</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td><strong>MARGEM DE CONTRIBUIÇÃO</strong></td>
+        <td><strong>{{0 | currency}}</strong></td>
+      </tr>
+      <tr>
+        <td>Custos Fixos</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td><strong>RESULTADO OPERACIONAL</strong></td>
+        <td><strong>{{0 | currency}}</strong></td>
+      </tr>
+    </table>
 
-  <table class="table table-striped table-bordered">
-    <tr>
-      <th class="text-center" colspan="3">TEMPO DE RETORNO</th>
-    </tr>
-    <tr>
-      <th>Descrição</th>
-      <th>Valores</th>
-    </tr>
-    <tr>
-      <td>Investimentos inciais</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td>Capital de giro</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td>investimento Total</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td>Receita Mensal</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td>Custo Mensal (C. Fixos+C Variáveis+ Outros C. Variáveis)</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td>Saldo Mensal</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td>Tempo de retorno (meses)</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Lorem ipsum dolor sit amet</td>
-      <td>{{0 | currency}}</td>
-    </tr>
-    <tr>
-      <td class="text-center" colspan="2">
-        <strong>Capital de Giro = Custo Mensal x3</strong>
-      </td>
-    </tr>
-    <tr>
-      <td class="text-center" colspan="2">
-        <strong>Tempo de Retorno = Investimento total / Saldo Mensal</strong>
-      </td>
-    </tr>
-  </table>
+    <hr>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th class="text-center" colspan="3">TEMPO DE RETORNO</th>
+      </tr>
+      <tr>
+        <th>Descrição</th>
+        <th>Valores</th>
+      </tr>
+      <tr>
+        <td>Investimentos inciais</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Capital de giro</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>investimento Total</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Receita Mensal</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Custo Mensal (C. Fixos+C Variáveis+ Outros C. Variáveis)</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Saldo Mensal</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Tempo de retorno (meses)</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor sit amet</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td class="text-center" colspan="2">
+          <strong>Capital de Giro = Custo Mensal x3</strong>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center" colspan="2">
+          <strong>Tempo de Retorno = Investimento total / Saldo Mensal</strong>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

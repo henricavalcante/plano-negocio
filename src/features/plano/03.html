@@ -1,33 +1,49 @@
-<form name="form03" class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Passo 3 - Concorrentes / Fornecedores</h3>
-  </div>
+<navigation></navigation>
 
-  <div class="panel-body">
-    <div class="form-group">
-      <label for="">Quem são os seus concorrentes?</label>
-      <textarea
-        class="form-control"
-        rows="5"
-        ng-model="plano.dados.concorrentes"
-        ng-required="true">
-      </textarea>
-    </div>
-    <div class="form-group">
-      <label for="">Quem são os seus fornecedores?</label>
-      <textarea
-        class="form-control"
-        rows="5"
-        ng-model="plano.dados.fornecedores"
-        ng-required="true">
-      </textarea>
-    </div>
-  </div>
-</form>
+<div class="col-md-9" ng-if="!plano.passosConcluidos().plano02">
+  <div name="div02" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
+      </div>
 
-<button
-  class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(plano.dados)"
-  ng-disabled="form03.$invalid">
-  Salvar
-</button>
+      <div class="panel-body">
+        Preencha o passo anterior!
+      </div>
+  </div>
+</div>
+
+<div class="col-md-9" ng-if="plano.passosConcluidos().plano02">
+  <form name="form03" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 3 - Concorrentes / Fornecedores</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="">Quem são os seus concorrentes?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="plano.dados.concorrentes"
+          ng-required="true">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">Quem são os seus fornecedores?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="plano.dados.fornecedores"
+          ng-required="true">
+        </textarea>
+      </div>
+    </div>
+  </form>
+
+  <button
+    class="btn btn-primary btn-block btn-lg"
+    ng-click="plano.save(plano.dados)"
+    ng-disabled="form03.$invalid">
+    Salvar
+  </button>
+</div>

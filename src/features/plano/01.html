@@ -1,39 +1,43 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Passo 1 - Nome do Plano / Tipo de atividade</h3>
+<navigation></navigation>
+
+<div class="col-md-9">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Passo 1 - Nome do Plano / Tipo de atividade</h3>
+      </div>
+      <form name="form01" class="panel-body">
+          <div class="row">
+              <div class="form-group col-md-6">
+                  <label for="">Digite aqui o Nome do seu Negócio</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    ng-model="plano.dados.nome"
+                    ng-required="true">
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">Nome do seu grupo (Opcional)</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    ng-model="plano.dados.grupo">
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="">Qual a atividade que você pretende montar?</label>
+              <textarea
+                class="form-control"
+                rows="5"
+                ng-model="plano.dados.atividade"
+                ng-required="true">
+              </textarea>
+          </div>
+        </form>
     </div>
-    <form name="form01" class="panel-body">
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="">Digite aqui o Nome do seu Negócio</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  ng-model="plano.dados.nome"
-                  ng-required="true">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="">Nome do seu grupo (Opcional)</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  ng-model="plano.dados.grupo">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="">Qual a atividade que você pretende montar?</label>
-            <textarea
-              class="form-control"
-              rows="5"
-              ng-model="plano.dados.atividade"
-              ng-required="true">
-            </textarea>
-        </div>
-    </div>
-</form>
-<button
-  class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(plano.dados)"
-  ng-disabled="form01.$invalid">
-  Salvar
-</button>
+  <button
+    class="btn btn-primary btn-block btn-lg"
+    ng-click="plano.save(plano.dados)"
+    ng-disabled="form01.$invalid">
+    Salvar
+  </button>
+</div>

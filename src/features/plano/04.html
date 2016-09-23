@@ -1,33 +1,49 @@
-<form name="form04" class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Passo 4 - Instalação / Divulgação</h3>
-  </div>
+<navigation></navigation>
 
-  <div class="panel-body">
-    <div class="form-group">
-      <label for="">Onde pretendo instalar o negócio?</label>
-      <textarea
-        class="form-control"
-        rows="5"
-        ng-model="plano.dados.localizacao"
-        ng-required="true">
-      </textarea>
-    </div>
-    <div class="form-group">
-      <label for="">Como pretende promover/divulgar os produtos/seviços?</label>
-      <textarea
-        class="form-control"
-        rows="5"
-        ng-model="plano.dados.divulgacao"
-        ng-required="true">
-      </textarea>
-    </div>
-  </div>
-</form>
+<div class="col-md-9" ng-if="!plano.passosConcluidos().plano03">
+  <div name="div02" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
+      </div>
 
-<button
-  class="btn btn-primary btn-block btn-lg"
-  ng-click="plano.save(plano.dados)"
-  ng-disabled="form04.$invalid">
-  Salvar
-</button>
+      <div class="panel-body">
+        Preencha o passo anterior!
+      </div>
+  </div>
+</div>
+
+<div class="col-md-9" ng-if="plano.passosConcluidos().plano03">
+  <form name="form04" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 4 - Instalação / Divulgação</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="">Onde pretendo instalar o negócio?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="plano.dados.localizacao"
+          ng-required="true">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">Como pretende promover/divulgar os produtos/seviços?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="plano.dados.divulgacao"
+          ng-required="true">
+        </textarea>
+      </div>
+    </div>
+  </form>
+
+  <button
+    class="btn btn-primary btn-block btn-lg"
+    ng-click="plano.save(plano.dados)"
+    ng-disabled="form04.$invalid">
+    Salvar
+  </button>
+</div>
