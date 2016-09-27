@@ -30,7 +30,7 @@ class FirebaseFactory {
   }
 
   update(path, data) {
-    this.firebase.database().ref(path).update(data);
+    return this.firebase.database().ref(path).update(data);
   }
 
   getAuth() {

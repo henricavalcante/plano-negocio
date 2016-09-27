@@ -9,6 +9,15 @@ export default class PlanoController {
 
     $rootScope.currentUser = FirebaseFactory.getAuth();
 
+    $rootScope.mensagens = [];
+
+    $rootScope.removerMensagem = (mensagem) => {
+      console.log(mensagem);
+      $rootScope.mensagens = $rootScope.mensagens.filter((_mensagem) => {
+        return _mensagem.id != mensagem.id;
+      });
+    };
+
     this.dados = {};
 
     this.load();
@@ -30,6 +39,8 @@ export default class PlanoController {
   }
 
   save(data) {
+    this.$rootScope.isLoading = true;
+
     if (!this.$scope.currentUser) {
       console.log('Não Logado!');
       return;
@@ -38,13 +49,25 @@ export default class PlanoController {
     this.FirebaseFactory.update(
       `${this.$scope.currentUser.uid}/plano`,
       angular.copy(data)
-    );
+    ).then(() => {
+      this.$rootScope.mensagens.push({
+        id: this.$rootScope.mensagens.length,
+        text: 'Dados salvos com sucesso! Você pode prosseguir para o próximo passo!'
+      });
+
+
+      this.$rootScope.isLoading = false;
+      this.$scope.$apply();
+    });
   }
 
   load () {
+    this.$rootScope.isLoading = true;
+
     this.FirebaseFactory.get(this.FirebaseFactory.getAuth().uid + '/plano').then((res) => {
       res.json().then((dados) => {
         this.dados = dados;
+        this.$rootScope.isLoading = false;
         this.$scope.$apply();
       });
     });
@@ -58,7 +81,7 @@ export default class PlanoController {
 
     this.dados.investimentos.push(angular.copy(investimento));
     delete this.$scope.investimento;
-    this.$scope.form5.$setPristine();
+    this.form5.$setPristine();
   }
 
   removerInvestimento (investimentos) {
@@ -83,7 +106,7 @@ export default class PlanoController {
 
     this.dados.custos.push(angular.copy(custo));
     delete this.$scope.custo;
-    this.$scope.form6.$setPristine();
+    this.form6.$setPristine();
   }
 
   removerCusto (custos) {
@@ -108,7 +131,7 @@ export default class PlanoController {
 
     this.dados.receitas.push(angular.copy(receita));
     delete this.$scope.receita;
-    this.$scope.form8.$setPristine();
+    this.form8.$setPristine();
   }
 
   removerReceita (receitas) {
