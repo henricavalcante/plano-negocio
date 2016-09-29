@@ -1,6 +1,10 @@
 export default class LoginController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, Session) {
-    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, Session});
+  constructor($scope, $rootScope, FirebaseFactory, $state, Session, $location) {
+    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, Session, $location});
+
+    if ($location.search().email && $location.search().password) {
+      this.signInWithEmailAndPassword($location.search());
+    }
 
     if (FirebaseFactory.getAuth()) $rootScope.currentUser = FirebaseFactory.getAuth;
   }
@@ -58,4 +62,4 @@ export default class LoginController {
   }
 }
 
-LoginController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session'];
+LoginController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session', '$location'];
