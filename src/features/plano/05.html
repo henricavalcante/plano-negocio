@@ -18,7 +18,7 @@
       <h3 class="panel-title">Passo 5 - Investimento Inicial</h3>
     </div>
 
-    <form name="plano.form5" class="panel-body">
+    <form name="plano.form05" class="panel-body">
       <h5><strong>Qual o investimento inicial para montar o seu negócio?</strong></h5>
       <hr>
       <div class="row">
@@ -42,7 +42,7 @@
           <label for="">Valor</label>
           <input
             class="form-control"
-            type="text"
+            type="number"
             ng-model="investimento.valor"
             ng-required="true">
         </div>
@@ -50,7 +50,7 @@
       <button
         class="btn btn-default"
         ng-click="plano.adicionarInvestimento(investimento)"
-        ng-disabled="form.$invalid">
+        ng-disabled="plano.form05.$invalid">
         Adicionar
       </button>
 

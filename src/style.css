@@ -13,3 +13,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.mensagens .alert {
+  display: none;
+}
+
+.mensagens .alert:first-child {
+  display: block;
+}

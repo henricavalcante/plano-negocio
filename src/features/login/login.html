@@ -3,23 +3,35 @@
     <h3 class="panel-title text-center">Login</h3>
   </div>
   <div class="panel-body">
-    <div class="form-group has-feedback">
-      <label class="sr-only" for="">E-mail</label>
-      <input class="form-control" type="text" placeholder="E-mail">
-      <!-- <span class="glyphicon glyphicon-ok form-control-feedback"></span> -->
-    </div>
-    <div class="form-group has-feedback">
-      <label class="sr-only" for="">Senha</label>
-      <input class="form-control" type="password" placeholder="Senha">
-      <!-- <span class="glyphicon glyphicon-ok form-control-feedback"></span> -->
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox"> Lembrar
-      </label>
-    </div>
+    <p ng-show="loginErrorMessage" class="alert alert-danger">{{loginErrorMessage}}</p>
+    <p ng-show="login.form.password.$error.minlength" class="alert alert-warning">Mínimo 6 caracteres</p>
 
-    <button class="btn btn-primary btn-block">Entrar</button>
+    <form name="login.form">
+      <div class="form-group has-feedback" ng-class="{'has-success': login.form.email.$valid}">
+        <label class="sr-only" for="">E-mail</label>
+        <input class="form-control" type="email" placeholder="E-mail" ng-model="user.email" name="email" ng-required="true">
+        <span ng-show="login.form.email.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback" ng-class="{'has-success': login.form.password.$valid}">
+        <label class="sr-only" for="">Senha</label>
+        <input class="form-control" type="password" placeholder="Senha" ng-model="user.password" name="password" ng-required="true" ng-minlength="6">
+        <span ng-show="login.form.password.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="user.remember"> Lembrar
+        </label>
+      </div>
+
+      <button
+        class="btn btn-primary btn-block"
+        ng-click="login.signInWithEmailAndPassword(user)"
+        ng-disabled="login.form.$invalid">
+        Entrar
+      </button>
+    </form>
+
+
     <div class="social-buttons">
       <button class="btn btn-facebook" ng-click="login.facebook()">
         <img src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiBTdmcgVmVjdG9yIEljb25zIDogaHR0cDovL3d3dy5vbmxpbmV3ZWJmb250cy5jb20vaWNvbiA8L21ldGFkYXRhPgogIDxnPjxwYXRoIGQ9Ik03MzUsMzI3LjNoLTE2MFYyMjUuNmMwLTM4LjIsMjYuMS00Ny4xLDQ0LjUtNDcuMWMxOC40LDAsMTEyLjksMCwxMTIuOSwwVjEwLjZMNTc2LjgsMTBjLTE3Mi43LDAtMjEyLDEyNS4yLTIxMiwyMDUuNHYxMTEuOUgyNjV2MTczaDk5LjlWOTkwaDIxMC4xVjUwMC4zaDE0MS43TDczNSwzMjcuM3oiIHN0eWxlPSJmaWxsOiNGRkZGRkYiPjwvcGF0aD48L2c+PC9zdmc+CiAg" width="16" height="16">

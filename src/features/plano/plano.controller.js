@@ -12,7 +12,6 @@ export default class PlanoController {
     $rootScope.mensagens = [];
 
     $rootScope.removerMensagem = (mensagem) => {
-      console.log(mensagem);
       $rootScope.mensagens = $rootScope.mensagens.filter((_mensagem) => {
         return _mensagem.id != mensagem.id;
       });
@@ -80,8 +79,8 @@ export default class PlanoController {
     }
 
     this.dados.investimentos.push(angular.copy(investimento));
+    this.form05.$setPristine();
     delete this.$scope.investimento;
-    this.form5.$setPristine();
   }
 
   removerInvestimento (investimentos) {
@@ -106,7 +105,7 @@ export default class PlanoController {
 
     this.dados.custos.push(angular.copy(custo));
     delete this.$scope.custo;
-    this.form6.$setPristine();
+    this.form06.$setPristine();
   }
 
   removerCusto (custos) {
@@ -131,7 +130,7 @@ export default class PlanoController {
 
     this.dados.receitas.push(angular.copy(receita));
     delete this.$scope.receita;
-    this.form8.$setPristine();
+    this.form08.$setPristine();
   }
 
   removerReceita (receitas) {

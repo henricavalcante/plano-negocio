@@ -41,6 +41,14 @@ class FirebaseFactory {
     return this.getAuth().stsTokenManager.accessToken;
   }
 
+  signInWithEmailAndPassword(email, password) {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+
+  createUserWithEmailAndPassword(email, password) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
+
   authFacebook() {
 
     var provider = new firebase.auth.FacebookAuthProvider();
