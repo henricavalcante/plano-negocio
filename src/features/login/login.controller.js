@@ -54,6 +54,9 @@ export default class LoginController {
   }
 
   setCurrentUser (user) {
+    // Habilitando atualização de token automática
+    user.getToken(true);
+
     this.Session.set(user);
     this.$rootScope.currentUser = user;
 
