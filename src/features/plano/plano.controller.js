@@ -65,8 +65,15 @@ export default class PlanoController {
 
     this.FirebaseFactory.get(this.FirebaseFactory.getAuth().uid + '/plano').then((res) => {
       res.json().then((dados) => {
-        this.dados = dados;
+
         this.$rootScope.isLoading = false;
+
+        if (dados.error) {
+          this.$state.go('logout');
+          return;
+        }
+
+        this.dados = dados;
         this.$scope.$apply();
       });
     });
