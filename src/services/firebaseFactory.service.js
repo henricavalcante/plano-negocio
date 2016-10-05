@@ -68,6 +68,10 @@ class FirebaseFactory {
       return this.firebase.auth().currentUser;
     });;
   }
+
+  resetPasswordWithEmail(email) {
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
 }
 
 export default angular.module('services.FirebaseFactory', [])
