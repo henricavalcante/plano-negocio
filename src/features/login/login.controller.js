@@ -2,7 +2,7 @@ export default class LoginController {
   constructor($scope, $rootScope, FirebaseFactory, $state, Session, $location) {
     Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, Session, $location});
 
-    if ($location.search().email && $location.search().password) {
+    if ($location.search().email && $location.search().key) {
       this.signInWithEmailAndPassword($location.search());
     }
 
@@ -10,10 +10,15 @@ export default class LoginController {
   }
 
   signInWithEmailAndPassword (user) {
+    if (user.key) user.password = user.key;
+
     this.$rootScope.loginErrorMessage = null;
 
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
-      .then(result => this.setCurrentUser(result))
+      .then(result => {
+        this.$rootScope.projeto = user.projeto || 'semprojeto';
+        this.setCurrentUser(result);
+      })
       .catch((err) => {
         switch (err.code) {
           case 'auth/wrong-password':
@@ -35,7 +40,15 @@ export default class LoginController {
 
   createUserWithEmailAndPassword (user) {
     this.FirebaseFactory.createUserWithEmailAndPassword(user.email, user.password)
-      .then(result => this.setCurrentUser(result))
+      .then(result => {
+
+        this.setCurrentUser(result);
+
+        this.$rootScope.projeto = user.projeto || 'semprojeto';
+
+        this.FirebaseFactory.set(`users/${result.uid}`, user);
+
+      })
       .catch((err) => {
         this.$rootScope.loginErrorMessage = 'Ocorreu um erro, tente novamente!2';
         this.$rootScope.$apply();

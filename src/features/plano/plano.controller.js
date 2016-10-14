@@ -46,7 +46,7 @@ export default class PlanoController {
     }
 
     this.FirebaseFactory.update(
-      `${this.$scope.currentUser.uid}/plano`,
+      this.getPath(),
       angular.copy(data)
     ).then(() => {
       this.$rootScope.mensagens.push({
@@ -63,12 +63,12 @@ export default class PlanoController {
   load () {
     this.$rootScope.isLoading = true;
 
-    this.FirebaseFactory.get(this.FirebaseFactory.getAuth().uid + '/plano').then((res) => {
+    this.FirebaseFactory.get(this.getPath()).then((res) => {
       res.json().then((dados) => {
 
         this.$rootScope.isLoading = false;
 
-        if (dados.error) {
+        if (dados && dados.error) {
           this.$state.go('logout');
           return;
         }
@@ -76,6 +76,8 @@ export default class PlanoController {
         this.dados = dados;
         this.$scope.$apply();
       });
+    }).catch(err => {
+      console.log('Error:', err);
     });
   }
 
@@ -218,6 +220,10 @@ export default class PlanoController {
 
     return passos;
 
+  }
+
+  getPath() {
+    return `planos/${this.$rootScope.projeto}/${this.$scope.currentUser.uid}/plano`;
   }
 
 }
