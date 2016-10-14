@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "users": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "planos": {
+      "$projeto": {
+        "$user_id": {
+          ".read": "$user_id === auth.uid",
+          ".write": "$user_id === auth.uid"
+        }
+      }
+    }
+  }
+}
