@@ -21,3 +21,12 @@ body {
 .mensagens .alert:first-child {
   display: block;
 }
+
+.navbar-brand a {
+  text-decoration: none;
+  color: #777;
+}
+
+.navbar-brand a:hover {
+  color: #555;
+}

@@ -6,7 +6,10 @@ export default class LoginController {
       this.signInWithEmailAndPassword($location.search());
     }
 
-    if (FirebaseFactory.getAuth()) $rootScope.currentUser = FirebaseFactory.getAuth;
+    if (FirebaseFactory.getAuth()) {
+      $rootScope.currentUser = FirebaseFactory.getAuth();
+      $state.go('plano01');
+    };
   }
 
   signInWithEmailAndPassword (user) {
