@@ -1,0 +1,215 @@
+<div class="col-md-12">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">PLANO DE NEGÓCIOS</h3>
+    </div>
+
+    <div class="panel-body">
+      <h4>Nome do Negócio:</h4>
+      <p>{{plano.dados.nome}}</p>
+      <hr>
+      <h4>Aluno:</h4>
+      <p>{{currentUser.displayName}}</p>
+      <hr>
+      <h4>Data:</h4>
+      <p></p>
+      <hr>
+      <h4>Atividade:</h4>
+      <p>{{plano.dados.atividade}}</p>
+      <hr>
+      <h4>Produtos:</h4>
+      <p>{{plano.dados.produtos}}</p>
+      <hr>
+      <h4>Clientes:</h4>
+      <p>{{plano.dados.clientes}}</p>
+      <hr>
+      <h4>Concorrentes:</h4>
+      <p>{{plano.dados.concorrentes}}</p>
+      <hr>
+      <h4>Fornecedores:</h4>
+      <p>{{plano.dados.fornecedores}}</p>
+      <hr>
+      <h4>Instalações:</h4>
+      <p>{{plano.dados.localizacao}}</p>
+      <hr>
+      <h4>Divulgação:</h4>
+      <p>{{plano.dados.divulgacao}}</p>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">INVESTIMENTOS FIXOS</h3>
+    </div>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Discriminação</th>
+        <th>Quantidade</th>
+        <th>Preço (R$)</th>
+        <th>Total (R$)</th>
+      </tr>
+      <tr ng-repeat="i in plano.dados.investimentos">
+        <td>{{i.descricao}}</td>
+        <td>{{i.quantidade}}</td>
+        <td>{{i.valor | currency}}</td>
+        <td>{{i.valor * i.quantidade | currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Total</strong></td>
+        <td>{{plano.totalGeral(plano.dados.investimentos) | currency}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">CUSTOS VARIÁVEIS DE PRODUÇÃO</h3>
+    </div>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Descrição dos Insumos</th>
+        <th>Unidade</th>
+        <th>Preço Unitário (R$)</th>
+        <th>Quantidade</th>
+        <th>Custo Total (R$)</th>
+      </tr>
+      <tr ng-repeat="i in plano.dados.custos">
+        <td>{{i.descricao}}</td>
+        <td>{{i.unidade}}</td>
+        <td>{{i.quantidade}}</td>
+        <td>{{i.valor | currency}}</td>
+        <td>{{i.valor * i.quantidade | currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="4"><strong>Total</strong></td>
+        <td>{{plano.totalGeral(plano.dados.custos) | currency}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">CUSTOS FIXOS MENSAIS</h3>
+    </div>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Discriminação</th>
+        <th>Valor (R$)</th>
+      </tr>
+      <tr ng-repeat="(nome, valor) in plano.dados.custosFixos">
+        <td>{{nome}}</td>
+        <td>{{valor | currency}}</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td>{{plano.totalSimples(plano.dados.custosFixos) | currency}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">RECEITAS OPERACIONAIS MENSAIS</h3>
+    </div>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Discriminação</th>
+        <th>Unidade</th>
+        <th>Preço Unitário (R$)</th>
+        <th>Quantidade</th>
+        <th>Custo Total (R$)</th>
+      </tr>
+      <tr ng-repeat="i in plano.dados.receitas">
+        <td>{{i.descricao}}</td>
+        <td>{{i.unidade}}</td>
+        <td>{{i.quantidade}}</td>
+        <td>{{i.valor | currency}}</td>
+        <td>{{i.valor * i.quantidade | currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="4"><strong>Total</strong></td>
+        <td>{{plano.totalGeral(plano.dados.receitas) | currency}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">DEMONSTRATIVO DE RESULTADO MENSAL</h3>
+    </div>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Discriminação</th>
+        <th>Valor (R$)</th>
+      </tr>
+      <tr>
+        <td>Receitas Operacionais</td>
+        <td>{{plano.totalGeral(plano.dados.receitas) | currency}}</td>
+      </tr>
+      <tr>
+        <td>Custos Variáveis Totais</td>
+        <td>{{plano.totalGeral(plano.dados.custos) | currency}}</td>
+      </tr>
+      <tr>
+        <td>MARGEM DE CONTRIBUIÇÃO</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Custos Fixos</td>
+        <td>{{plano.totalSimples(plano.dados.custosFixos) | currency}}</td>
+      </tr>
+      <tr>
+        <td>RESULTADO OPERACIONAL</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">TEMPO DE RETORNO</h3>
+    </div>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Discriminação</th>
+        <th>Valor (R$)</th>
+      </tr>
+      <tr>
+        <td>Investimento Fixo</td>
+        <td>{{plano.totalGeral(plano.dados.investimentos) * 3 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Capital de Giro = (Custo Mensal x 3)</td>
+        <td>{{custoMensal * 3 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Investimento Total</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Receita Mensal</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Custo Mensal = (Custos Fixos + Custos Variáveis)</td>
+        <td>{{(custoMensal = plano.totalGeral(plano.dados.custos) + plano.totalSimples(plano.dados.custosFixos)) | currency}}</td>
+      </tr>
+      <tr>
+        <td>Saldo Mensal</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+      <tr>
+        <td>Tempo de Retorno (Meses) = (Investimento Total / Saldo Mensal)</td>
+        <td>{{0 | currency}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>

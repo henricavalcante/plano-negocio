@@ -55,5 +55,11 @@ export default function routes($stateProvider) {
     template: require('./09.html'),
     controller: 'PlanoController',
     controllerAs: 'plano'
+  })
+  .state('visualizar', {
+    url: '/plano/visualizar',
+    template: require('./visualizar.html'),
+    controller: 'PlanoController',
+    controllerAs: 'plano'
   });
 }
