@@ -5,6 +5,7 @@ import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import config from './app.config';
 import navigation from './directives/navigation.directive';
+import help from './directives/help.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import login from './features/login';
@@ -15,6 +16,7 @@ import plano from './features/plano';
 angular.module('app', [
   uirouter,
   navigation,
+  help,
   FirebaseFactory,
   Session,
   login,

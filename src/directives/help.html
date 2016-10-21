@@ -1,0 +1,17 @@
+<span class="ppv label label-primary" ng-click="open('explicacao')">Explicação</span>
+<span class="ppv label label-primary" ng-click="open('servico')">Ex. Serviço</span>
+<span class="ppv label label-primary" ng-click="open('industria')">Ex. Indústria</span>
+<span class="ppv label label-primary" ng-click="open('comercio')">Ex. Comércio</span>
+
+<div class="ppvw panel panel-default" ng-show="isOpen()" ng-click="close()">
+  <div class="panel-heading">
+    <a href="#" class="btn btn-default btn-xs btn-warning pull-right">Sair</a>
+    <div class="clearfix"></div>
+  </div>
+  <div class="panel-body">
+    <div ng-show="categorias.explicacao" ng-bind-html="explicacaoHTML"></div>
+    <div ng-show="categorias.servico" ng-bind-html="servicoHTML"></div>
+    <div ng-show="categorias.industria" ng-bind-html="industriaHTML"></div>
+    <div ng-show="categorias.comercio" ng-bind-html="comercioHTML"></div>
+  </div>
+</div>

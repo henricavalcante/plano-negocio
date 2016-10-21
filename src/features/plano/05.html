@@ -20,6 +20,14 @@
 
     <form name="plano.form05" class="panel-body">
       <h5><strong>Qual o investimento inicial para montar o seu negócio?</strong></h5>
+      <help
+        class="pull-right"
+        explicacao="Aqui você vai preencher a tabela definindo as obras, máquinas, equipamentos, móveis e utensílios necessários à montagem do seu negócio."
+        servico='<table class="table table-striped table-bordered"> <tr> <th colspan="4" class="text-center">INVESTIMENTOS FIXOS</th> </tr> <tr> <td>Discriminação</td> <td>Quantidade</td> <td>Preço (R$)</td> <td>Total (R$)</td> </tr> <tr> <td>Multiteste</td> <td>1,00</td> <td>70,00</td> <td>70,00</td> </tr> <tr> <td>Jogo de alicates</td> <td>1,00</td> <td>180,00</td> <td>180,00</td> </tr> <tr> <td>Jogo de chaves de boca</td> <td>1,00</td> <td>120,00</td> <td>120,00</td> </tr> <tr> <td>Manometros</td> <td>3,00</td> <td>120,00</td> <td>360,00</td> </tr> <tr> <td>Jogo de chave de fenda</td> <td>1,00</td> <td>50,00</td> <td>50,00</td> </tr> <tr> <td>Detector de vazamentos</td> <td>1,00</td> <td>350,00</td> <td>350,00</td> </tr> <tr> <td>Cilindros dozadores</td> <td>2,00</td> <td>120,00</td> <td>240,00</td> </tr> <tr> <td>Timer</td> <td>1,00</td> <td>75,00</td> <td>75,00</td> </tr> <tr> <td>Bomba de vácuo</td> <td>1,00</td> <td>195,00</td> <td>195,00</td> </tr> <tr> <td colspan="3">TOTAL</td> <td>1.640,00</td> </tr> </table>'
+        industria='<table class="table table-striped table-bordered"> <tr> <th colspan="4" class="text-center">INVESTIMENTOS FIXOS</th> </tr> <tr> <td>Discriminação</td> <td>Quantidade</td> <td>Preço (R$)</td> <td>Total (R$)</td> </tr> <tr> <td>Máquina modeladora de vela comum</td> <td>1,00</td> <td>450,00</td> <td>450,00</td> </tr> <tr> <td>Máquina de modeladora de vela 7 dias</td> <td>1,00</td> <td>350,00</td> <td>350,00</td> </tr> <tr> <td>Reservatório para derreter parafina</td> <td>1,00</td> <td>180,00</td> <td>180,00</td> </tr> <tr> <td>Compressor</td> <td>1,00</td> <td>150,00</td> <td>150,00</td> </tr> <tr> <td>Obras</td> <td>1,00</td> <td>300,00</td> <td>300,00</td> </tr> <tr> <td>Refrigerador de parafina</td> <td>1,00</td> <td>280,00</td> <td>280,00</td> </tr> <tr> <td>Formas diversas</td> <td>10,00</td> <td>3,50</td> <td>35,00</td> </tr> <tr> <td>Bancada</td> <td>1,00</td> <td>120,00</td> <td>120,00</td> </tr> <tr> <td>Panelas diversas</td> <td>10,00</td> <td>3,00</td> <td>30,00</td> </tr> <tr> <td>Telefone</td> <td>1,00</td> <td>30,00</td> <td>30,00</td> </tr> <tr> <td colspan="3">TOTAL</td> <td>1.925,00</td> </tr> </table>'
+        comercio='<table class="table table-striped table-bordered"> <tr> <th colspan="4" class="text-center">INVESTIMENTOS FIXOS</th> </tr> <tr> <td>Discriminação</td> <td>Quantidade</td> <td>Preço (R$)</td> <td>Total (R$)</td> </tr> <tr> <td>Obras (pintura, elétrica)</td> <td>1,00</td> <td>500,00</td> <td>500,00</td> </tr> <tr> <td>Prateleiras expositoras</td> <td>2,00</td> <td>95,00</td> <td>190,00</td> </tr> <tr> <td>Balcão de venda</td> <td>1,00</td> <td>150,00</td> <td>150,00</td> </tr> <tr> <td>Caixa registradora</td> <td>1,00</td> <td>120,00</td> <td>120,00</td> </tr> <tr> <td colspan="3">TOTAL</td> <td>960,00</td> </tr> </table>'>
+      </help>
+      <div class="clearfix"></div>
       <hr>
       <div class="row">
         <div class="form-group col-md-6">
@@ -93,4 +101,74 @@
     ng-disabled="plano.dados.investimentos == null || plano.dados.investimentos.length < 1">
     Salvar
   </button>
+
 </div>
+<!-- <table class="table table-striped table-bordered">
+  <tr>
+    <th colspan="4" class="text-center">INVESTIMENTOS FIXOS</th>
+  </tr>
+  <tr>
+    <td>Discriminação</td>
+    <td>Quantidade</td>
+    <td>Preço (R$)</td>
+    <td>Total (R$)</td>
+  </tr>
+  <tr>
+    <td>Multiteste</td>
+    <td>1,00</td>
+    <td>70,00</td>
+    <td>70,00</td>
+  </tr>
+  <tr>
+    <td>Jogo de alicates</td>
+    <td>1,00</td>
+    <td>180,00</td>
+    <td>180,00</td>
+  </tr>
+  <tr>
+    <td>Jogo de chaves de boca</td>
+    <td>1,00</td>
+    <td>120,00</td>
+    <td>120,00</td>
+  </tr>
+  <tr>
+    <td>Manometros</td>
+    <td>3,00</td>
+    <td>120,00</td>
+    <td>360,00</td>
+  </tr>
+  <tr>
+    <td>Jogo de chave de fenda</td>
+    <td>1,00</td>
+    <td>50,00</td>
+    <td>50,00</td>
+  </tr>
+  <tr>
+    <td>Detector de vazamentos</td>
+    <td>1,00</td>
+    <td>350,00</td>
+    <td>350,00</td>
+  </tr>
+  <tr>
+    <td>Cilindros dozadores</td>
+    <td>2,00</td>
+    <td>120,00</td>
+    <td>240,00</td>
+  </tr>
+  <tr>
+    <td>Timer</td>
+    <td>1,00</td>
+    <td>75,00</td>
+    <td>75,00</td>
+  </tr>
+  <tr>
+    <td>Bomba de vácuo</td>
+    <td>1,00</td>
+    <td>195,00</td>
+    <td>195,00</td>
+  </tr>
+  <tr>
+    <td colspan="3">TOTAL</td>
+    <td>1.640,00</td>
+  </tr>
+</table> -->

@@ -1,0 +1,22 @@
+help {
+  position: relative;
+}
+
+.ppv {
+  cursor: pointer;
+}
+
+.ppvw {
+  position: absolute;
+  overflow: hidden;
+  top: 25px;
+  right: 0;
+  z-index: 100;
+}
+
+.ppvw table {
+  margin-top: -15px;
+  margin-right: -15px;
+  margin-bottom: -15px;
+  margin-left: -15px;
+}
