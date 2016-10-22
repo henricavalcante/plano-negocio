@@ -35,6 +35,8 @@ export default class PlanoController {
       'custosFixos',
       'receitas'
     ];
+
+    this.$scope.editMode = false;
   }
 
   save(data) {
@@ -90,12 +92,42 @@ export default class PlanoController {
     this.dados.investimentos.push(angular.copy(investimento));
     this.form05.$setPristine();
     delete this.$scope.investimento;
+
+    this.save(this.dados)
+  }
+
+  editarInvestimento (investimento) {
+    this.$scope.editingKey = investimento['$$hashKey'];
+    this.$scope.editMode = !this.$scope.editMode;
+    this.$scope.investimento = angular.copy(investimento);
+  }
+
+  salvarInvestimento (investimento) {
+    this.dados.investimentos.forEach((item, i) => {
+      if (item['$$hashKey'] == this.$scope.editingKey) {
+        this.dados.investimentos[i] = angular.copy(investimento);
+      }
+    });
+
+    this.cancelarEdicaoInvestimento();
+
+    this.save(this.dados)
+  }
+
+  cancelarEdicaoInvestimento () {
+    this.$scope.editMode = false;
+    this.$scope.editingKey = null;
+
+    this.form05.$setPristine();
+    delete this.$scope.investimento;
   }
 
   removerInvestimento (investimentos) {
     this.dados.investimentos = investimentos.filter(function (investimento) {
       return !investimento.selecionado;
     });
+
+    this.save(this.dados)
   }
 
   isInvestimentoSelecionado (investimentos) {
@@ -113,14 +145,44 @@ export default class PlanoController {
     }
 
     this.dados.custos.push(angular.copy(custo));
-    delete this.$scope.custo;
     this.form06.$setPristine();
+    delete this.$scope.custo;
+
+    this.save(this.dados);
+  }
+
+  editarCusto (custo) {
+    this.$scope.editingKey = custo['$$hashKey'];
+    this.$scope.editMode = !this.$scope.editMode;
+    this.$scope.custo = angular.copy(custo);
+  }
+
+  salvarCusto (custo) {
+    this.dados.custos.forEach((item, i) => {
+      if (item['$$hashKey'] == this.$scope.editingKey) {
+        this.dados.custos[i] = angular.copy(custo);
+      }
+    });
+
+    this.cancelarEdicaoCusto();
+
+    this.save(this.dados);
+  }
+
+  cancelarEdicaoCusto () {
+    this.$scope.editMode = false;
+    this.$scope.editingKey = null;
+
+    this.form06.$setPristine();
+    delete this.$scope.custo;
   }
 
   removerCusto (custos) {
     this.dados.custos = custos.filter(function (custo) {
       return !custo.selecionado;
     });
+
+    this.save(this.dados);
   }
 
   isCustoSelecionado (custos) {
@@ -138,14 +200,44 @@ export default class PlanoController {
     }
 
     this.dados.receitas.push(angular.copy(receita));
-    delete this.$scope.receita;
     this.form08.$setPristine();
+    delete this.$scope.receita;
+
+    this.save(this.dados);
+  }
+
+  editarReceita (receita) {
+    this.$scope.editingKey = receita['$$hashKey'];
+    this.$scope.editMode = !this.$scope.editMode;
+    this.$scope.receita = angular.copy(receita);
+  }
+
+  salvarReceita (receita) {
+    this.dados.receitas.forEach((item, i) => {
+      if (item['$$hashKey'] == this.$scope.editingKey) {
+        this.dados.receitas[i] = angular.copy(receita);
+      }
+    });
+
+    this.cancelarEdicaoReceita();
+
+    this.save(this.dados);
+  }
+
+  cancelarEdicaoReceita () {
+    this.$scope.editMode = false;
+    this.$scope.editingKey = null;
+
+    this.form08.$setPristine();
+    delete this.$scope.receita;
   }
 
   removerReceita (receitas) {
     this.dados.receitas = receitas.filter(function (receita) {
       return !receita.selecionado;
     });
+
+    this.save(this.dados);
   }
 
   isReceitaSelecionada (receitas) {

@@ -67,16 +67,31 @@
       <button
         class="btn btn-default"
         ng-disabled="plano.form08.$invalid"
-        ng-click="plano.adicionarReceita(receita)">
+        ng-click="plano.adicionarReceita(receita)"
+        ng-hide="editMode">
         Adicionar
       </button>
 
-      <button
+      <a href="#"
         class="btn btn-danger"
         ng-click="plano.removerReceita(plano.dados.receitas)"
         ng-if="plano.isReceitaSelecionada(plano.dados.receitas)">
         Remover
-      </button>
+      </a>
+
+      <a href="#"
+        class="btn btn-primary"
+        ng-click="plano.salvarReceita(receita)"
+        ng-show="editMode">
+        Salvar
+      </a>
+
+      <a href="#"
+        class="btn btn-default"
+        ng-click="plano.cancelarEdicaoReceita()"
+        ng-show="editMode">
+        Cancelar
+      </a>
     </form>
 
     <table
@@ -91,8 +106,11 @@
         <th>Total</th>
       </tr>
       <tr ng-repeat="i in plano.dados.receitas">
-        <td><input type="checkbox" ng-model="i.selecionado"></td>
-        <td>{{i.descricao}}</td>
+        <td><input type="checkbox" ng-model="i.selecionado" ng-disabled="editMode"></td>
+        <td>
+          <a ng-hide="editMode" ng-click="plano.editarReceita(i)" href="#">{{i.descricao}}</a>
+          <span ng-show="editMode">{{i.descricao}}</span>
+        </td>
         <td>{{i.unidade}}</td>
         <td>{{i.quantidade}}</td>
         <td>{{i.valor | currency}}</td>
@@ -104,11 +122,4 @@
       </tr>
     </table>
   </div>
-
-  <button
-    class="btn btn-primary btn-block btn-lg"
-    ng-disabled="plano.dados.receitas == null || plano.dados.receitas.length < 1"
-    ng-click="plano.save(plano.dados)">
-      Salvar
-  </button>
 </div>
