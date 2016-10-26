@@ -2,13 +2,13 @@ import angular from 'angular';
 import './navigation.css';
 
 function navigation() {
-  const navigationController = function($scope, $rootScope, $location) {
+  const navigationController = function($scope, $rootScope) {
     $scope.isActive = function () {
       return $scope.currentUser != undefined;
     };
 
     Object.assign(this, {$rootScope});
-  }
+  };
 
   return {
     restrict: 'E',

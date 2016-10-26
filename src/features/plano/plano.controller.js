@@ -1,6 +1,6 @@
 export default class PlanoController {
   constructor($scope, $rootScope, FirebaseFactory, $state) {
-    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state });
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -56,17 +56,16 @@ export default class PlanoController {
         text: 'Dados salvos com sucesso! Você pode prosseguir para o próximo passo!'
       });
 
-
       this.$rootScope.isLoading = false;
       this.$scope.$apply();
     });
   }
 
-  load () {
+  load() {
     this.$rootScope.isLoading = true;
 
-    this.FirebaseFactory.get(this.getPath()).then((res) => {
-      res.json().then((dados) => {
+    this.FirebaseFactory.get(this.getPath()).then(res => {
+      res.json().then(dados => {
 
         this.$rootScope.isLoading = false;
 
@@ -76,6 +75,18 @@ export default class PlanoController {
         }
 
         this.dados = dados;
+        console.log(dados);
+        this.receitas = this.totalGeral(dados.receitas);
+        this.custosVariaveisTotais = this.totalGeral(dados.custos);
+        this.custosFixosTotais = this.totalSimples(dados.custosFixos);
+        this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
+        this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
+        this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
+        this.lucro = this.receitas - this.despesas;
+        this.capitalDeGiro = this.despesas * 3;
+        this.investimento = this.totalGeral(dados.investimentos);
+        this.investimentoTotal = this.investimento + this.capitalDeGiro;
+        this.taxaDeRetorno = this.investimentoTotal / this.lucro;
         this.$scope.$apply();
       });
     }).catch(err => {
@@ -84,7 +95,7 @@ export default class PlanoController {
   }
 
   // investimento
-  adicionarInvestimento (investimento) {
+  adicionarInvestimento(investimento) {
     if (!this.dados.investimentos) {
       this.dados.investimentos = [];
     }
@@ -96,15 +107,16 @@ export default class PlanoController {
     this.save(this.dados)
   }
 
-  editarInvestimento (investimento) {
+  editarInvestimento(investimento) {
     this.$scope.editingKey = investimento['$$hashKey'];
     this.$scope.editMode = !this.$scope.editMode;
     this.$scope.investimento = angular.copy(investimento);
   }
 
-  salvarInvestimento (investimento) {
+  salvarInvestimento(investimento) {
     this.dados.investimentos.forEach((item, i) => {
-      if (item['$$hashKey'] == this.$scope.editingKey) {
+      if (item['$$hashKey'] == this.$scope.editingKey
+      ) {
         this.dados.investimentos[i] = angular.copy(investimento);
       }
     });
@@ -114,7 +126,7 @@ export default class PlanoController {
     this.save(this.dados)
   }
 
-  cancelarEdicaoInvestimento () {
+  cancelarEdicaoInvestimento() {
     this.$scope.editMode = false;
     this.$scope.editingKey = null;
 
@@ -122,7 +134,7 @@ export default class PlanoController {
     delete this.$scope.investimento;
   }
 
-  removerInvestimento (investimentos) {
+  removerInvestimento(investimentos) {
     this.dados.investimentos = investimentos.filter(function (investimento) {
       return !investimento.selecionado;
     });
@@ -130,7 +142,7 @@ export default class PlanoController {
     this.save(this.dados)
   }
 
-  isInvestimentoSelecionado (investimentos) {
+  isInvestimentoSelecionado(investimentos) {
     if (!investimentos) return false;
 
     return investimentos.some(function (investimento) {
@@ -139,7 +151,7 @@ export default class PlanoController {
   }
 
   // custos
-  adicionarCusto (custo) {
+  adicionarCusto(custo) {
     if (!this.dados.custos) {
       this.dados.custos = [];
     }
@@ -151,13 +163,13 @@ export default class PlanoController {
     this.save(this.dados);
   }
 
-  editarCusto (custo) {
+  editarCusto(custo) {
     this.$scope.editingKey = custo['$$hashKey'];
     this.$scope.editMode = !this.$scope.editMode;
     this.$scope.custo = angular.copy(custo);
   }
 
-  salvarCusto (custo) {
+  salvarCusto(custo) {
     this.dados.custos.forEach((item, i) => {
       if (item['$$hashKey'] == this.$scope.editingKey) {
         this.dados.custos[i] = angular.copy(custo);
@@ -169,7 +181,7 @@ export default class PlanoController {
     this.save(this.dados);
   }
 
-  cancelarEdicaoCusto () {
+  cancelarEdicaoCusto() {
     this.$scope.editMode = false;
     this.$scope.editingKey = null;
 
@@ -177,7 +189,7 @@ export default class PlanoController {
     delete this.$scope.custo;
   }
 
-  removerCusto (custos) {
+  removerCusto(custos) {
     this.dados.custos = custos.filter(function (custo) {
       return !custo.selecionado;
     });
@@ -185,7 +197,7 @@ export default class PlanoController {
     this.save(this.dados);
   }
 
-  isCustoSelecionado (custos) {
+  isCustoSelecionado(custos) {
     if (!custos) return false;
 
     return custos.some(function (custo) {
@@ -194,7 +206,7 @@ export default class PlanoController {
   }
 
   // receitas
-  adicionarReceita (receita) {
+  adicionarReceita(receita) {
     if (!this.dados.receitas) {
       this.dados.receitas = [];
     }
@@ -206,13 +218,13 @@ export default class PlanoController {
     this.save(this.dados);
   }
 
-  editarReceita (receita) {
+  editarReceita(receita) {
     this.$scope.editingKey = receita['$$hashKey'];
     this.$scope.editMode = !this.$scope.editMode;
     this.$scope.receita = angular.copy(receita);
   }
 
-  salvarReceita (receita) {
+  salvarReceita(receita) {
     this.dados.receitas.forEach((item, i) => {
       if (item['$$hashKey'] == this.$scope.editingKey) {
         this.dados.receitas[i] = angular.copy(receita);
@@ -224,7 +236,7 @@ export default class PlanoController {
     this.save(this.dados);
   }
 
-  cancelarEdicaoReceita () {
+  cancelarEdicaoReceita() {
     this.$scope.editMode = false;
     this.$scope.editingKey = null;
 
@@ -232,7 +244,7 @@ export default class PlanoController {
     delete this.$scope.receita;
   }
 
-  removerReceita (receitas) {
+  removerReceita(receitas) {
     this.dados.receitas = receitas.filter(function (receita) {
       return !receita.selecionado;
     });
@@ -240,7 +252,7 @@ export default class PlanoController {
     this.save(this.dados);
   }
 
-  isReceitaSelecionada (receitas) {
+  isReceitaSelecionada(receitas) {
     if (!receitas) return false;
 
     return receitas.some(function (receita) {
@@ -248,36 +260,17 @@ export default class PlanoController {
     });
   }
 
-  // retorna o resultado geral com os calculos de valor x quantidade do
-  // itens passados por parâmetro
-  totalGeral (dados) {
+  totalGeral(dados) {
     if (!dados) return;
-
-    var total = 0;
-
-    dados.forEach(function (dado) {
-      total += (dado.valor * dado.quantidade);
-    });
-
-    return total;
+    return dados.reduce((p, x)=> p + (x.valor * x.quantidade), 0);
   }
 
-  // retorna um total simples baseado nos calores passados por parâmetro
-  totalSimples (dados) {
+  totalSimples(dados) {
     if (!dados) return;
-
-    var total = 0;
-
-    for (var key in dados) {
-      if (dados.hasOwnProperty(key)) {
-        total += dados[key];
-      }
-    }
-
-    return total;
+    return Object.keys(dados).reduce((p, x)=> p + dados[x], 0);
   }
 
-  passosConcluidos () {
+  passosConcluidos() {
     let passos = {
       plano01: false,
       plano02: false,
@@ -294,19 +287,39 @@ export default class PlanoController {
     let stop = false;
 
     this.requerimentos.forEach((key, i) => {
-      if (!this.dados[key]) stop = true;
+      if (!this.dados[key]) {
+        stop = true;
+      }
 
-      if (stop) return;
+      if (stop) {
+        return;
+      }
 
       switch (i) {
-        case 1: passos.plano01 = true; break;
-        case 3: passos.plano02 = true; break;
-        case 5: passos.plano03 = true; break;
-        case 7: passos.plano04 = true; break;
-        case 8: passos.plano05 = true; break;
-        case 9: passos.plano06 = true; break;
-        case 10: passos.plano07 = true; break;
-        case 11: passos.plano08 = true; break;
+        case 1:
+          passos.plano01 = true;
+          break;
+        case 3:
+          passos.plano02 = true;
+          break;
+        case 5:
+          passos.plano03 = true;
+          break;
+        case 7:
+          passos.plano04 = true;
+          break;
+        case 8:
+          passos.plano05 = true;
+          break;
+        case 9:
+          passos.plano06 = true;
+          break;
+        case 10:
+          passos.plano07 = true;
+          break;
+        case 11:
+          passos.plano08 = true;
+          break;
       }
     });
 
