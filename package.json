@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.build.js --bail -p",
+    "deploy": "webpack --config webpack.build.js --bail -p && firebase deploy",
     "dev": "node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress"
   },
   "repository": {
