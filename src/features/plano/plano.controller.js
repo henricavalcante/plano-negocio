@@ -74,19 +74,20 @@ export default class PlanoController {
           return;
         }
 
-        this.dados = dados;
-        console.log(dados);
-        this.receitas = this.totalGeral(dados.receitas);
-        this.custosVariaveisTotais = this.totalGeral(dados.custos);
-        this.custosFixosTotais = this.totalSimples(dados.custosFixos);
-        this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
-        this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
-        this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
-        this.lucro = this.receitas - this.despesas;
-        this.capitalDeGiro = this.despesas * 3;
-        this.investimento = this.totalGeral(dados.investimentos);
-        this.investimentoTotal = this.investimento + this.capitalDeGiro;
-        this.taxaDeRetorno = this.investimentoTotal / this.lucro;
+        if (dados) {
+          this.dados = dados;
+          this.receitas = this.totalGeral(dados.receitas);
+          this.custosVariaveisTotais = this.totalGeral(dados.custos);
+          this.custosFixosTotais = this.totalSimples(dados.custosFixos);
+          this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
+          this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
+          this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
+          this.lucro = this.receitas - this.despesas;
+          this.capitalDeGiro = this.despesas * 3;
+          this.investimento = this.totalGeral(dados.investimentos);
+          this.investimentoTotal = this.investimento + this.capitalDeGiro;
+          this.taxaDeRetorno = this.investimentoTotal / this.lucro;
+        }
         this.$scope.$apply();
       });
     }).catch(err => {
