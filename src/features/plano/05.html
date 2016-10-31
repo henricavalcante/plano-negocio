@@ -46,18 +46,20 @@
             step="any"
             min="0"
             ng-model="investimento.quantidade"
+            ng-init="investimento.quantidade = 0"
             ng-required="true">
         </div>
         <div class="form-group col-md-3 col-sm-6">
           <label for="">Valor</label>
           <input
             class="form-control"
-            type="number"
+            type="text"
             step="any"
             min="0"
             ng-model="investimento.valor"
+            ng-init="investimento.valor = 0"
             ng-required="true"
-            currency-mask>
+            ui-money-mask>
         </div>
       </div>
       <button

@@ -7,7 +7,9 @@ import routes from './plano.routes';
 import PlanoController from './plano.controller';
 import FirebaseFactory from '../../services/firebaseFactory.service';
 
-export default angular.module('app.plano', [angularUiRouter, FirebaseFactory])
+import mask from 'angular-input-masks';
+
+export default angular.module('app.plano', [angularUiRouter, FirebaseFactory, mask])
     .config(routes)
     .controller('PlanoController', PlanoController)
     .name;
