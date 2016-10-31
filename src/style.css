@@ -12,6 +12,7 @@ body {
   background-image: url(images/grid.svg);
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 100;
 }
 
 .mensagens .alert {

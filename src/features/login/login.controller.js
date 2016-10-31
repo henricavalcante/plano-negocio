@@ -3,6 +3,12 @@ export default class LoginController {
     Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, Session, $location});
 
     if ($location.search().email && $location.search().key) {
+
+      // Mostra a tela de 'loading' quando o app for usado dentro da plataforma
+      // wiquadro, para não mostrar o formulário de login enquanto o login via
+      // querystring é feito
+      $rootScope.isLoading = true;
+
       this.signInWithEmailAndPassword($location.search());
     }
 
