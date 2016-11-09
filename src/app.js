@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './style.css';
 
+import 'whatwg-fetch';
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import config from './app.config';
@@ -13,6 +14,7 @@ import login from './features/login';
 import logout from './features/logout';
 import resetPassword from './features/reset-password';
 import plano from './features/plano';
+import correcao from './features/correcao';
 
 angular.module('app', [
   uirouter,
@@ -24,5 +26,6 @@ angular.module('app', [
   login,
   logout,
   resetPassword,
-  plano
+  plano,
+  correcao
 ]).config(config);
