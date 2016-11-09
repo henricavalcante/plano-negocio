@@ -21,6 +21,7 @@
   "homepage": "https://github.com/henricavalcante/plano-negocio#readme",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-input-masks": "^2.5.0",
     "angular-sanitize": "^1.5.8",
     "angular-ui-bootstrap": "^2.0.1",
     "angular-ui-router": "^0.3.1",
