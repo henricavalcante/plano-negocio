@@ -25,6 +25,7 @@ export default class LoginController {
 
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
+        this.$rootScope.userName = user.nome;
         this.$rootScope.projeto = user.projeto || 'semprojeto';
         this.setCurrentUser(result);
       })

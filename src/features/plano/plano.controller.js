@@ -47,6 +47,8 @@ export default class PlanoController {
       return;
     }
 
+    data.userName = this.$scope.currentUser.displayName || this.$scope.userName;
+
     this.FirebaseFactory.update(
       this.getPath(),
       angular.copy(data)
