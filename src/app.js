@@ -7,6 +7,7 @@ import uirouter from 'angular-ui-router';
 import config from './app.config';
 import navigation from './directives/navigation.directive';
 import header from './directives/header.directive';
+import messages from './directives/messages.directive';
 import help from './directives/help.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
@@ -20,6 +21,7 @@ angular.module('app', [
   uirouter,
   navigation,
   header,
+  messages,
   help,
   FirebaseFactory,
   Session,
