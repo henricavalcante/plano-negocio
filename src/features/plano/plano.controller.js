@@ -103,9 +103,11 @@ export default class PlanoController {
       this.dados.investimentos = [];
     }
 
+    if (this.form05.$invalid) return;
+
     this.dados.investimentos.push(angular.copy(investimento));
     this.form05.$setPristine();
-    delete this.$scope.investimento;
+    delete this.investimentoItem;
 
     this.save(this.dados)
   }
@@ -113,10 +115,12 @@ export default class PlanoController {
   editarInvestimento(investimento) {
     this.$scope.editingKey = investimento['$$hashKey'];
     this.$scope.editMode = !this.$scope.editMode;
-    this.$scope.investimento = angular.copy(investimento);
+    this.investimentoItem = angular.copy(investimento);
   }
 
   salvarInvestimento(investimento) {
+    if (this.form05.$invalid) return;
+
     this.dados.investimentos.forEach((item, i) => {
       if (item['$$hashKey'] == this.$scope.editingKey
       ) {
@@ -134,7 +138,7 @@ export default class PlanoController {
     this.$scope.editingKey = null;
 
     this.form05.$setPristine();
-    delete this.$scope.investimento;
+    delete this.investimentoItem;
   }
 
   removerInvestimento(investimentos) {
@@ -159,9 +163,11 @@ export default class PlanoController {
       this.dados.custos = [];
     }
 
+    if (this.form06.$invalid) return;
+
     this.dados.custos.push(angular.copy(custo));
     this.form06.$setPristine();
-    delete this.$scope.custo;
+    delete this.custo;
 
     this.save(this.dados);
   }
@@ -169,10 +175,12 @@ export default class PlanoController {
   editarCusto(custo) {
     this.$scope.editingKey = custo['$$hashKey'];
     this.$scope.editMode = !this.$scope.editMode;
-    this.$scope.custo = angular.copy(custo);
+    this.custo = angular.copy(custo);
   }
 
   salvarCusto(custo) {
+    if (this.form06.$invalid) return;
+
     this.dados.custos.forEach((item, i) => {
       if (item['$$hashKey'] == this.$scope.editingKey) {
         this.dados.custos[i] = angular.copy(custo);
@@ -189,7 +197,7 @@ export default class PlanoController {
     this.$scope.editingKey = null;
 
     this.form06.$setPristine();
-    delete this.$scope.custo;
+    delete this.custo;
   }
 
   removerCusto(custos) {
@@ -214,9 +222,11 @@ export default class PlanoController {
       this.dados.receitas = [];
     }
 
+    if (this.form08.$invalid) return;
+
     this.dados.receitas.push(angular.copy(receita));
     this.form08.$setPristine();
-    delete this.$scope.receita;
+    delete this.receita;
 
     this.save(this.dados);
   }
@@ -224,10 +234,12 @@ export default class PlanoController {
   editarReceita(receita) {
     this.$scope.editingKey = receita['$$hashKey'];
     this.$scope.editMode = !this.$scope.editMode;
-    this.$scope.receita = angular.copy(receita);
+    this.receita = angular.copy(receita);
   }
 
   salvarReceita(receita) {
+    if (this.form08.$invalid) return;
+
     this.dados.receitas.forEach((item, i) => {
       if (item['$$hashKey'] == this.$scope.editingKey) {
         this.dados.receitas[i] = angular.copy(receita);
@@ -244,7 +256,7 @@ export default class PlanoController {
     this.$scope.editingKey = null;
 
     this.form08.$setPristine();
-    delete this.$scope.receita;
+    delete this.receita;
   }
 
   removerReceita(receitas) {

@@ -35,7 +35,7 @@
           <input
             class="form-control"
             type="text"
-            ng-model="investimento.descricao"
+            ng-model="plano.investimentoItem.descricao"
             ng-required="true">
         </div>
         <div class="form-group col-md-3 col-sm-6">
@@ -45,8 +45,8 @@
             type="number"
             step="any"
             min="0"
-            ng-model="investimento.quantidade"
-            ng-init="investimento.quantidade = 0"
+            ng-model="plano.investimentoItem.quantidade"
+            ng-init="plano.investimentoItem.quantidade = 0"
             ng-required="true">
         </div>
         <div class="form-group col-md-3 col-sm-6">
@@ -56,19 +56,19 @@
             type="text"
             step="any"
             min="0"
-            ng-model="investimento.valor"
-            ng-init="investimento.valor = 0"
+            ng-model="plano.investimentoItem.valor"
+            ng-init="plano.investimentoItem.valor = 0"
             ng-required="true"
             ui-money-mask>
         </div>
       </div>
-      <button
+      <a href="#"
         class="btn btn-default"
-        ng-click="plano.adicionarInvestimento(investimento)"
+        ng-click="plano.adicionarInvestimento(plano.investimentoItem)"
         ng-disabled="plano.form05.$invalid"
         ng-hide="editMode">
         Adicionar
-      </button>
+      </a>
 
       <a href="#"
         class="btn btn-danger"
@@ -80,7 +80,8 @@
 
       <a href="#"
         class="btn btn-primary"
-        ng-click="plano.salvarInvestimento(investimento)"
+        ng-click="plano.salvarInvestimento(plano.investimentoItem)"
+        ng-disabled="plano.form05.$invalid"
         ng-show="editMode">
         Salvar
       </a>
