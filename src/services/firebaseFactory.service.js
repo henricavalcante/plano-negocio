@@ -72,8 +72,12 @@ class FirebaseFactory {
   resetPasswordWithEmail(email) {
     return firebase.auth().sendPasswordResetEmail(email);
   }
+
+  signOut() {
+    return firebase.auth().signOut();
+  }
 }
 
 export default angular.module('services.FirebaseFactory', [])
-  .service('FirebaseFactory', FirebaseFactory)
-  .name;
+.service('FirebaseFactory', FirebaseFactory)
+.name;

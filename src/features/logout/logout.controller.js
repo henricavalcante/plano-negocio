@@ -1,14 +1,17 @@
 export default class LogoutController {
-  constructor($scope, $rootScope, $state, Session) {
-    Object.assign(this, { $scope, $rootScope, $state, Session});
+  constructor($scope, $rootScope, $state, Session, FirebaseFactory) {
+    Object.assign(this, { $scope, $rootScope, $state, Session, FirebaseFactory});
 
     $rootScope.currentUser = undefined;
     Session.clear();
 
-    setTimeout(function () {
-      $state.go('login');
-    }, 1000);
+    FirebaseFactory.signOut().then(() => {
+        $state.go('login');
+    }).catch(() => {
+      console.log('erro ao deslogar');
+    });
+
   }
 }
 
-LogoutController.$inject = ['$scope', '$rootScope', '$state', 'Session'];
+LogoutController.$inject = ['$scope', '$rootScope', '$state', 'Session', 'FirebaseFactory'];
