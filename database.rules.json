@@ -6,8 +6,9 @@
     },
     "planos": {
       "$projeto": {
+        ".read": "root.child('admins').child(auth.uid).child($projeto).val() == true",
         "$user_id": {
-          ".read": "$user_id === auth.uid",
+          ".read": "$user_id === auth.uid || root.child('admins').child(auth.uid).child($projeto).val() == true",
           ".write": "$user_id === auth.uid"
         }
       }
