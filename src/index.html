@@ -13,7 +13,7 @@
         ng-repeat="mensagem in mensagens"
         class="alert alert-info" role="alert">
         <button type="button" class="close" ng-click="removerMensagem(mensagem)"><span aria-hidden="true">&times;</span></button>
-        {{mensagem.text}}
+        <span ng-bind="mensagem.text"></span>
       </div>
     </div>
 
