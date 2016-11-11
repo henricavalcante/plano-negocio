@@ -12,7 +12,7 @@ export default class LoginController {
       $rootScope.userName = ' ';
       sessionStorage.setItem('userName', $rootScope.userName);
 
-      $rootScope.projeto = 'semprojeto';
+      $rootScope.projeto = sessionStorage.getItem('projeto') || 'semprojeto';
       sessionStorage.setItem('projeto', $rootScope.projeto);
 
       this.signInWithEmailAndPassword($location.search());
