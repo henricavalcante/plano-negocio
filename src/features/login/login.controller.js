@@ -9,6 +9,12 @@ export default class LoginController {
       // querystring é feito
       $rootScope.isLoading = true;
 
+      $rootScope.userName = ' ';
+      sessionStorage.setItem('userName', $rootScope.userName);
+
+      $rootScope.projeto = 'semprojeto';
+      sessionStorage.setItem('projeto', $rootScope.projeto);
+
       this.signInWithEmailAndPassword($location.search());
     }
 
@@ -25,8 +31,11 @@ export default class LoginController {
 
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
-        this.$rootScope.userName = user.nome;
+        this.$rootScope.userName = user.nome || '';
+
         this.$rootScope.projeto = user.projeto || 'semprojeto';
+        sessionStorage.setItem('projeto', this.$rootScope.projeto);
+
         this.setCurrentUser(result);
       })
       .catch((err) => {

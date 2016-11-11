@@ -1,6 +1,6 @@
 export default class PlanoController {
-  constructor($scope, $rootScope, FirebaseFactory, $state) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state});
+  constructor($scope, $rootScope, FirebaseFactory, $state, Session) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -8,6 +8,9 @@ export default class PlanoController {
     }
 
     $rootScope.currentUser = FirebaseFactory.getAuth();
+
+    $rootScope.userName = sessionStorage.getItem('userName') || '';
+    $rootScope.projeto = sessionStorage.getItem('projeto') || 'semprojeto';
 
     $rootScope.mensagens = [];
 
@@ -348,4 +351,4 @@ export default class PlanoController {
 
 }
 
-PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state'];
+PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session'];
