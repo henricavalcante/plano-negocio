@@ -8,6 +8,8 @@ import PlanoController from './plano.controller';
 import FirebaseFactory from '../../services/firebaseFactory.service';
 
 import mask from 'angular-input-masks';
+import '../../services/locale.service';
+
 
 export default angular.module('app.plano', [angularUiRouter, FirebaseFactory, mask])
     .config(routes)
