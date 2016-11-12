@@ -1,6 +1,6 @@
 export default class LoginController {
   constructor($scope, $rootScope, FirebaseFactory, $state, Session, $location) {
-    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, Session, $location});
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session, $location});
 
     if ($location.search().email && $location.search().key) {
 
@@ -21,10 +21,10 @@ export default class LoginController {
     if (FirebaseFactory.getAuth()) {
       $rootScope.currentUser = FirebaseFactory.getAuth();
       $state.go('plano01');
-    };
+    }
   }
 
-  signInWithEmailAndPassword (user) {
+  signInWithEmailAndPassword(user) {
     if (user.key) user.password = user.key;
 
     this.$rootScope.loginErrorMessage = null;
@@ -32,10 +32,8 @@ export default class LoginController {
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
         this.$rootScope.userName = user.nome || '';
-
         this.$rootScope.projeto = user.projeto || 'semprojeto';
         sessionStorage.setItem('projeto', this.$rootScope.projeto);
-
         this.setCurrentUser(result);
       })
       .catch((err) => {
@@ -50,49 +48,40 @@ export default class LoginController {
 
           default:
             this.$rootScope.loginErrorMessage = 'Ocorreu um erro, tente novamente!';
-
         }
-
         this.$rootScope.$apply();
       });
   }
 
-  createUserWithEmailAndPassword (user) {
+  createUserWithEmailAndPassword(user) {
     this.FirebaseFactory.createUserWithEmailAndPassword(user.email, user.password)
       .then(result => {
-
         this.setCurrentUser(result);
-
         this.$rootScope.projeto = user.projeto || 'semprojeto';
-
         this.FirebaseFactory.set(`users/${result.uid}`, user);
-
       })
-      .catch((err) => {
-        this.$rootScope.loginErrorMessage = 'Ocorreu um erro, tente novamente!2';
+      .catch(() => {
+        this.$rootScope.loginErrorMessage = 'Ocorreu um erro, tente novamente!';
         this.$rootScope.$apply();
       });
-
   }
 
-  facebook () {
+  facebook() {
     this.FirebaseFactory.authFacebook()
       .then((result) => this.setCurrentUser(result));
   }
 
-  twitter () {
+  twitter() {
     this.FirebaseFactory.authTwitter()
       .then((result) => this.setCurrentUser(result));
   }
 
-  setCurrentUser (user) {
-    // Habilitando atualização de token automática
+  setCurrentUser(user) {
     user.getToken(true);
+    console.log('Código do utilizador: ', user.uid);
 
     this.Session.set(user);
     this.$rootScope.currentUser = user;
-
-    // direcionando para o primeiro passao do plano se o login for válido
     this.$state.go('plano01');
   }
 }

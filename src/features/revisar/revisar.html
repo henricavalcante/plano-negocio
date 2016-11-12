@@ -1,0 +1,474 @@
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 1 - Nome do Plano / Tipo de atividade</h3>
+    </div>
+    {{ revisar.dados | json }}
+    <div class="panel-body">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="">Digite aqui o Nome do seu Negócio</label>
+          <input
+            class="form-control"
+            type="text"
+            ng-model="revisar.plano.nome"
+            ng-disabled="true"
+            ng-required="true">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="">Nome completo ou nome do seu grupo</label>
+          <input
+            class="form-control"
+            type="text"
+            ng-model="revisar.plano.grupo"
+            ng-disabled="true">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Qual a atividade que você pretende montar?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.plano.atividade"
+          ng-disabled="true"
+          ng-required="true">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.atividade">
+        </textarea>
+      </div>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 2 - Produtos / Clientes</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="">
+          Quais os produtos que pretende fabricar e/ou comercializar?
+        </label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.plano.produtos"
+          ng-disabled="true"
+          ng-required="true">
+              </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.produtos">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">
+          Quem são os seus clientes?
+        </label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.plano.clientes"
+          ng-disabled="true"
+          ng-required="true">
+              </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.clientes">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 3 - Concorrentes / Fornecedores</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="">Quem são os seus concorrentes?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.plano.concorrentes"
+          ng-disabled="true"
+          ng-required="true">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.concorrentes">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">Quem são os seus fornecedores?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.plano.fornecedores"
+          ng-disabled="true"
+          ng-required="true">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.fornecedores">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 4 - Instalação / Divulgação</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="">Onde pretendo instalar o negócio?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.plano.localizacao"
+          ng-disabled="true"
+          ng-required="true">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.localizacao">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">Como pretende promover/divulgar os produtos/seviços?</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.plano.divulgacao"
+          ng-disabled="true"
+          ng-required="true">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.divulgacao">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 5 - Investimento Inicial</h3>
+    </div>
+
+    <div class="panel-body">
+      <table
+        class="table table-striped table-bordered panel-body"
+        ng-show="revisar.plano.investimentos.length > 0">
+        <tr>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Valor</th>
+          <th>Total</th>
+        </tr>
+        <tr ng-repeat="i in revisar.plano.investimentos">
+          <td>{{i.descricao}}</td>
+          <td>{{i.quantidade}}</td>
+          <td>{{i.valor | currency}}</td>
+          <td>{{i.valor * i.quantidade | currency}}</td>
+        </tr>
+        <tr>
+          <td colspan="3"><strong>Total geral:</strong></td>
+          <td>{{plano.totalGeral(revisar.plano.investimentos) | currency}}</td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.investimentos">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 6 - Custos variáveis</h3>
+    </div>
+
+    <div class="panel-body">
+      <table
+        class="table table-striped table-bordered"
+        ng-show="revisar.plano.custos.length > 0">
+        <tr>
+          <th>Descrição</th>
+          <th>Unidade</th>
+          <th>Quantidade</th>
+          <th>Valor</th>
+          <th>Total</th>
+        </tr>
+        <tr ng-repeat="i in revisar.plano.custos">
+          <td>{{i.descricao}}</td>
+          <td>{{i.unidade}}</td>
+          <td>{{i.quantidade}}</td>
+          <td>{{i.valor | currency}}</td>
+          <td>{{i.valor * i.quantidade | currency}}</td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>Total geral:</strong></td>
+          <td>{{plano.totalGeral(revisar.plano.custos) | currency}}</td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.custos">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 7 - Custos fixos mensais</h3>
+    </div>
+
+    <div class="panel-body">
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th class="text-center" colspan="2">Quais serão os custos fixos mensais?</th>
+        </tr>
+        <tr>
+          <th>Discriminação</th>
+          <th class="col-md-2">Valor (R$)</th>
+        </tr>
+        <tr>
+          <td>Mão-de-obra (salário bruto)</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.maoDeObra"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Encargos sociais e trabalhistas</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.encargos"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Aluguel mais taxas de condomínio</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.aluguelCondominio"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Água/Luz</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.aguaLuz"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Telefone/Internet</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.telefoneInternet"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Veículo/Transporte</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.veiculoTransporte"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Publicidade/Propaganda</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.publicidadePropaganda"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Contador</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.contador"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Retiradas (Pro labore)</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.retiradas"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Manutenção/Limpeza</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.manutemcaoLimpeza"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Taxa do MEI</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.taxaMEI"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td>Outros</td>
+          <td>
+            <input
+              class="form-control input-sm"
+              type="text"
+              ng-model="revisar.plano.custosFixos.outros"
+              ng-disabled="true"
+              ng-init="0"
+              ui-money-mask>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>SUB-TOTAL</strong></td>
+          <td><strong>{{plano.totalSimples(revisar.plano.custosFixos) | currency}}</strong></td>
+        </tr>
+        <tr>
+          <td>Reservas de emergência (5%)</td>
+          <td>
+            {{(reservaDeEmergencia = ((plano.totalSimples(revisar.plano.custosFixos) * 5) / 100) || '') | currency}}
+          </td>
+        </tr>
+        <tr>
+          <td><strong>TOTAL</strong></td>
+          <td>
+            <strong>
+              {{plano.totalSimples(revisar.plano.custosFixos) + reservaDeEmergencia | currency}}
+            </strong>
+          </td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.custosFixos">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 8 - Receitas operacionais</h3>
+    </div>
+
+    <div class="panel-body">
+      <table
+        class="table table-striped table-bordered"
+        ng-show="revisar.plano.receitas.length > 0">
+        <tr>
+          <th>Descrição</th>
+          <th>Unidade</th>
+          <th>Quantidade</th>
+          <th>Valor</th>
+          <th>Total</th>
+        </tr>
+        <tr ng-repeat="i in revisar.plano.receitas">
+          <td>{{i.descricao}}</td>
+          <td>{{i.unidade}}</td>
+          <td>{{i.quantidade}}</td>
+          <td>{{i.valor | currency}}</td>
+          <td>{{i.valor * i.quantidade | currency}}</td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>TOTAL GERAL:</strong></td>
+          <td><strong>{{plano.totalGeral(revisar.plano.receitas) | currency}}</strong></td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.receitas">
+        </textarea>
+      </div>
+    </div>
+  </div>
+</div>

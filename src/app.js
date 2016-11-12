@@ -16,6 +16,7 @@ import logout from './features/logout';
 import resetPassword from './features/reset-password';
 import plano from './features/plano';
 import correcao from './features/correcao';
+import revisar from './features/revisar';
 
 angular.module('app', [
   uirouter,
@@ -29,5 +30,6 @@ angular.module('app', [
   logout,
   resetPassword,
   plano,
-  correcao
+  correcao,
+  revisar
 ]).config(config);

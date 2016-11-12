@@ -9,9 +9,7 @@ const STORAGE_BUCKET = "meuplanodenegocios-3a542.appspot.com";
 class FirebaseFactory {
 
   constructor(Session) {
-
     Object.assign(this, {Session});
-
     this.config = {
       apiKey: API_KEY,
       authDomain: AUTH_DOMAIN,
@@ -50,7 +48,6 @@ class FirebaseFactory {
   }
 
   authFacebook() {
-
     var provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('user_birthday');
 
@@ -66,7 +63,8 @@ class FirebaseFactory {
     return firebase.auth().signInWithPopup(provider).then((user) => {
       this.Session.set(this.firebase.auth().currentUser);
       return this.firebase.auth().currentUser;
-    });;
+    });
+    ;
   }
 
   resetPasswordWithEmail(email) {
@@ -83,5 +81,5 @@ class FirebaseFactory {
 }
 
 export default angular.module('services.FirebaseFactory', [])
-.service('FirebaseFactory', FirebaseFactory)
-.name;
+  .service('FirebaseFactory', FirebaseFactory)
+  .name;

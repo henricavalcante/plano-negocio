@@ -2,13 +2,13 @@
 
 <div class="col-md-9 col-sm-9" ng-if="!plano.passosConcluidos().plano03">
   <div name="div02" class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
-      </div>
+    <div class="panel-heading">
+      <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
+    </div>
 
-      <div class="panel-body">
-        Preencha o passo anterior!
-      </div>
+    <div class="panel-body">
+      Preencha o passo anterior!
+    </div>
   </div>
 </div>
 
@@ -63,33 +63,33 @@
         </div>
       </div>
       <a href="#"
-        class="btn btn-default"
-        ng-click="plano.adicionarInvestimento(plano.investimentoItem)"
-        ng-disabled="plano.form05.$invalid"
-        ng-hide="editMode">
+         class="btn btn-default"
+         ng-click="plano.adicionarInvestimento(plano.investimentoItem)"
+         ng-disabled="plano.form05.$invalid"
+         ng-hide="editMode">
         Adicionar
       </a>
 
       <a href="#"
-        class="btn btn-danger"
-        ng-click="plano.removerInvestimento(plano.dados.investimentos)"
-        ng-if="plano.isInvestimentoSelecionado(plano.dados.investimentos)"
-        ng-hide="editMode">
+         class="btn btn-danger"
+         ng-click="plano.removerInvestimento(plano.dados.investimentos)"
+         ng-if="plano.isInvestimentoSelecionado(plano.dados.investimentos)"
+         ng-hide="editMode">
         Remover
       </a>
 
       <a href="#"
-        class="btn btn-primary"
-        ng-click="plano.salvarInvestimento(plano.investimentoItem)"
-        ng-disabled="plano.form05.$invalid"
-        ng-show="editMode">
+         class="btn btn-primary"
+         ng-click="plano.salvarInvestimento(plano.investimentoItem)"
+         ng-disabled="plano.form05.$invalid"
+         ng-show="editMode">
         Salvar
       </a>
 
       <a href="#"
-        class="btn btn-default"
-        ng-click="plano.cancelarEdicaoInvestimento()"
-        ng-show="editMode">
+         class="btn btn-default"
+         ng-click="plano.cancelarEdicaoInvestimento()"
+         ng-show="editMode">
         Cancelar
       </a>
     </form>

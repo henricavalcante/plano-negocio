@@ -1,33 +1,33 @@
 body {
-  padding-top: 70px;
+    padding-top: 70px;
 }
 
 .loading {
-  position: absolute;
-  left: 0;
-  top:0;
-  width: 100%;
-  height: 100%;
-  background-color: #f8f8f8;
-  background-image: url(images/grid.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 100;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f8f8;
+    background-image: url(images/grid.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 100;
 }
 
 .mensagens .alert {
-  display: none;
+    display: none;
 }
 
 .mensagens .alert:first-child {
-  display: block;
+    display: block;
 }
 
 .navbar-brand a {
-  text-decoration: none;
-  color: #777;
+    text-decoration: none;
+    color: #777;
 }
 
 .navbar-brand a:hover {
-  color: #555;
+    color: #555;
 }

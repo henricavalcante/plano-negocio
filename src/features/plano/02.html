@@ -2,56 +2,56 @@
 
 <div class="col-md-9 col-sm-9" ng-if="!plano.passosConcluidos().plano01">
   <div name="div02" class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
-      </div>
+    <div class="panel-heading">
+      <h3 class="panel-title">Você ainda não preencheu os passos anteriores!</h3>
+    </div>
 
-      <div class="panel-body">
-        Preencha o passo anterior!
-      </div>
+    <div class="panel-body">
+      Preencha o passo anterior!
+    </div>
   </div>
 </div>
 
 <div class="col-md-9 col-sm-9" ng-if="plano.passosConcluidos().plano01">
   <form name="form02" class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Passo 2 - Produtos / Clientes</h3>
-      </div>
+    <div class="panel-heading">
+      <h3 class="panel-title">Passo 2 - Produtos / Clientes</h3>
+    </div>
 
-      <div class="panel-body">
-          <div class="form-group">
-              <label for="">Quais os produtos que pretende fabricar e/ou comercializar?</label>
-              <help
-                class="pull-right"
-                explicacao="Aqui, você deverá descrever os produtos que pretende fabricar, exemplificando se possível."
-                servico="Atuarei na prestação de serviços de instalação e manutenção de aparelhos de ar-condicionado, ventilação, calefação, refrigeração e regulagem de temperatura. Pretendo fazer também um trabalho de oficina em minha residência de pequenas peças, que não necessitem de assitência técnica ou de peças de reposição com custos elevados. Vou trabalhar cobrando a hora de mão de obra, ou em alguns casos, orçando o serviço inteiro."
-                industria="A princípio os produtos fabricados pela Fábrica de Velas BEM ILUMINADA são velas comuns e velas de 7 dias.Existe a previsão de após algum tempo, obtendo um pouco mais de recurso financeiro, a empresa investir tambémna produção de velas decorativas e velas para aniversários."
-                comercio="A Imperatriz das Tintas oferecerá aos seus clientes uma variada gama de produtos, desde tintas acrílicas atémiudezas em geral (ferragens, lâmpadas, fitas crepe, buchas para torneira, palhas de aço etc.), sendo que a empresa optará por trabalhar somente com produtos de qualidade.">
-              </help>
-              <textarea
-                class="form-control"
-                rows="5"
-                ng-model="plano.dados.produtos"
-                ng-required="true">
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="">Quais os produtos que pretende fabricar e/ou comercializar?</label>
+        <help
+          class="pull-right"
+          explicacao="Aqui, você deverá descrever os produtos que pretende fabricar, exemplificando se possível."
+          servico="Atuarei na prestação de serviços de instalação e manutenção de aparelhos de ar-condicionado, ventilação, calefação, refrigeração e regulagem de temperatura. Pretendo fazer também um trabalho de oficina em minha residência de pequenas peças, que não necessitem de assitência técnica ou de peças de reposição com custos elevados. Vou trabalhar cobrando a hora de mão de obra, ou em alguns casos, orçando o serviço inteiro."
+          industria="A princípio os produtos fabricados pela Fábrica de Velas BEM ILUMINADA são velas comuns e velas de 7 dias.Existe a previsão de após algum tempo, obtendo um pouco mais de recurso financeiro, a empresa investir tambémna produção de velas decorativas e velas para aniversários."
+          comercio="A Imperatriz das Tintas oferecerá aos seus clientes uma variada gama de produtos, desde tintas acrílicas atémiudezas em geral (ferragens, lâmpadas, fitas crepe, buchas para torneira, palhas de aço etc.), sendo que a empresa optará por trabalhar somente com produtos de qualidade.">
+        </help>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="plano.dados.produtos"
+          ng-required="true">
               </textarea>
-          </div>
-          <div class="form-group">
-              <label for="">Quem são os seus clientes?</label>
-              <help
-                class="pull-right"
-                explicacao="Aqui, identifique quem são as pessoas ou organizações que comprarão os seus produtos e procurarão os seus serviços. Informe-se o máximo que puder à respeito desse mercado, procure conhecer o que influência seus futuros clientes na decisão de comprar produtos ou serviços: qualidade, preço, facilidade de acesso, garantia, forma de pagamento, moda, atendimento, embalagem, aparência, praticidade, utilidade, etc. Busque informações como Idade, sexo, nível de renda, tipo de trabalho, nível de instrução, hábitos, gostos, formas de lazer, etc."
-                servico="Pretendo oferecer meus serviços para o público em geral, para pequenas fábricas (inclusive as de refrigeração e calefação) pequenas indústrias (de alimentos e automotivas), bancos, hospitais etc. As visitas serão marcadas atendendo a chamadas específicas.Os investimentos para essa diversificação não são pesados e apresenta um grau de risco médio."
-                industria="O mercado é amplo, pois existe um grande consumo de velas para fins religiosos, devido a uma gama variada de religiões que utilizam o produto. Além deste uso, ele também serve como fonte alternativa de luz. Levamos em consideração o mercado local e/ou regional para instalação do negócio, e para tanto contrataremos mão-de-obra próxima das instalações. Por tratar-se de um produto consumido principalmente para fins religiosos, o mercado consumidor é amplo e atinge todas as classes sociais. As velas decorativas, ornamentais ou de aniversário podem ser alternativas para agregar maior valor para a empresa. Como já dissemos, a princípio este estudo, se concentrará em uma fábrica de velas brancas e de sete dias."
-                comercio="Nossos clientes serão as pessoas e os pequenos estabelecimentos que pretendam ou que estejam pintando ou reformando seus imóveis. Basicamente, são pessoas da classe média baixa, residentes nas vizinhanças da loja, que buscam, em primeiro lugar, produtos de qualidade e de baixo custo. No local existem vários imóveis, entre salas, casas e apartamentos, que necessitarão dos produtos comercializados.">
-              </help>
-              <textarea
-                class="form-control"
-                rows="5"
-                ng-model="plano.dados.clientes"
-                ng-required="true">
-              </textarea>
-          </div>
       </div>
+      <div class="form-group">
+        <label for="">Quem são os seus clientes?</label>
+        <help
+          class="pull-right"
+          explicacao="Aqui, identifique quem são as pessoas ou organizações que comprarão os seus produtos e procurarão os seus serviços. Informe-se o máximo que puder à respeito desse mercado, procure conhecer o que influência seus futuros clientes na decisão de comprar produtos ou serviços: qualidade, preço, facilidade de acesso, garantia, forma de pagamento, moda, atendimento, embalagem, aparência, praticidade, utilidade, etc. Busque informações como Idade, sexo, nível de renda, tipo de trabalho, nível de instrução, hábitos, gostos, formas de lazer, etc."
+          servico="Pretendo oferecer meus serviços para o público em geral, para pequenas fábricas (inclusive as de refrigeração e calefação) pequenas indústrias (de alimentos e automotivas), bancos, hospitais etc. As visitas serão marcadas atendendo a chamadas específicas.Os investimentos para essa diversificação não são pesados e apresenta um grau de risco médio."
+          industria="O mercado é amplo, pois existe um grande consumo de velas para fins religiosos, devido a uma gama variada de religiões que utilizam o produto. Além deste uso, ele também serve como fonte alternativa de luz. Levamos em consideração o mercado local e/ou regional para instalação do negócio, e para tanto contrataremos mão-de-obra próxima das instalações. Por tratar-se de um produto consumido principalmente para fins religiosos, o mercado consumidor é amplo e atinge todas as classes sociais. As velas decorativas, ornamentais ou de aniversário podem ser alternativas para agregar maior valor para a empresa. Como já dissemos, a princípio este estudo, se concentrará em uma fábrica de velas brancas e de sete dias."
+          comercio="Nossos clientes serão as pessoas e os pequenos estabelecimentos que pretendam ou que estejam pintando ou reformando seus imóveis. Basicamente, são pessoas da classe média baixa, residentes nas vizinhanças da loja, que buscam, em primeiro lugar, produtos de qualidade e de baixo custo. No local existem vários imóveis, entre salas, casas e apartamentos, que necessitarão dos produtos comercializados.">
+        </help>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="plano.dados.clientes"
+          ng-required="true">
+              </textarea>
+      </div>
+    </div>
   </form>
 
   <button
