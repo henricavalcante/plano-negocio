@@ -76,6 +76,10 @@ class FirebaseFactory {
   signOut() {
     return firebase.auth().signOut();
   }
+
+  getServerDate() {
+    return firebase.database.ServerValue.TIMESTAMP;
+  }
 }
 
 export default angular.module('services.FirebaseFactory', [])

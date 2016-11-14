@@ -51,6 +51,7 @@ export default class PlanoController {
     }
 
     data.userName = this.$scope.currentUser.displayName || this.$scope.userName || ' ';
+    data.dataUltimaAlteracao = this.FirebaseFactory.getServerDate();
 
     this.FirebaseFactory.update(
       this.getPath(),
