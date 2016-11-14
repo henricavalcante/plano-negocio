@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 const MESSAGES = {
-  ELABORADO: {
+  ELABORANDO: {
     AUTOR: 'Em elaboração',
     REVISOR: 'Em elaboração pelo aluno',
   },
@@ -20,7 +20,7 @@ const MESSAGES = {
 };
 
 const FLOW = {
-  ELABORADO: ['ENVIADO_REVISAO'],
+  ELABORANDO: ['ENVIADO_REVISAO'],
   ENVIADO_REVISAO: ['REVISANDO'],
   REVISANDO: ['REVISADO'],
   REVISADO: []
@@ -30,7 +30,7 @@ class PlanoStatus {
 
   constructor() {
     const constantes = {
-      ELABORADO: 'ELABORADO',
+      ELABORANDO: 'ELABORANDO',
       ENVIADO_REVISAO: 'ENVIADO_REVISAO',
       REVISANDO: 'REVISANDO',
       REVISADO: 'REVISADO',

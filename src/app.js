@@ -11,12 +11,13 @@ import messages from './directives/messages.directive';
 import help from './directives/help.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
+import PlanoStatus from './services/planoStatus.service';
 import login from './features/login';
 import logout from './features/logout';
 import resetPassword from './features/reset-password';
 import plano from './features/plano';
-import correcao from './features/correcao';
 import revisar from './features/revisar';
+import correcao from './features/planos';
 
 angular.module('app', [
   uirouter,
@@ -26,6 +27,7 @@ angular.module('app', [
   help,
   FirebaseFactory,
   Session,
+  PlanoStatus,
   login,
   logout,
   resetPassword,

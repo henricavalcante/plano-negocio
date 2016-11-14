@@ -1,0 +1,85 @@
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Planos</h3>
+    </div>
+    <form name="" class="panel-body">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="">Projeto</label>
+          <select class="form-control" ng-model="projetocorrecao" ng-change="planos.loadPlanos(projetocorrecao)">
+            <option value="">Selecione</option>
+            <option value="12">12</option>
+            <option value="16">Atividade CEEV</option>
+            <option value="19">Cursos WiLivro</option>
+            <option value="32">Treinamento</option>
+            <option value="60">Juventude Empreendedora - Alagoas 2016</option>
+            <option value="68">Plano de Negócios em Grupo CE 2016</option>
+            <option value="semprojeto">semprojeto</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">Buscar</label>
+          <input type="text" class="form-control" ng-model="criterioDeBusca" placeholder="Buscar por nome, data ou agrupador">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">Status</label>
+          <select class="form-control" name="">
+            <option value="">Selecione</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <div class="col-md-12" ng-show="planos.lista.length == 0 && planos.noResults == false">
+      <div class="alert alert-warning text-center" role="alert">
+        Selecione um projeto para listar os planos.
+      </div>
+    </div>
+    <div class="col-md-12" ng-show="planos.noResults">
+      <div class="alert alert-info text-center" role="alert">
+        Nenhum resultado encontrado.
+      </div>
+    </div>
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Aluno</th>
+        <th>Ult. alteração</th>
+        <th>Situação / Dt. da corr.</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+      <tr ng-repeat="plano in planos.lista | filter: {userName: criterioDeBusca}">
+        <td>{{plano.userName}}</td>
+        <td>{{plano.dataUltimaAlteracao | date:'medium'}}</td>
+        <td>{{plano.dataDeCorrecao}}</td>
+        <td>{{}}</td>
+        <td class="col-md-3">
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <a href="/revisar/{{projetocorrecao}}/{{plano.uid}}" class="btn btn-default btn-sm">Corrigir</a>
+            </div>
+            <div class="btn-group" role="group">
+              <a href="/plano/visualizar/{{projetocorrecao}}/{{plano.uid}}" class="btn btn-default btn-sm">Visualizar</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- <div class="panel-footer" style="padding: 0">
+      <nav class="text-center">
+        <ul class="pagination" style="margin: 10px 0 5px 0">
+          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li class=""><a href="#">2</a></li>
+          <li class=""><a href="#">3</a></li>
+          <li class=""><a href="#">4</a></li>
+          <li class=""><a href="#">5</a></li>
+          <li class=""><a href="#">6</a></li>
+          <li class=""><a href="#">7</a></li>
+          <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        </ul>
+      </nav>
+    </div> -->
+  </div>
+</div>

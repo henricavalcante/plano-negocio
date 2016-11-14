@@ -1,6 +1,6 @@
 export default class PlanoController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, Session) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session});
+  constructor($scope, $rootScope, FirebaseFactory, $state, Session, PlanoStatus) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session, PlanoStatus});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -50,12 +50,18 @@ export default class PlanoController {
       return;
     }
 
+
     data.userName = this.$scope.currentUser.displayName || this.$scope.userName || ' ';
     data.dataUltimaAlteracao = this.FirebaseFactory.getServerDate();
 
+    let dados = {
+      plano: angular.copy(data),
+      status: this.PlanoStatus.ELABORADO
+    };
+
     this.FirebaseFactory.update(
       this.getPath(),
-      angular.copy(data)
+      dados
     ).then(() => {
       this.$rootScope.mensagens.push({
         id: this.$rootScope.mensagens.length,
@@ -347,9 +353,9 @@ export default class PlanoController {
   }
 
   getPath() {
-    return `planos/${this.$rootScope.projeto}/${this.$scope.currentUser.uid}/plano`;
+    return `planos/${this.$rootScope.projeto}/${this.$scope.currentUser.uid}`;
   }
 
 }
 
-PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session'];
+PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session', 'PlanoStatus'];
