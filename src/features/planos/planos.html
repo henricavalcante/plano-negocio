@@ -5,26 +5,26 @@
     </div>
     <form name="" class="panel-body">
       <div class="row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-4 col-sm-4">
           <label for="">Projeto</label>
-          <select class="form-control" ng-model="projetocorrecao" ng-change="planos.loadPlanos(projetocorrecao)">
+          <select 
+            class="form-control"
+            ng-options="plano.id as plano.name for plano in planos.projetos"  
+            ng-model="projetofiltro" 
+            ng-change="planos.loadPlanos(projetofiltro)">
             <option value="">Selecione</option>
-            <option value="12">12</option>
-            <option value="16">Atividade CEEV</option>
-            <option value="19">Cursos WiLivro</option>
-            <option value="32">Treinamento</option>
-            <option value="60">Juventude Empreendedora - Alagoas 2016</option>
-            <option value="68">Plano de Negócios em Grupo CE 2016</option>
-            <option value="semprojeto">semprojeto</option>
           </select>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-4 col-sm-4">
           <label for="">Buscar</label>
           <input type="text" class="form-control" ng-model="criterioDeBusca" placeholder="Buscar por nome, data ou agrupador">
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-4 col-sm-4">
           <label for="">Status</label>
-          <select class="form-control" name="">
+          <select 
+            class="form-control" 
+            ng-model="statusfiltro" 
+            ng-options="status.key as status.value for status in planos.statuses">
             <option value="">Selecione</option>
           </select>
         </div>
@@ -44,22 +44,20 @@
       <tr>
         <th>Aluno</th>
         <th>Ult. alteração</th>
-        <th>Situação / Dt. da corr.</th>
         <th>Status</th>
-        <th>Ações</th>
+        <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
-      <tr ng-repeat="plano in planos.lista | filter: {userName: criterioDeBusca}">
-        <td>{{plano.userName}}</td>
-        <td>{{plano.dataUltimaAlteracao | date:'medium'}}</td>
-        <td>{{plano.dataDeCorrecao}}</td>
-        <td>{{}}</td>
+      <tr ng-repeat="item in planos.lista | filter: criterioDeBusca">
+        <td>{{item.plano.userName}}</td>
+        <td>{{item.plano.dataUltimaAlteracao | date:'medium'}}</td>
+        <td>{{item.status}}</td>
         <td class="col-md-3">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
-              <a href="/revisar/{{projetocorrecao}}/{{plano.uid}}" class="btn btn-default btn-sm">Corrigir</a>
+              <a href="/revisar/{{projetofiltro}}/{{item.plano.uid}}" class="btn btn-default btn-sm">Corrigir</a>
             </div>
             <div class="btn-group" role="group">
-              <a href="/plano/visualizar/{{projetocorrecao}}/{{plano.uid}}" class="btn btn-default btn-sm">Visualizar</a>
+              <a href="/plano/visualizar/{{projetofiltro}}/{{item.plano.uid}}" class="btn btn-default btn-sm">Visualizar</a>
             </div>
           </div>
         </td>

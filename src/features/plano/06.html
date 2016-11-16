@@ -18,7 +18,7 @@
       <h3 class="panel-title">Passo 6 - Custos variáveis</h3>
     </div>
 
-    <form name="plano.form06" class="panel-body">
+    <form name="plano.form06" class="panel-body" ng-if="!plano.bloqueadoParaEditar()">
       <h5><strong>Quais serão os custos variáveis de produção?</strong></h5>
       <help
         class="pull-right"
@@ -116,10 +116,10 @@
       <th>Total</th>
     </tr>
     <tr ng-repeat="i in plano.dados.custos">
-      <td><input type="checkbox" ng-model="i.selecionado" ng-disabled="editMode"></td>
+      <td><input type="checkbox" ng-model="i.selecionado" ng-disabled="editMode || plano.bloqueadoParaEditar()"></td>
       <td>
-        <a ng-hide="editMode" ng-click="plano.editarCusto(i)" href="#">{{i.descricao}}</a>
-        <span ng-show="editMode">{{i.descricao}}</span>
+        <a ng-hide="editMode || plano.bloqueadoParaEditar()" ng-click="plano.editarCusto(i)" href="#">{{i.descricao}}</a>
+        <span ng-show="editMode || plano.bloqueadoParaEditar()">{{i.descricao}}</span>
       </td>
       <td>{{i.unidade}}</td>
       <td>{{i.quantidade}}</td>

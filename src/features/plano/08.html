@@ -18,7 +18,7 @@
       <h3 class="panel-title">Passo 8 - Receitas operacionais</h3>
     </div>
 
-    <form name="plano.form08" class="panel-body">
+    <form name="plano.form08" class="panel-body" ng-if="!plano.bloqueadoParaEditar()">
       <h5><strong>Quais serão as receitas operacionais mensais?</strong></h5>
       <help
         class="pull-right"
@@ -115,10 +115,10 @@
         <th>Total</th>
       </tr>
       <tr ng-repeat="i in plano.dados.receitas">
-        <td><input type="checkbox" ng-model="i.selecionado" ng-disabled="editMode"></td>
+        <td><input type="checkbox" ng-model="i.selecionado" ng-disabled="editMode || plano.bloqueadoParaEditar()"></td>
         <td>
-          <a ng-hide="editMode" ng-click="plano.editarReceita(i)" href="#">{{i.descricao}}</a>
-          <span ng-show="editMode">{{i.descricao}}</span>
+          <a ng-hide="editMode || plano.bloqueadoParaEditar()" ng-click="plano.editarReceita(i)" href="#">{{i.descricao}}</a>
+          <span ng-show="editMode || plano.bloqueadoParaEditar()">{{i.descricao}}</span>
         </td>
         <td>{{i.unidade}}</td>
         <td>{{i.quantidade}}</td>

@@ -12,14 +12,6 @@ export default class PlanoController {
     $rootScope.userName = sessionStorage.getItem('userName') || '';
     $rootScope.projeto = sessionStorage.getItem('projeto') || 'semprojeto';
 
-    $rootScope.mensagens = [];
-
-    $rootScope.removerMensagem = (mensagem) => {
-      $rootScope.mensagens = $rootScope.mensagens.filter((_mensagem) => {
-        return _mensagem.id != mensagem.id;
-      });
-    };
-
     this.dados = {};
 
     this.load();
@@ -54,9 +46,11 @@ export default class PlanoController {
     data.userName = this.$scope.currentUser.displayName || this.$scope.userName || ' ';
     data.dataUltimaAlteracao = this.FirebaseFactory.getServerDate();
 
+    let todosOsPassosConcluidos = this.passosConcluidos().plano08;
+
     let dados = {
       plano: angular.copy(data),
-      status: this.PlanoStatus.ELABORANDO
+      status: todosOsPassosConcluidos ? this.PlanoStatus.STATUSES.ELABORADO : this.PlanoStatus.STATUSES.ELABORANDO
     };
 
     this.FirebaseFactory.update(
@@ -87,19 +81,21 @@ export default class PlanoController {
         }
 
         if (dados) {
-          this.dados = dados;
-          this.receitas = this.totalGeral(dados.receitas);
-          this.custosVariaveisTotais = this.totalGeral(dados.custos);
-          this.custosFixosTotais = this.totalSimples(dados.custosFixos);
+          this.status = dados.status;
+          this.dados = dados.plano;
+          this.receitas = this.totalGeral(dados.plano.receitas);
+          this.custosVariaveisTotais = this.totalGeral(dados.plano.custos);
+          this.custosFixosTotais = this.totalSimples(dados.plano.custosFixos);
           this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
           this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
           this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
           this.lucro = this.receitas - this.despesas;
           this.capitalDeGiro = this.despesas * 3;
-          this.investimento = this.totalGeral(dados.investimentos);
+          this.investimento = this.totalGeral(dados.plano.investimentos);
           this.investimentoTotal = this.investimento + this.capitalDeGiro;
           this.taxaDeRetorno = this.investimentoTotal / this.lucro;
         }
+        
         this.$scope.$apply();
       });
     }).catch(err => {
@@ -354,6 +350,10 @@ export default class PlanoController {
 
   getPath() {
     return `planos/${this.$rootScope.projeto}/${this.$scope.currentUser.uid}`;
+  }
+
+  bloqueadoParaEditar() {
+    return this.status === this.PlanoStatus.STATUSES.ENVIADO_REVISAO;
   }
 
 }

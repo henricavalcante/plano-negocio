@@ -13,6 +13,7 @@ import confirmClick from './directives/confirmClick.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
+import ProjectName from './services/projectName.service';
 import login from './features/login';
 import logout from './features/logout';
 import resetPassword from './features/reset-password';
@@ -30,6 +31,7 @@ angular.module('app', [
   FirebaseFactory,
   Session,
   PlanoStatus,
+  ProjectName,
   login,
   logout,
   resetPassword,

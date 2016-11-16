@@ -45,7 +45,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.maoDeObra"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -68,7 +69,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.aluguelCondominio"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -79,7 +81,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.aguaLuz"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -90,7 +93,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.telefoneInternet"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -101,7 +105,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.veiculoTransporte"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -112,7 +117,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.publicidadePropaganda"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -123,7 +129,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.contador"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -134,7 +141,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.retiradas"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -145,7 +153,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.manutemcaoLimpeza"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -156,7 +165,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.taxaMEI"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -167,7 +177,8 @@
             type="text"
             ng-model="plano.dados.custosFixos.outros"
             ng-init="0"
-            ui-money-mask>
+            ui-money-mask
+            ng-disabled="plano.bloqueadoParaEditar()">
         </td>
       </tr>
       <tr>
@@ -194,7 +205,8 @@
   <button
     class="btn btn-primary btn-block btn-lg"
     ng-disabled="plano.form07.$invalid"
-    ng-click="plano.save(plano.dados)">
+    ng-click="plano.save(plano.dados)"
+    ng-if="!plano.bloqueadoParaEditar()">
     Salvar
   </button>
 </div>

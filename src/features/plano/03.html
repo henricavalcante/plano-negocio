@@ -32,7 +32,8 @@
           class="form-control"
           rows="5"
           ng-model="plano.dados.concorrentes"
-          ng-required="true">
+          ng-required="true"
+          ng-disabled="plano.bloqueadoParaEditar()">
         </textarea>
       </div>
       <div class="form-group">
@@ -48,7 +49,8 @@
           class="form-control"
           rows="5"
           ng-model="plano.dados.fornecedores"
-          ng-required="true">
+          ng-required="true"
+          ng-disabled="plano.bloqueadoParaEditar()">
         </textarea>
       </div>
     </div>
@@ -57,7 +59,8 @@
   <button
     class="btn btn-primary btn-block btn-lg"
     ng-click="plano.save(plano.dados)"
-    ng-disabled="form03.$invalid">
+    ng-disabled="form03.$invalid"
+    ng-if="!plano.bloqueadoParaEditar()">
     Salvar
   </button>
 </div>

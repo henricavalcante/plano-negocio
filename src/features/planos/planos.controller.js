@@ -1,6 +1,6 @@
 export default class PlanosController {
-  constructor($scope, $rootScope, FirebaseFactory, $state) {
-    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state});
+  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus) {
+    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -11,6 +11,11 @@ export default class PlanosController {
 
     this.lista = [];
     this.noResults = false;
+
+    this.projetos = [];
+    this.loadProjects();
+
+    this.statuses = PlanoStatus.getStatuses('REVISOR');
   }
 
   loadPlanos(projeto) {
@@ -34,9 +39,11 @@ export default class PlanosController {
 
         for (var key in dados) {
           if (dados.hasOwnProperty(key)) {
-            let plano = dados[key].plano;
-            plano.uid = key;
-            this.lista.push(plano);
+            let item = {};
+            item.plano = dados[key].plano;
+            item.status = this.PlanoStatus.getStatus(dados[key].status, 'REVISOR');
+            item.uid = key;
+            this.lista.push(item);
           }
         }
 
@@ -50,6 +57,42 @@ export default class PlanosController {
     });
   }
 
+  loadProjects() {
+    this.$rootScope.isLoading = true;
+
+    this.FirebaseFactory.get(`admins/${this.$scope.currentUser.uid}`).then(res => {
+      res.json().then(dados => {
+
+      this.$rootScope.isLoading = false;
+
+      if (dados && (dados.error == 'Auth token is expired')) {
+        this.$state.go('logout');
+        return;
+      }
+
+      for (var key in dados) {
+        if (dados.hasOwnProperty(key)) {
+          this.projetos.push({
+            id: key,
+            name: this.ProjectName(key)
+          });
+        }
+      }
+
+      this.$rootScope.isLoading = false;
+      this.$scope.$apply();
+
+      });
+    }).catch(err => {
+      this.$rootScope.isLoading = false;
+      console.log('Error:', err);
+    });
+  }
+
+  getProjectNameById(id) {
+    return this.ProjectName(id);
+  }
+
 }
 
-PlanosController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state'];
+PlanosController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'ProjectName', 'PlanoStatus'];

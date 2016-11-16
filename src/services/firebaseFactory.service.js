@@ -20,7 +20,7 @@ class FirebaseFactory {
   }
 
   set(path, data) {
-    this.firebase.database().ref(path).set(data);
+    return this.firebase.database().ref(path).set(data);
   }
 
   get(path) {

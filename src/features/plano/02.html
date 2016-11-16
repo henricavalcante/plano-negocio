@@ -32,8 +32,9 @@
           class="form-control"
           rows="5"
           ng-model="plano.dados.produtos"
-          ng-required="true">
-              </textarea>
+          ng-required="true"
+          ng-disabled="plano.bloqueadoParaEditar()">
+        </textarea>
       </div>
       <div class="form-group">
         <label for="">Quem são os seus clientes?</label>
@@ -48,8 +49,9 @@
           class="form-control"
           rows="5"
           ng-model="plano.dados.clientes"
-          ng-required="true">
-              </textarea>
+          ng-required="true"
+          ng-disabled="plano.bloqueadoParaEditar()">
+        </textarea>
       </div>
     </div>
   </form>
@@ -57,7 +59,8 @@
   <button
     class="btn btn-primary btn-block btn-lg"
     ng-click="plano.save(plano.dados)"
-    ng-disabled="form02.$invalid">
+    ng-disabled="form02.$invalid"
+    ng-if="!plano.bloqueadoParaEditar()">
     Salvar
   </button>
 </div>
