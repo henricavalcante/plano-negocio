@@ -51,6 +51,6 @@ class PlanoStatus {
 
 }
 
-export default angular.module('services.Session', [])
+export default angular.module('services.PlanoStatus', [])
   .service('PlanoStatus', PlanoStatus)
   .name;

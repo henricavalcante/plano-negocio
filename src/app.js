@@ -9,6 +9,7 @@ import navigation from './directives/navigation.directive';
 import header from './directives/header.directive';
 import messages from './directives/messages.directive';
 import help from './directives/help.directive';
+import confirmClick from './directives/confirmClick.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
@@ -25,6 +26,7 @@ angular.module('app', [
   header,
   messages,
   help,
+  confirmClick,
   FirebaseFactory,
   Session,
   PlanoStatus,

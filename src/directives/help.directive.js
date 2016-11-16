@@ -2,7 +2,7 @@ import angular from 'angular';
 import './help.css'
 
 function help() {
-  const helpController = function($scope, $rootScope, $location, $sce) {
+  const controller = function($scope, $rootScope, $location, $sce) {
     Object.assign(this, {$scope, $rootScope, $sce});
 
     this.$scope.categorias = {
@@ -51,7 +51,7 @@ function help() {
 
   return {
     restrict: 'E',
-    controller: helpController,
+    controller,
     template: require('./help.html'),
     scope: {
       explicacao: '@',
