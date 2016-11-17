@@ -12,6 +12,11 @@
           ".write": "$user_id === auth.uid"
         }
       }
+    },
+    "admins": {
+      "$user_id": {
+        ".read": "$user_id === auth.uid"
+      }
     }
   }
 }
