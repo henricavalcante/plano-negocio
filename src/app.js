@@ -7,6 +7,7 @@ import uirouter from 'angular-ui-router';
 import config from './app.config';
 import navigation from './directives/navigation.directive';
 import header from './directives/header.directive';
+import subheader from './directives/subheader.directive';
 import messages from './directives/messages.directive';
 import help from './directives/help.directive';
 import confirmClick from './directives/confirmClick.directive';
@@ -25,6 +26,7 @@ angular.module('app', [
   uirouter,
   navigation,
   header,
+  subheader,
   messages,
   help,
   confirmClick,

@@ -14,12 +14,13 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse navbar-right" id="app-menu-collapse" ng-class="{in: appMenu}" ng-if="currentUser">
+    <div class="collapse navbar-collapse navbar-right" id="app-menu-collapse" ng-class="{in: appMenu}" ng-if="true">
       <a class="btn btn-default navbar-btn" href="/" ng-if="$location.path() === '/plano/visualizar'">Voltar</a>
       <a class="btn btn-default navbar-btn" href="/plano/visualizar">Visualizar</a>
       <a confirm-click="enviarParaCorrecao()"
-         confirm-click-message="Deseja enviar seu plano de negócio para a revisão?"
-         class="btn btn-warning navbar-btn" href="#">Pronto p/ correção</a>
+        confirm-click-message="Deseja enviar seu plano de negócio para a revisão?"
+        class="btn btn-warning navbar-btn" href="#"
+        ng-if="$location.path().split('/')[1] !== 'revisar'">Pronto p/ correção</a>
     </div>
   </div>
 </nav>
