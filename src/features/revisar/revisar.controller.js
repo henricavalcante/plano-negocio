@@ -1,8 +1,11 @@
 export default class RevisarController {
-  constructor($scope, $stateParams, FirebaseFactory) {
-    Object.assign(this, {$scope, FirebaseFactory});
+  constructor($scope, $rootScope, $stateParams, FirebaseFactory, $state) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state});
 
-    this.loadPlano($stateParams.projeto, $stateParams.uid);
+    this.projeto = $stateParams.projeto;
+    this.uid = $stateParams.uid;
+
+    this.loadPlano(this.projeto, this.uid);
 
   }
 
@@ -12,7 +15,15 @@ export default class RevisarController {
       .get(`/planos/${projeto}/${uid}`)
       .then(res => {
         res.json().then(dados => {
+
+          if (dados && dados.error) {
+            this.$state.go('logout');
+            return;
+          }
+
           this.plano = dados.plano;
+          this.revisao = dados.revisao;
+
           this.$scope.$apply();
         });
 
@@ -22,6 +33,23 @@ export default class RevisarController {
       });
   }
 
+  saveRevisao(revisao) {
+    if (!revisao) return;
+
+    this
+      .FirebaseFactory
+      .update(`/planos/${this.projeto}/${this.uid}`, {revisao: revisao})
+      .then(() => {
+        this.$rootScope.mensagens.push({
+          id: this.$rootScope.mensagens.length,
+          text: 'Revisão salva com sucesso!'
+        });
+
+        this.$rootScope.isLoading = false;
+        this.$scope.$apply();
+      });
+  }
+
 }
 
-RevisarController.$inject = ['$scope', '$stateParams', 'FirebaseFactory'];
+RevisarController.$inject = ['$scope', '$rootScope', '$stateParams', 'FirebaseFactory', '$state'];
