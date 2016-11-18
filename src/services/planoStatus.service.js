@@ -63,7 +63,7 @@ class PlanoStatus {
     return this.FirebaseFactory.get(path)
     .then((res) => res.json())
     .then((statusAtual) => {
-      if (this.getNextStatus(statusAtual) !== status) {
+      if (this.getNextStatus(statusAtual) !== status && status !== statusAtual) {
         throw 'Nâo permitido';
       } else {
         return status;
