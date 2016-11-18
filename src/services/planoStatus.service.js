@@ -40,7 +40,7 @@ const STATUSES = {
   REVISADO: 'REVISADO',
 };
 
-const AGENTS = {  
+const AGENTS = {
   AUTOR: 'AUTOR',
   REVISOR: 'REVISOR'
 };
@@ -59,7 +59,7 @@ class PlanoStatus {
 
   setStatus(projeto, uid, status) {
     let path = `/planos/${projeto}/${uid}/status`;
-    
+
     return this.FirebaseFactory.get(path)
     .then((res) => res.json())
     .then((statusAtual) => {
@@ -90,7 +90,7 @@ class PlanoStatus {
     });
   }
 
-  getNextStatus(status) {
+  getNextStatuses(status) {
     return FLOW[status];
   }
 
