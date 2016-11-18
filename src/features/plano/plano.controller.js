@@ -90,12 +90,12 @@ export default class PlanoController {
           this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
           this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
           this.lucro = this.receitas - this.despesas;
-          this.capitalDeGiro = this.despesas * 3;
+          this.capitalDeGiro = this.despesas * 2;
           this.investimento = this.totalGeral(dados.plano.investimentos);
           this.investimentoTotal = this.investimento + this.capitalDeGiro;
           this.taxaDeRetorno = this.investimentoTotal / this.lucro;
         }
-        
+
         this.$scope.$apply();
       });
     }).catch(err => {

@@ -17,6 +17,10 @@ class FirebaseFactory {
       storageBucket: STORAGE_BUCKET
     };
     this.firebase = firebase.initializeApp(this.config);
+
+    this.firebase.auth().onAuthStateChanged((a) => {
+      a.getToken(true);
+    });
   }
 
   set(path, data) {
