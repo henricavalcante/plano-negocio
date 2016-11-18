@@ -75,11 +75,6 @@ export default class PlanoController {
 
         this.$rootScope.isLoading = false;
 
-        if (dados && dados.error) {
-          this.$state.go('logout');
-          return;
-        }
-
         if (dados) {
           this.status = dados.status;
           this.dados = dados.plano;

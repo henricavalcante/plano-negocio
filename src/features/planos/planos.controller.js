@@ -30,10 +30,6 @@ export default class PlanosController {
       res.json().then(dados => {
 
         this.$rootScope.isLoading = false;
-        if (dados && (dados.error == 'Auth token is expired')) {
-          this.$state.go('logout');
-          return;
-        }
 
         if (dados == null)  this.noResults = true;
 

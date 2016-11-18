@@ -8,8 +8,8 @@ const STORAGE_BUCKET = "meuplanodenegocios-3a542.appspot.com";
 
 class FirebaseFactory {
 
-  constructor(Session) {
-    Object.assign(this, {Session});
+  constructor(Session, $rootScope) {
+    Object.assign(this, {Session, $rootScope});
     this.config = {
       apiKey: API_KEY,
       authDomain: AUTH_DOMAIN,
@@ -18,8 +18,13 @@ class FirebaseFactory {
     };
     this.firebase = firebase.initializeApp(this.config);
 
-    this.firebase.auth().onAuthStateChanged((a) => {
-      a.getToken(true);
+    this.firebase.auth().onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        currentUser.getToken(true);
+        $rootScope.currentUser = currentUser;
+        Session.set(currentUser);
+        console.log('auth changed');
+      }
     });
   }
 

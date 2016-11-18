@@ -9,7 +9,7 @@ export default class LoginController {
       // querystring é feito
       $rootScope.isLoading = true;
 
-      $rootScope.userName = ' ';
+      $rootScope.userName = $location.search().nome || ' ';
       sessionStorage.setItem('userName', $rootScope.userName);
 
       $rootScope.projeto = sessionStorage.getItem('projeto') || 'semprojeto';
