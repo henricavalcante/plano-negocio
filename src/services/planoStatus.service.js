@@ -25,11 +25,11 @@ const MESSAGES = {
 };
 
 const FLOW = {
-  ELABORANDO: 'ELABORADO',
-  ELABORADO: 'ENVIADO_REVISAO',
-  ENVIADO_REVISAO: 'REVISANDO',
-  REVISANDO: 'REVISADO',
-  REVISADO: ''
+  ELABORANDO: ['ELABORADO'],
+  ELABORADO: ['ENVIADO_REVISAO'],
+  ENVIADO_REVISAO: ['REVISANDO'],
+  REVISANDO: ['REVISANDO', 'REVISADO'],
+  REVISADO: ['']
 };
 
 const STATUSES = {
@@ -63,7 +63,17 @@ class PlanoStatus {
     return this.FirebaseFactory.get(path)
     .then((res) => res.json())
     .then((statusAtual) => {
-      if (this.getNextStatus(statusAtual) !== status) {
+
+      var isStatusAllowed = false;
+      var nextStatuses = this.getNextStatuses(statusAtual);
+
+      nextStatuses.forEach(function(nextStatus) {
+        if(nextStatus === status) {
+          isStatusAllowed = true;
+        }
+      });
+
+      if (!isStatusAllowed) {
         throw 'Nâo permitido';
       } else {
         return status;
