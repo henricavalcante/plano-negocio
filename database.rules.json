@@ -15,7 +15,7 @@
             ".write": "$user_id === auth.uid"
           },
           "revisao": {
-            ".read": "$user_id === auth.uid || root.child('admins').child(auth.uid).child($projeto).val() == true"
+            ".read": "$user_id === auth.uid || root.child('admins').child(auth.uid).child($projeto).val() == true",
             ".write": "root.child('admins').child(auth.uid).child($projeto).val() == true"
           }
         }
