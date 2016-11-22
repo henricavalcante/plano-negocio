@@ -76,6 +76,7 @@ export default class PlanoController {
         this.$rootScope.isLoading = false;
 
         if (dados) {
+          this.revisao = dados.revisao;
           this.status = dados.status;
           this.dados = dados.plano;
           this.receitas = this.totalGeral(dados.plano.receitas);

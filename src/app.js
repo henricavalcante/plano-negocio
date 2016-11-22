@@ -11,6 +11,7 @@ import subheader from './directives/subheader.directive';
 import messages from './directives/messages.directive';
 import help from './directives/help.directive';
 import confirmClick from './directives/confirmClick.directive';
+import revisao from './directives/revisao.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
@@ -39,5 +40,6 @@ angular.module('app', [
   resetPassword,
   plano,
   correcao,
-  revisar
+  revisar,
+  revisao
 ]).config(config);
