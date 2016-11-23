@@ -14,7 +14,7 @@ export default class PlanoController {
 
     this.dados = {};
 
-    this.load($stateParams.pid, $stateParams.uid, $stateParams.versao);
+    this.load($stateParams.projeto, $stateParams.uid, $stateParams.versao);
 
     this.requerimentos = [
       'nome',
