@@ -1,6 +1,6 @@
 export default class PlanoController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, Session, PlanoStatus) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session, PlanoStatus});
+  constructor($scope, $rootScope, FirebaseFactory, $state, $stateParams, Session, PlanoStatus) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, $stateParams, Session, PlanoStatus});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -14,7 +14,7 @@ export default class PlanoController {
 
     this.dados = {};
 
-    this.load();
+    this.load($stateParams.pid, $stateParams.uid);
 
     this.requerimentos = [
       'nome',
@@ -67,10 +67,10 @@ export default class PlanoController {
     });
   }
 
-  load() {
+  load(projetoid, userid) {
     this.$rootScope.isLoading = true;
 
-    this.FirebaseFactory.get(this.getPath()).then(res => {
+    this.FirebaseFactory.get(this.getPath(projetoid, userid)).then(res => {
       res.json().then(dados => {
 
         this.$rootScope.isLoading = false;
@@ -344,8 +344,11 @@ export default class PlanoController {
 
   }
 
-  getPath() {
-    return `planos/${this.$rootScope.projeto}/${this.$scope.currentUser.uid}`;
+  getPath(projetoid, userid) {
+    let pid = projetoid || this.$rootScope.projeto;
+    let uid = userid || this.$scope.currentUser.uid;
+
+    return `planos/${pid}/${uid}`;
   }
 
   bloqueadoParaEditar() {
@@ -354,4 +357,4 @@ export default class PlanoController {
 
 }
 
-PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session', 'PlanoStatus'];
+PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', '$stateParams', 'Session', 'PlanoStatus'];
