@@ -62,8 +62,14 @@ export default function routes($stateProvider) {
     controller: 'PlanoController',
     controllerAs: 'plano'
   })
-  .state('visualizarWithParams', {
-    url: '/plano/visualizar/:pid/:uid',
+  .state('visualizarByParams', {
+    url: '/plano/visualizar/:projeto/:uid',
+    template: require('./visualizar.html'),
+    controller: 'PlanoController',
+    controllerAs: 'plano'
+  })
+  .state('visualizarByVersion', {
+    url: '/plano/visualizar/:projeto/:uid/:versao',
     template: require('./visualizar.html'),
     controller: 'PlanoController',
     controllerAs: 'plano'

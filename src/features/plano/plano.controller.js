@@ -14,7 +14,7 @@ export default class PlanoController {
 
     this.dados = {};
 
-    this.load($stateParams.pid, $stateParams.uid);
+    this.load($stateParams.pid, $stateParams.uid, $stateParams.versao);
 
     this.requerimentos = [
       'nome',
@@ -67,7 +67,7 @@ export default class PlanoController {
     });
   }
 
-  load(projetoid, userid) {
+  load(projetoid, userid, versao) {
     this.$rootScope.isLoading = true;
 
     this.FirebaseFactory.get(this.getPath(projetoid, userid)).then(res => {
@@ -78,7 +78,7 @@ export default class PlanoController {
         if (dados) {
           this.revisao = dados.revisao;
           this.status = dados.status;
-          this.dados = dados.plano;
+          this.dados = versao ? dados.historico[versao].plano : dados.plano;
           this.receitas = this.totalGeral(dados.plano.receitas);
           this.custosVariaveisTotais = this.totalGeral(dados.plano.custos);
           this.custosFixosTotais = this.totalSimples(dados.plano.custosFixos);
@@ -357,4 +357,12 @@ export default class PlanoController {
 
 }
 
-PlanoController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', '$stateParams', 'Session', 'PlanoStatus'];
+PlanoController.$inject = [
+  '$scope',
+  '$rootScope',
+  'FirebaseFactory',
+  '$state',
+  '$stateParams',
+  'Session',
+  'PlanoStatus'
+];
