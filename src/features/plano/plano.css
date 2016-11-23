@@ -5,3 +5,16 @@ body {
 .navbar-actions {
   margin-right: 0;
 }
+
+.panel-title {
+  margin-top: 4px;
+}
+
+.panel-label {
+  margin: 0;
+}
+
+.panel-label input[type="checkbox"] {
+  position: relative;
+  top: 2px;
+}

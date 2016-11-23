@@ -2,39 +2,66 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">PLANO DE NEGÓCIOS</h3>
+      <div class="row">
+        <div class="col-xs-6">
+          <h3 class="panel-title">PLANO DE NEGÓCIOS</h3>
+        </div>
+
+        <div class="col-xs-6">
+          <label class="pull-right panel-label" for="cb-mostrar_correcao">
+            <input type="checkbox" id="cb-mostrar_correcao" ng-model="mostrarCorrecao">
+            <span>Mostrar correção</span>
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="panel-body">
       <h4>Nome do Negócio:</h4>
       <p>{{plano.dados.nome}}</p>
       <hr>
+
       <h4>Aluno:</h4>
       <p>{{plano.dados.grupo}}</p>
       <hr>
+
       <h4>Data:</h4>
       <p>{{plano.dados.dataUltimaAlteracao | date: 'medium'}}</p>
       <hr>
+
       <h4>Atividade:</h4>
       <p>{{plano.dados.atividade}}</p>
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.atividade"></revisao>
       <hr>
+
       <h4>Produtos:</h4>
       <p>{{plano.dados.produtos}}</p>
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.produtos"></revisao>
       <hr>
+
       <h4>Clientes:</h4>
       <p>{{plano.dados.clientes}}</p>
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.clientes"></revisao>
       <hr>
+
       <h4>Concorrentes:</h4>
       <p>{{plano.dados.concorrentes}}</p>
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.concorrentes"></revisao>
       <hr>
+
       <h4>Fornecedores:</h4>
       <p>{{plano.dados.fornecedores}}</p>
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.fornecedores"></revisao>
       <hr>
+
       <h4>Instalações:</h4>
       <p>{{plano.dados.localizacao}}</p>
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.localizacao"></revisao>
       <hr>
+
       <h4>Divulgação:</h4>
       <p>{{plano.dados.divulgacao}}</p>
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.divulgacao"></revisao>
     </div>
   </div>
 
@@ -61,6 +88,9 @@
         <td>{{plano.totalGeral(plano.dados.investimentos) | currency}}</td>
       </tr>
     </table>
+    <div class="panel-body">
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.investimentos"></revisao>
+    </div>
   </div>
 
   <div class="panel panel-default">
@@ -88,6 +118,9 @@
         <td>{{plano.totalGeral(plano.dados.custos) | currency}}</td>
       </tr>
     </table>
+    <div class="panel-body">
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.custos"></revisao>
+    </div>
   </div>
 
   <div class="panel panel-default">
@@ -109,6 +142,9 @@
         <td>{{plano.totalSimples(plano.dados.custosFixos) | currency}}</td>
       </tr>
     </table>
+    <div class="panel-body">
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.custosFixos"></revisao>
+    </div>
   </div>
 
   <div class="panel panel-default">
@@ -136,6 +172,9 @@
         <td>{{plano.totalGeral(plano.dados.receitas) | currency}}</td>
       </tr>
     </table>
+    <div class="panel-body">
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.receitas"></revisao>
+    </div>
   </div>
 
   <div class="panel panel-default">

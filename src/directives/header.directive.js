@@ -44,5 +44,3 @@ function header() {
 export default angular.module('directives.header', [Plano])
   .directive('header', header)
   .name;
-
-
