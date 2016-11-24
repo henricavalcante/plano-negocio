@@ -5,6 +5,12 @@ import Plano from '../services/plano.service';
 function header() {
   const controller = function($scope, $rootScope, $location, $state, Plano) {
     $scope.$location = $location;
+    if($rootScope.currentUser) {
+      $scope.displayName = $rootScope.currentUser.displayName;
+    } else {
+      $scope.displayName = 'Ferramenta de plano de negócios';
+    }
+
 
     $scope.enviarParaCorrecao = function() {
       const projeto = $rootScope.projeto;
