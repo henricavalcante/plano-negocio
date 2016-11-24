@@ -12,7 +12,7 @@ export default class LoginController {
       $rootScope.userName = $location.search().nome || ' ';
       sessionStorage.setItem('userName', $rootScope.userName);
 
-      $rootScope.projeto = sessionStorage.getItem('projeto') || 'semprojeto';
+      $rootScope.projeto = $location.search().projeto;
       sessionStorage.setItem('projeto', $rootScope.projeto);
 
       this.signInWithEmailAndPassword($location.search());
@@ -32,7 +32,7 @@ export default class LoginController {
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
         this.$rootScope.userName = user.nome || '';
-        this.$rootScope.projeto = user.projeto || 'semprojeto';
+        this.$rootScope.projeto = user.projeto;
         sessionStorage.setItem('projeto', this.$rootScope.projeto);
         this.setCurrentUser(result);
       })
@@ -57,7 +57,8 @@ export default class LoginController {
     this.FirebaseFactory.createUserWithEmailAndPassword(user.email, user.password)
       .then(result => {
         this.setCurrentUser(result);
-        this.$rootScope.projeto = user.projeto || 'semprojeto';
+        this.$rootScope.projeto = user.projeto;
+        sessionStorage.setItem('projeto', this.$rootScope.projeto);
         this.FirebaseFactory.set(`users/${result.uid}`, user);
       })
       .catch(() => {

@@ -10,7 +10,7 @@ export default class PlanoController {
     $rootScope.currentUser = FirebaseFactory.getAuth();
 
     $rootScope.userName = sessionStorage.getItem('userName') || '';
-    $rootScope.projeto = sessionStorage.getItem('projeto') || 'semprojeto';
+    $rootScope.projeto = sessionStorage.getItem('projeto');
 
     this.dados = {};
 
