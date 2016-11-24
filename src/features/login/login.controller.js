@@ -2,24 +2,21 @@ export default class LoginController {
   constructor($scope, $rootScope, FirebaseFactory, $state, Session, $location) {
     Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session, $location});
 
-    if ($location.search().email && $location.search().key) {
+    var queryStringUser = $location.search();
+
+    if (queryStringUser.email && queryStringUser.key) {
 
       // Mostra a tela de 'loading' quando o app for usado dentro da plataforma
       // wiquadro, para não mostrar o formulário de login enquanto o login via
       // querystring é feito
       $rootScope.isLoading = true;
 
-      $rootScope.userName = $location.search().nome || ' ';
-      sessionStorage.setItem('userName', $rootScope.userName);
-
-      $rootScope.projeto = $location.search().projeto;
-      sessionStorage.setItem('projeto', $rootScope.projeto);
-
-      this.signInWithEmailAndPassword($location.search());
+      this.signInWithEmailAndPassword(queryStringUser);
     }
 
     if (FirebaseFactory.getAuth()) {
-      $rootScope.currentUser = FirebaseFactory.getAuth();
+      var currentUser = FirebaseFactory.getAuth();
+      this.Session.upsertCurrentUser(currentUser);
       $state.go('plano01');
     }
   }
@@ -31,9 +28,7 @@ export default class LoginController {
 
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
-        this.$rootScope.userName = user.nome || '';
-        this.$rootScope.projeto = user.projeto;
-        sessionStorage.setItem('projeto', this.$rootScope.projeto);
+        this.Session.set('projeto', this.$rootScope.projeto);
         this.setCurrentUser(result);
       })
       .catch((err) => {
@@ -57,8 +52,8 @@ export default class LoginController {
     this.FirebaseFactory.createUserWithEmailAndPassword(user.email, user.password)
       .then(result => {
         this.setCurrentUser(result);
-        this.$rootScope.projeto = user.projeto;
-        sessionStorage.setItem('projeto', this.$rootScope.projeto);
+        this.Session.upsertCurrentUser(result);
+        this.Session.set('projeto', this.$rootScope.projeto);
         this.FirebaseFactory.set(`users/${result.uid}`, user);
       })
       .catch(() => {
@@ -81,8 +76,8 @@ export default class LoginController {
     user.getToken(true);
     console.log('Código do utilizador: ', user.uid);
 
-    this.Session.set(user);
-    this.$rootScope.currentUser = user;
+    this.Session.set('currentUser', user);
+
     this.$state.go('plano01');
   }
 }

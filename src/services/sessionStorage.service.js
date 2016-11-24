@@ -6,19 +6,32 @@ class Session {
     this.suported = 'sessionStorage' in window;
   }
 
-  set (user) {
+  set(key, value) {
     if (this.suported) {
-      sessionStorage.setItem('currentUser', JSON.stringify(user));
+      sessionStorage.setItem(key, JSON.stringify(value));
     }
   }
 
-  get () {
+  get(key) {
     if (this.suported) {
-      return JSON.parse(sessionStorage.getItem('currentUser'));
+      return JSON.parse(sessionStorage.getItem(key));
     }
   }
 
-  clear () {
+  upsertCurrentUser(newUser) {
+    var currentUser = this.get('currentUser');
+    this.set('currentUser', angular.extend(currentUser, newUser));
+  }
+
+  getCurrentUser() {
+    return get('currentUser');
+  }
+
+  getProject() {
+    return get('project');
+  }
+
+  clear() {
     sessionStorage.clear();
   }
 
