@@ -81,7 +81,7 @@ export default class PlanoController {
           this.dados = versao ? dados.historico[versao].plano : dados.plano;
           this.receitas = this.totalGeral(dados.plano.receitas);
           this.custosVariaveisTotais = this.totalGeral(dados.plano.custos);
-          this.custosFixosTotais = this.totalSimples(dados.plano.custosFixos);
+          this.custosFixosTotais = this.totalSimples(dados.plano.custosFixos) * 1.05;
           this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
           this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
           this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;

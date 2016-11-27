@@ -1,6 +1,6 @@
 export default class PlanosController {
   constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus) {
-    Object.assign(this, { $scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus});
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -31,7 +31,7 @@ export default class PlanosController {
 
         this.$rootScope.isLoading = false;
 
-        if (dados == null)  this.noResults = true;
+        if (dados == null) this.noResults = true;
 
         for (var key in dados) {
           if (dados.hasOwnProperty(key)) {
@@ -59,24 +59,24 @@ export default class PlanosController {
     this.FirebaseFactory.get(`admins/${this.$scope.currentUser.uid}`).then(res => {
       res.json().then(dados => {
 
-      this.$rootScope.isLoading = false;
+        this.$rootScope.isLoading = false;
 
-      if (dados && (dados.error == 'Auth token is expired')) {
-        this.$state.go('logout');
-        return;
-      }
-
-      for (var key in dados) {
-        if (dados.hasOwnProperty(key)) {
-          this.projetos.push({
-            id: key,
-            name: this.ProjectName(key)
-          });
+        if (dados && (dados.error == 'Auth token is expired')) {
+          this.$state.go('logout');
+          return;
         }
-      }
 
-      this.$rootScope.isLoading = false;
-      this.$scope.$apply();
+        for (var key in dados) {
+          if (dados.hasOwnProperty(key)) {
+            this.projetos.push({
+              id: key,
+              name: this.ProjectName(key)
+            });
+          }
+        }
+
+        this.$rootScope.isLoading = false;
+        this.$scope.$apply();
 
       });
     }).catch(err => {

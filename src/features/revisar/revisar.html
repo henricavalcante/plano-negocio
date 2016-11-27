@@ -477,6 +477,88 @@
         </textarea>
       </div>
     </div>
+    <div class="panel-heading">
+      <h3 class="panel-title">Demostrativo de resultado</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th class="text-center" colspan="2">DEMONSTRATIVO DE RESULTADOS MENSAL</th>
+        </tr>
+        <tr>
+          <th>Discriminação</th>
+          <th>Valor (R$)</th>
+        </tr>
+        <tr>
+          <td>Receitas Operacionais</td>
+          <td>{{revisar.plano.receitas | currency}}</td>
+        </tr>
+        <tr>
+          <td>Custos Variáveis Totais</td>
+          <td>{{revisar.plano.custosVariaveisTotais | currency}}</td>
+        </tr>
+        <tr>
+          <td>MARGEM DE CONTRIBUIÇÃO</td>
+          <td>{{revisar.plano.margemDeContribuicao | currency}}</td>
+        </tr>
+        <tr>
+          <td>Custos Fixos</td>
+          <td>{{revisar.plano.custosFixosTotais | currency}}</td>
+        </tr>
+        <tr>
+          <td>RESULTADO OPERACIONAL</td>
+          <td>{{revisar.plano.resultadoOperacional | currency}}</td>
+        </tr>
+      </table>
+
+      <hr>
+
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th class="text-center" colspan="2">TEMPO DE RETORNO</th>
+        </tr>
+        <tr>
+          <th>Discriminação</th>
+          <th>Valor (R$)</th>
+        </tr>
+        <tr>
+          <td>Investimento Fixo</td>
+          <td>{{ revisar.plano.investimento | currency }}</td>
+        </tr>
+        <tr>
+          <td>Capital de Giro = (Custo Mensal x 2)</td>
+          <td>{{ revisar.plano.capitalDeGiro | currency }}</td>
+        </tr>
+        <tr>
+          <td>Investimento Total</td>
+          <td>{{ revisar.plano.investimentoTotal | currency }}</td>
+        </tr>
+        <tr>
+          <td>Receita Mensal</td>
+          <td>{{ revisar.plano.receitas | currency }}</td>
+        </tr>
+        <tr>
+          <td>Custo Mensal = (Custos Fixos + Custos Variáveis)</td>
+          <td>{{ revisar.plano.despesas | currency }}</td>
+        </tr>
+        <tr>
+          <td>Saldo Mensal</td>
+          <td>{{ revisar.plano.lucro | currency }}</td>
+        </tr>
+        <tr>
+          <td>Tempo de Retorno (Meses) = (Investimento Total / Saldo Mensal)</td>
+          <td>{{ revisar.plano.taxaDeRetorno | number:2 }}</td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <label for="">REVISÃO</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          ng-model="revisar.revisao.demonstrativo">
+        </textarea>
+      </div>
+    </div>
   </div>
 
   <button

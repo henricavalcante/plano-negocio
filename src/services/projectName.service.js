@@ -8,6 +8,7 @@ const ProjectName = () => {
     16: 'Atividade CEEV',
     19: 'Cursos WiLivro',
     32: 'Treinamento',
+    57: 'Empreendedor Juvenil - Ceará 2016',
     60: 'Juventude Empreendedora - Alagoas 2016',
     68: 'Plano de Negócios em Grupo CE 2016'
   };
