@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 class Session {
-
   constructor() {
     this.suported = 'sessionStorage' in window;
   }
