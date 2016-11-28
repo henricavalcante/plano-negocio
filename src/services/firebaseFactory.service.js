@@ -20,8 +20,7 @@ class FirebaseFactory {
 
     this.firebase.auth().onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        currentUser.getToken(true);
-        Session.upsertCurrentUser(currentUser);
+        Session.upsertCurrentUser(JSON.parse(JSON.stringify(currentUser)));
         console.log('auth changed');
       }
     });

@@ -15,6 +15,7 @@
       </button>
     </div>
     <div class="collapse navbar-collapse navbar-right" id="app-menu-collapse" ng-class="{in: appMenu}" ng-if="true">
+      <a class="btn btn-warning navbar-btn" href="/logout" ng-if="isNotIframe">Sair</a>
       <a class="btn btn-default navbar-btn" href="/" ng-if="$location.path() === '/plano/visualizar'">Voltar</a>
       <a class="btn btn-default navbar-btn" href="/plano/visualizar">Visualizar</a>
       <a confirm-click="enviarParaCorrecao()"

@@ -1,4 +1,4 @@
-<div class="panel panel-default center-block login-screen">
+<div ng-if="!login.isIframe" class="panel panel-default center-block login-screen">
   <div class="panel-heading">
     <h3 class="panel-title text-center">Login</h3>
   </div>
@@ -43,5 +43,11 @@
       </button>
     </div>
     <a class="btn btn-link btn-block" href="/reset-password">Esqueci minha senha</a>
+  </div>
+</div>
+
+<div class="col-sm-12" ng-if="login.isIframe">
+  <div class="well">
+    Ocorreu um erro ao acessar o Plano de Negócio. Por favor, recarregue esta página para continuar.
   </div>
 </div>

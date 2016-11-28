@@ -2,6 +2,8 @@ export default class LoginController {
   constructor($scope, $rootScope, FirebaseFactory, $state, Session, $location) {
     Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session, $location});
 
+    this.isIframe = self!=top;
+
     var queryStringUser = $location.search();
 
     if (queryStringUser.email && queryStringUser.key) {

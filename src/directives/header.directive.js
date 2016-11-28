@@ -10,8 +10,10 @@ function header() {
 
     $scope.displayName = 'Ferramenta de plano de negócios';
 
+    $scope.isNotIframe = self==top;
+
     if(FirebaseFactory.getAuth()) {
-      $scope.displayName = FirebaseFactory.getAuth().displayName || Session.get('userName');
+      $scope.displayName = FirebaseFactory.getAuth().displayName;
     }
 
     $scope.enviarParaCorrecao = function() {

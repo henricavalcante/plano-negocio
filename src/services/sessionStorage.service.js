@@ -19,8 +19,7 @@ class Session {
 
   upsertCurrentUser(newUser) {
     var currentUser = this.get('currentUser');
-    // FIXME: app.js:20 TypeError: Converting circular structure to JSON(…)
-    // this.set('currentUser', angular.extend(currentUser, newUser));
+    this.set('currentUser', angular.extend(currentUser, newUser));
   }
 
   getCurrentUser() {
