@@ -21,8 +21,7 @@ class FirebaseFactory {
     this.firebase.auth().onAuthStateChanged((currentUser) => {
       if (currentUser) {
         currentUser.getToken(true);
-        $rootScope.currentUser = currentUser;
-        Session.set(currentUser);
+        Session.upsertCurrentUser(currentUser);
         console.log('auth changed');
       }
     });
@@ -41,7 +40,7 @@ class FirebaseFactory {
   }
 
   getAuth() {
-    return this.Session.get();
+    return this.Session.get('currentUser');
   }
 
   getAccessToken() {
@@ -61,7 +60,6 @@ class FirebaseFactory {
     provider.addScope('user_birthday');
 
     return firebase.auth().signInWithPopup(provider).then((user) => {
-      this.Session.set(this.firebase.auth().currentUser);
       return this.firebase.auth().currentUser;
     });
   }
@@ -70,7 +68,6 @@ class FirebaseFactory {
     var provider = new firebase.auth.TwitterAuthProvider();
 
     return firebase.auth().signInWithPopup(provider).then((user) => {
-      this.Session.set(this.firebase.auth().currentUser);
       return this.firebase.auth().currentUser;
     });
     ;

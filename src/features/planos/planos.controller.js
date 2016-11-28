@@ -7,8 +7,6 @@ export default class PlanosController {
       return;
     }
 
-    $rootScope.currentUser = FirebaseFactory.getAuth();
-
     this.lista = [];
     this.noResults = false;
 
@@ -56,7 +54,7 @@ export default class PlanosController {
   loadProjects() {
     this.$rootScope.isLoading = true;
 
-    this.FirebaseFactory.get(`admins/${this.$scope.currentUser.uid}`).then(res => {
+    this.FirebaseFactory.get(`admins/${this.FirebaseFactory.getAuth().uid}`).then(res => {
       res.json().then(dados => {
 
         this.$rootScope.isLoading = false;

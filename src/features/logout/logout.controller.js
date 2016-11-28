@@ -2,7 +2,6 @@ export default class LogoutController {
   constructor($scope, $rootScope, $state, Session, FirebaseFactory) {
     Object.assign(this, { $scope, $rootScope, $state, Session, FirebaseFactory});
 
-    $rootScope.currentUser = undefined;
     Session.clear();
 
     FirebaseFactory.signOut().then(() => {

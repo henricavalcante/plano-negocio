@@ -10,6 +10,10 @@ export default class LoginController {
       // wiquadro, para não mostrar o formulário de login enquanto o login via
       // querystring é feito
       $rootScope.isLoading = true;
+      
+      Session.clear();
+      Session.set('projeto', queryStringUser.projeto);
+      Session.set('userName', queryStringUser.nome);
 
       this.signInWithEmailAndPassword(queryStringUser);
     }
@@ -28,7 +32,6 @@ export default class LoginController {
 
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
-        this.Session.set('projeto', this.$rootScope.projeto);
         this.setCurrentUser(result);
       })
       .catch((err) => {

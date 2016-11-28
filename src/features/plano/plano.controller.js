@@ -7,11 +7,6 @@ export default class PlanoController {
       return;
     }
 
-    $rootScope.currentUser = FirebaseFactory.getAuth();
-
-    $rootScope.userName = sessionStorage.getItem('userName') || '';
-    $rootScope.projeto = sessionStorage.getItem('projeto');
-
     this.dados = {};
 
     this.load($stateParams.projeto, $stateParams.uid, $stateParams.versao);
@@ -37,13 +32,13 @@ export default class PlanoController {
   save(data) {
     this.$rootScope.isLoading = true;
 
-    if (!this.$scope.currentUser) {
+    if (!this.FirebaseFactory.getAuth()) {
       console.log('Não Logado!');
       return;
     }
 
 
-    data.userName = this.$scope.currentUser.displayName || this.$scope.userName || ' ';
+    data.userName = this.FirebaseFactory.getAuth().displayName || this.Session.get('userName') || ' ';
     data.dataUltimaAlteracao = this.FirebaseFactory.getServerDate();
 
     let todosOsPassosConcluidos = this.passosConcluidos().plano08;
@@ -345,8 +340,8 @@ export default class PlanoController {
   }
 
   getPath(projetoid, userid) {
-    let pid = projetoid || this.$rootScope.projeto;
-    let uid = userid || this.$scope.currentUser.uid;
+    let pid = projetoid || this.Session.get('projeto') || 'semprojeto';
+    let uid = userid || this.FirebaseFactory.getAuth().uid;
 
     return `planos/${pid}/${uid}`;
   }
