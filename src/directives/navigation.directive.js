@@ -1,10 +1,11 @@
 import angular from 'angular';
 import './navigation.css';
+import FirebaseFactory from '../services/FirebaseFactory.service';
 
 function navigation() {
-  const navigationController = function($scope, $rootScope) {
+  const navigationController = function($scope, $rootScope, FirebaseFactory) {
     $scope.isActive = function () {
-      return $scope.currentUser != undefined;
+      return FirebaseFactory.getAuth() != undefined;
     };
 
     Object.assign(this, {$rootScope});
@@ -17,6 +18,6 @@ function navigation() {
   };
 }
 
-export default angular.module('directives.navigation', [])
+export default angular.module('directives.navigation', [FirebaseFactory])
 .directive('navigation', navigation)
 .name;

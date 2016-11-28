@@ -1,20 +1,22 @@
 'use strict';
 import angular from 'angular';
 import Plano from '../services/plano.service';
+import FirebaseFactory from '../services/FirebaseFactory.service';
+import Session from '../services/sessionStorage.service';
 
 function header() {
-  const controller = function($scope, $rootScope, $location, $state, Plano) {
+  const controller = function($scope, $rootScope, $location, $state, Plano, FirebaseFactory, Session) {
     $scope.$location = $location;
-    if($rootScope.currentUser) {
-      $scope.displayName = $rootScope.currentUser.displayName;
-    } else {
-      $scope.displayName = 'Ferramenta de plano de negócios';
+
+    $scope.displayName = 'Ferramenta de plano de negócios';
+
+    if(FirebaseFactory.getAuth()) {
+      $scope.displayName = FirebaseFactory.getAuth().displayName || Session.get('userName');
     }
 
-
     $scope.enviarParaCorrecao = function() {
-      const projeto = $rootScope.projeto;
-      const uid = $rootScope.currentUser.uid;
+      const projeto = Session.get('projeto');
+      const uid = FirebaseFactory.getAuth().uid;
 
       Plano
         .enviarParaCorrecao(projeto, uid)
@@ -47,6 +49,6 @@ function header() {
   };
 }
 
-export default angular.module('directives.header', [Plano])
+export default angular.module('directives.header', [Plano, FirebaseFactory, Session])
   .directive('header', header)
   .name;
