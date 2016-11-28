@@ -21,21 +21,20 @@ export default class RevisarController {
             return;
           }
 
-          this.plano = dados.plano;
-
-          this.plano.receitas = this.totalGeral(dados.plano.receitas);
-          this.plano.custosVariaveisTotais = this.totalGeral(dados.plano.custos);
-          this.plano.custosFixosTotais = this.totalSimples(dados.plano.custosFixos) * 1.05;
-          this.plano.despesas = this.plano.custosVariaveisTotais + this.plano.custosFixosTotais;
-          this.plano.margemDeContribuicao = this.plano.receitas - this.plano.custosVariaveisTotais;
-          this.plano.resultadoOperacional = this.plano.margemDeContribuicao - this.plano.custosFixosTotais;
-          this.plano.lucro = this.plano.receitas - this.plano.despesas;
-          this.plano.capitalDeGiro = this.plano.despesas * 2;
-          this.plano.investimento = this.totalGeral(dados.plano.investimentos);
-          this.plano.investimentoTotal = this.plano.investimento + this.plano.capitalDeGiro;
-          this.plano.taxaDeRetorno = this.plano.investimentoTotal / this.plano.lucro;
-
+          this.status = dados.status;
           this.revisao = dados.revisao;
+          this.plano = dados.plano;
+          this.receitas = this.totalGeral(dados.plano.receitas);
+          this.custosVariaveisTotais = this.totalGeral(dados.plano.custos);
+          this.custosFixosTotais = this.totalSimples(dados.plano.custosFixos) * 1.05;
+          this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
+          this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
+          this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
+          this.lucro = this.receitas - this.despesas;
+          this.capitalDeGiro = this.despesas * 2;
+          this.investimento = this.totalGeral(dados.plano.investimentos);
+          this.investimentoTotal = this.investimento + this.capitalDeGiro;
+          this.taxaDeRetorno = this.investimentoTotal / this.lucro;
 
           this.$scope.$apply();
         });

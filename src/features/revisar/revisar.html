@@ -205,7 +205,7 @@
         </tr>
         <tr>
           <td colspan="3"><strong>Total geral:</strong></td>
-          <td>{{plano.totalGeral(revisar.plano.investimentos) | currency}}</td>
+          <td>{{revisar.investimento | currency}}</td>
         </tr>
       </table>
       <div class="form-group">
@@ -242,7 +242,7 @@
         </tr>
         <tr>
           <td colspan="4"><strong>Total geral:</strong></td>
-          <td>{{plano.totalGeral(revisar.plano.custos) | currency}}</td>
+          <td>{{revisar.custosVariaveisTotais | currency}}</td>
         </tr>
       </table>
       <div class="form-group">
@@ -414,19 +414,20 @@
         </tr>
         <tr>
           <td><strong>SUB-TOTAL</strong></td>
-          <td><strong>{{plano.totalSimples(revisar.plano.custosFixos) | currency}}</strong></td>
+          <td><strong>{{revisar.totalSimples(revisar.plano.custosFixos) | currency}}</strong></td>
+          {{revisar.custosFixos}}
         </tr>
         <tr>
           <td>Reservas de emergência (5%)</td>
           <td>
-            {{(reservaDeEmergencia = ((plano.totalSimples(revisar.plano.custosFixos) * 5) / 100) || '') | currency}}
+            {{(((revisar.totalSimples(revisar.plano.custosFixos) * 5) / 100) || '') | currency}}
           </td>
         </tr>
         <tr>
           <td><strong>TOTAL</strong></td>
           <td>
             <strong>
-              {{plano.totalSimples(revisar.plano.custosFixos) + reservaDeEmergencia | currency}}
+              {{revisar.custosFixosTotais | currency}}
             </strong>
           </td>
         </tr>
@@ -465,7 +466,7 @@
         </tr>
         <tr>
           <td colspan="4"><strong>TOTAL GERAL:</strong></td>
-          <td><strong>{{plano.totalGeral(revisar.plano.receitas) | currency}}</strong></td>
+          <td><strong>{{revisar.receitas | currency}}</strong></td>
         </tr>
       </table>
       <div class="form-group">
@@ -491,23 +492,23 @@
         </tr>
         <tr>
           <td>Receitas Operacionais</td>
-          <td>{{revisar.plano.receitas | currency}}</td>
+          <td>{{revisar.receitas | currency}}</td>
         </tr>
         <tr>
           <td>Custos Variáveis Totais</td>
-          <td>{{revisar.plano.custosVariaveisTotais | currency}}</td>
+          <td>{{revisar.custosVariaveisTotais | currency}}</td>
         </tr>
         <tr>
           <td>MARGEM DE CONTRIBUIÇÃO</td>
-          <td>{{revisar.plano.margemDeContribuicao | currency}}</td>
+          <td>{{revisar.margemDeContribuicao | currency}}</td>
         </tr>
         <tr>
           <td>Custos Fixos</td>
-          <td>{{revisar.plano.custosFixosTotais | currency}}</td>
+          <td>{{revisar.custosFixosTotais | currency}}</td>
         </tr>
         <tr>
           <td>RESULTADO OPERACIONAL</td>
-          <td>{{revisar.plano.resultadoOperacional | currency}}</td>
+          <td>{{revisar.resultadoOperacional | currency}}</td>
         </tr>
       </table>
 
@@ -523,31 +524,31 @@
         </tr>
         <tr>
           <td>Investimento Fixo</td>
-          <td>{{ revisar.plano.investimento | currency }}</td>
+          <td>{{ revisar.investimento | currency }}</td>
         </tr>
         <tr>
           <td>Capital de Giro = (Custo Mensal x 2)</td>
-          <td>{{ revisar.plano.capitalDeGiro | currency }}</td>
+          <td>{{ revisar.capitalDeGiro | currency }}</td>
         </tr>
         <tr>
           <td>Investimento Total</td>
-          <td>{{ revisar.plano.investimentoTotal | currency }}</td>
+          <td>{{ revisar.investimentoTotal | currency }}</td>
         </tr>
         <tr>
           <td>Receita Mensal</td>
-          <td>{{ revisar.plano.receitas | currency }}</td>
+          <td>{{ revisar.receitas | currency }}</td>
         </tr>
         <tr>
           <td>Custo Mensal = (Custos Fixos + Custos Variáveis)</td>
-          <td>{{ revisar.plano.despesas | currency }}</td>
+          <td>{{ revisar.despesas | currency }}</td>
         </tr>
         <tr>
           <td>Saldo Mensal</td>
-          <td>{{ revisar.plano.lucro | currency }}</td>
+          <td>{{ revisar.lucro | currency }}</td>
         </tr>
         <tr>
           <td>Tempo de Retorno (Meses) = (Investimento Total / Saldo Mensal)</td>
-          <td>{{ revisar.plano.taxaDeRetorno | number:2 }}</td>
+          <td>{{ revisar.taxaDeRetorno | number:2 }}</td>
         </tr>
       </table>
       <div class="form-group">
