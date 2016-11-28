@@ -16,6 +16,7 @@ import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
 import ProjectName from './services/projectName.service';
+import byStatus from './filters/byStatus.filter';
 import login from './features/login';
 import logout from './features/logout';
 import resetPassword from './features/reset-password';
@@ -35,6 +36,7 @@ angular.module('app', [
   Session,
   PlanoStatus,
   ProjectName,
+  byStatus,
   login,
   logout,
   resetPassword,

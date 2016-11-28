@@ -7,10 +7,10 @@
       <div class="row">
         <div class="form-group col-md-4 col-sm-4">
           <label for="">Projeto</label>
-          <select 
+          <select
             class="form-control"
-            ng-options="plano.id as plano.name for plano in planos.projetos"  
-            ng-model="projetofiltro" 
+            ng-options="plano.id as plano.name for plano in planos.projetos"
+            ng-model="projetofiltro"
             ng-change="planos.loadPlanos(projetofiltro)">
             <option value="">Selecione</option>
           </select>
@@ -21,11 +21,11 @@
         </div>
         <div class="form-group col-md-4 col-sm-4">
           <label for="">Status</label>
-          <select 
-            class="form-control" 
-            ng-model="statusfiltro" 
+          <select
+            class="form-control"
+            ng-model="statusfiltro"
             ng-options="status.key as status.value for status in planos.statuses">
-            <option value="">Selecione</option>
+            <option value="">Todos</option>
           </select>
         </div>
       </div>
@@ -47,7 +47,7 @@
         <th>Status</th>
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
-      <tr ng-repeat="item in planos.lista | filter: criterioDeBusca">
+      <tr ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca)">
         <td>{{item.plano.userName}}</td>
         <td>{{item.plano.dataUltimaAlteracao | date:'medium'}}</td>
         <td>{{item.status}}</td>
@@ -61,6 +61,9 @@
             </div>
           </div>
         </td>
+      </tr>
+      <tr>
+        <td colspan="4">Mostrando {{results.length}} registros de {{planos.lista.length}}</td>
       </tr>
     </table>
 
