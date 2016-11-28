@@ -83,7 +83,16 @@ export default class LoginController {
 
     this.Session.set('currentUser', user);
 
-    this.$state.go('plano01');
+    this.FirebaseFactory.get(`admins/${this.FirebaseFactory.getAuth().uid}`)
+    .then(res => res.json())
+    .then(json => {
+      if (json) {
+        this.$state.go('planos');
+      } else {
+        this.$state.go('plano01');
+      }
+    });
+
   }
 }
 
