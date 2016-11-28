@@ -88,7 +88,8 @@ export default class RevisarController {
         this
           .FirebaseFactory
           .set(`/planos/${this.projeto}/${this.uid}/historico/${key}`, {
-            plano, revisao
+            plano, revisao,
+            revisor: this.FirebaseFactory.getAuth().displayName
           })
       })
   }
