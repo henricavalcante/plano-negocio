@@ -7,14 +7,16 @@ import Session from '../services/sessionStorage.service';
 function header() {
   const controller = function($scope, $rootScope, $location, $state, Plano, FirebaseFactory, Session) {
     $scope.$location = $location;
-
-    $scope.displayName = 'Ferramenta de plano de negócios';
-
     $scope.isNotIframe = self==top;
-
-    if(FirebaseFactory.getAuth()) {
-      $scope.displayName = FirebaseFactory.getAuth().displayName;
-    }
+    $scope.displayName = 'Ferramenta de plano de negócios';
+    
+    FirebaseFactory.firebase.auth().onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        $scope.displayName = currentUser.displayName;
+      } else {
+        $scope.displayName = 'Ferramenta de plano de negócios';
+      }
+    });
 
     $scope.enviarParaCorrecao = function() {
       const projeto = Session.get('projeto');
