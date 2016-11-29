@@ -249,6 +249,10 @@
         <td>{{ plano.taxaDeRetorno | number:2 }}</td>
       </tr>
     </table>
+
+    <div class="panel-body">
+      <revisao ng-show="mostrarCorrecao" text="plano.revisao.demonstrativo"></revisao>
+    </div>
   </div>
 
 </div>
