@@ -4,6 +4,8 @@ export default class LogoutController {
 
     Session.clear();
 
+    $rootScope.planoStatus = null;
+
     FirebaseFactory.signOut().then(() => {
         $state.go('login');
     }).catch(() => {

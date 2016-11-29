@@ -87,8 +87,10 @@ export default class LoginController {
     .then(res => res.json())
     .then(json => {
       if (json) {
+        this.Session.set('tipoUsuario', 'REVISOR');
         this.$state.go('planos');
       } else {
+        this.Session.set('tipoUsuario', 'AUTOR');
         this.$state.go('plano01');
       }
     });

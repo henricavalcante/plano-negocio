@@ -9,10 +9,10 @@ function header() {
     $scope.$location = $location;
     $scope.isNotIframe = self==top;
     $scope.displayName = 'Ferramenta de plano de negócios';
-    
+
     FirebaseFactory.firebase.auth().onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        $scope.displayName = currentUser.displayName;
+        $scope.displayName = currentUser.displayName || Session.get('userName');
       } else {
         $scope.displayName = 'Ferramenta de plano de negócios';
       }
@@ -25,20 +25,14 @@ function header() {
       Plano
         .enviarParaCorrecao(projeto, uid)
         .then(() => {
-          $rootScope.mensagens.push({
-            id: $rootScope.mensagens.length,
-            text: 'Seu plano de negócio acaba de ser enviado para a revisão dos especialistas. A ferramenta continuará disponível para visualização, mas ficará bloqueada para edição até que a revisão seja finalizada. Isso poderá levar 7 dias úteis.'
-          });
+          $rootScope.addMensagem('eu plano de negócio acaba de ser enviado para a revisão dos especialistas. A ferramenta continuará disponível para visualização, mas ficará bloqueada para edição até que a revisão seja finalizada. Isso poderá levar 7 dias úteis.');
 
           $scope.$apply();
 
           $state.go('visualizar');
         })
         .catch((e) => {
-          $rootScope.mensagens.push({
-            id: $rootScope.mensagens.length,
-            text: 'Você deve concluir todas as etapas do plano antes de enviar para correção.'
-          });
+          $rootScope.addMensagem('Você deve concluir todas as etapas do plano antes de enviar para correção.');
 
           $scope.$apply();
         });
