@@ -55,10 +55,7 @@ export default class RevisarController {
         status: this.PlanoStatus.STATUSES.REVISANDO
       })
       .then(() => {
-        this.$rootScope.mensagens.push({
-          id: this.$rootScope.mensagens.length,
-          text: 'Revisão salva com sucesso!'
-        });
+        this.$rootScope.addMensagem('Revisão salva com sucesso!');
 
         this.$rootScope.isLoading = false;
         this.$scope.$apply();

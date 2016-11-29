@@ -37,7 +37,6 @@ export default class PlanoController {
       return;
     }
 
-
     data.userName = this.FirebaseFactory.getAuth().displayName || this.Session.get('userName') || ' ';
     data.dataUltimaAlteracao = this.FirebaseFactory.getServerDate();
 
@@ -52,10 +51,7 @@ export default class PlanoController {
       this.getPath(),
       dados
     ).then(() => {
-      this.$rootScope.mensagens.push({
-        id: this.$rootScope.mensagens.length,
-        text: 'Dados salvos com sucesso! Você pode prosseguir para o próximo passo!'
-      });
+      this.$rootScope.addMensagem('Dados salvos com sucesso! Você pode prosseguir para o próximo passo!');
 
       this.$rootScope.isLoading = false;
       this.$scope.$apply();
@@ -71,7 +67,7 @@ export default class PlanoController {
         this.$rootScope.isLoading = false;
 
         if (dados) {
-          this.status = dados.status;
+          this.status = this.$rootScope.planoStatus = dados.status;
           this.revisao = versao ? dados.historico[versao].revisao : dados.revisao;
           this.dados = versao ? dados.historico[versao].plano : dados.plano;
           this.receitas = this.totalGeral(dados.plano.receitas);

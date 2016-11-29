@@ -1,9 +1,11 @@
-<div class="col-md-12 mensagens" ng-show="mensagens">
+<div class="mensagens" ng-show="mensagens">
   <div
     ng-repeat="mensagem in mensagens"
-    class="alert alert-info" role="alert">
+    class="mensagem alert" role="alert"
+    ng-class="mensagem.type">
     <button type="button" class="close" ng-click="removerMensagem(mensagem)">
-      <span aria-hidden="true">&times;</span></button>
-    {{mensagem.text}}
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p>{{mensagem.text}}</p>
   </div>
 </div>
