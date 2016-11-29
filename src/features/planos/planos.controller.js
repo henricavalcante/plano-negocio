@@ -51,6 +51,9 @@ export default class PlanosController {
             let item = {};
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
+            if (dados[key]['historico']) {
+              item.revisorResponsavel = dados[key]['historico']['1']['revisor'];
+            }
             item.status = this.PlanoStatus.getStatus(dados[key].status, 'REVISOR');
             item.uid = key;
             this.lista.push(item);

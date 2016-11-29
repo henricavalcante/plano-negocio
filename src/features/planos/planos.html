@@ -57,12 +57,18 @@
           <a ng-show="planos.currentSort.exp == 'status' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'status' && !planos.currentSort.reverse">^</a>
         </th>
+        <th ng-click="planos.sort('revisorResponsavel')">
+          Revisor Responsável
+          <a ng-show="planos.currentSort.exp == 'revisorResponsavel' && planos.currentSort.reverse">v</a>
+          <a ng-show="planos.currentSort.exp == 'revisorResponsavel' && !planos.currentSort.reverse">^</a>
+        </th>
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
       <tr ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)">
         <td>{{item.plano.userName}}</td>
         <td>{{item.plano.dataUltimaAlteracao | date:'medium'}}</td>
         <td>{{item.status}}</td>
+        <td>{{item.revisorResponsavel}}</td>
         <td class="col-md-3">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
