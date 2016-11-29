@@ -15,6 +15,7 @@ export default class LoginController {
 
       Session.clear();
       Session.set('projeto', queryStringUser.projeto);
+      Session.set('agrupador', queryStringUser.agrupador);
       Session.set('userName', queryStringUser.nome);
 
       this.signInWithEmailAndPassword(queryStringUser);
@@ -58,7 +59,6 @@ export default class LoginController {
       .then(result => {
         this.setCurrentUser(result);
         this.Session.upsertCurrentUser(result);
-        this.Session.set('projeto', this.$rootScope.projeto);
         this.FirebaseFactory.set(`users/${result.uid}`, user);
       })
       .catch(() => {

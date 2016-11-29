@@ -42,12 +42,24 @@
     </div>
     <table class="table table-striped table-bordered">
       <tr>
-        <th>Aluno</th>
-        <th>Ult. alteração</th>
-        <th>Status</th>
+        <th ng-click="planos.sort('plano.userName')">
+          Aluno
+          <a ng-show="planos.currentSort.exp == 'plano.userName' && planos.currentSort.reverse">v</a>
+          <a ng-show="planos.currentSort.exp == 'plano.userName' && !planos.currentSort.reverse">^</a>
+        </th>
+        <th ng-click="planos.sort('plano.dataUltimaAlteracao')">
+          Ult. alteração
+          <a ng-show="planos.currentSort.exp == 'plano.dataUltimaAlteracao' && planos.currentSort.reverse">v</a>
+          <a ng-show="planos.currentSort.exp == 'plano.dataUltimaAlteracao' && !planos.currentSort.reverse">^</a>
+        </th>
+        <th ng-click="planos.sort('status')">
+          Status
+          <a ng-show="planos.currentSort.exp == 'status' && planos.currentSort.reverse">v</a>
+          <a ng-show="planos.currentSort.exp == 'status' && !planos.currentSort.reverse">^</a>
+        </th>
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
-      <tr ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca)">
+      <tr ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)">
         <td>{{item.plano.userName}}</td>
         <td>{{item.plano.dataUltimaAlteracao | date:'medium'}}</td>
         <td>{{item.status}}</td>

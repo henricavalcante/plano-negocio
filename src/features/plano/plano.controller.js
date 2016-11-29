@@ -38,13 +38,15 @@ export default class PlanoController {
     }
 
     data.userName = this.FirebaseFactory.getAuth().displayName || this.Session.get('userName') || ' ';
+
     data.dataUltimaAlteracao = this.FirebaseFactory.getServerDate();
 
     let todosOsPassosConcluidos = this.passosConcluidos().plano08;
 
     let dados = {
       plano: angular.copy(data),
-      status: todosOsPassosConcluidos ? this.PlanoStatus.STATUSES.ELABORADO : this.PlanoStatus.STATUSES.ELABORANDO
+      status: todosOsPassosConcluidos ? this.PlanoStatus.STATUSES.ELABORADO : this.PlanoStatus.STATUSES.ELABORANDO,
+      agrupador: this.FirebaseFactory.getAuth().agrupador
     };
 
     this.FirebaseFactory.update(

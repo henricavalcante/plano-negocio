@@ -14,6 +14,21 @@ export default class PlanosController {
     this.loadProjects();
 
     this.statuses = PlanoStatus.getStatuses('REVISOR');
+
+    this.order = {};
+    this.currentSort = {};
+
+  }
+
+  sort(column) {
+    if (this.order[column] == column) {
+      this.order[column + 'Desc'] = !this.order[column + 'Desc'];
+    } else {
+      this.order[column] = column;
+      this.order[column + 'Desc'] = false;
+    }
+
+    this.currentSort = {exp: this.order[column], reverse: this.order[column + 'Desc']};
   }
 
   loadPlanos(projeto) {

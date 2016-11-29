@@ -7,19 +7,19 @@ const MESSAGES = {
     REVISOR: 'Em elaboração pelo aluno',
   },
   ELABORADO: {
-    AUTOR: 'Pronto para enviar para correção',
+    AUTOR: 'Pronto para ser enviado para correção',
     REVISOR: 'Elaborado, mas não enviado',
   },
   ENVIADO_REVISAO: {
-    AUTOR: 'Aguardando revisão',
+    AUTOR: 'Enviado para correção. Aguardando revisão',
     REVISOR: 'A ser revisado'
   },
   REVISANDO: {
-    AUTOR: 'Em revisão',
+    AUTOR: 'Revisão em andamento',
     REVISOR: 'Revisão em andamento'
   },
   REVISADO: {
-    AUTOR: 'Revisado',
+    AUTOR: 'Plano Revisado', //Seu plano foi revisado, promova as alterações necessárias e envie novamente para a correção?
     REVISOR: 'Revisado'
   }
 };
@@ -29,7 +29,7 @@ const FLOW = {
   ELABORADO: ['ENVIADO_REVISAO'],
   ENVIADO_REVISAO: ['REVISANDO'],
   REVISANDO: ['REVISANDO', 'REVISADO'],
-  REVISADO: ['']
+  REVISADO: ['ENVIADO_REVISAO']
 };
 
 const STATUSES = {
