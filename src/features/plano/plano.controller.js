@@ -86,6 +86,10 @@ export default class PlanoController {
           this.taxaDeRetorno = this.investimentoTotal / this.lucro;
         }
 
+        if (this.status == 'REVISADO') {
+          this.$rootScope.addMensagem('Seu plano foi revisado, promova as alterações necessárias e envie novamente para a correção.', 'warning', 10);
+        }
+
         this.$scope.$apply();
       });
     }).catch(err => {
