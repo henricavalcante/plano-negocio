@@ -1,6 +1,6 @@
 export default class PlanosController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus});
+  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -56,6 +56,7 @@ export default class PlanosController {
             }
             item.status = this.PlanoStatus.getStatus(dados[key].status, 'REVISOR');
             item.uid = key;
+            item.plano.dataUltimaAlteracaoFormatada = this.$filter('date')(item.plano.dataUltimaAlteracao, 'medium');
             this.lista.push(item);
           }
         }
@@ -108,4 +109,4 @@ export default class PlanosController {
 
 }
 
-PlanosController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'ProjectName', 'PlanoStatus'];
+PlanosController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'ProjectName', 'PlanoStatus', '$filter'];
