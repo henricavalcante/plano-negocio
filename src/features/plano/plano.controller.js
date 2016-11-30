@@ -45,8 +45,7 @@ export default class PlanoController {
 
     let dados = {
       plano: angular.copy(data),
-      status: todosOsPassosConcluidos ? this.PlanoStatus.STATUSES.ELABORADO : this.PlanoStatus.STATUSES.ELABORANDO,
-      agrupador: this.FirebaseFactory.getAuth().agrupador
+      status: todosOsPassosConcluidos ? this.PlanoStatus.STATUSES.ELABORADO : this.PlanoStatus.STATUSES.ELABORANDO
     };
 
     this.FirebaseFactory.update(
