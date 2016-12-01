@@ -17,7 +17,8 @@
         </div>
         <div class="form-group col-md-4 col-sm-4">
           <label for="">Buscar</label>
-          <input type="text" class="form-control" ng-model="criterioDeBusca" placeholder="Buscar por nome, data ou agrupador">
+          <input type="text" class="form-control" ng-model="criterioDeBusca"
+                 placeholder="Buscar por nome, data ou agrupador">
         </div>
         <div class="form-group col-md-4 col-sm-4">
           <label for="">Status</label>
@@ -57,20 +58,32 @@
           <a ng-show="planos.currentSort.exp == 'status' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'status' && !planos.currentSort.reverse">^</a>
         </th>
-        <th ng-click="planos.sort('revisorResponsavel')">
-          Revisor Responsável
-          <a ng-show="planos.currentSort.exp == 'revisorResponsavel' && planos.currentSort.reverse">v</a>
-          <a ng-show="planos.currentSort.exp == 'revisorResponsavel' && !planos.currentSort.reverse">^</a>
+        <th ng-click="planos.sort('revisoes')">
+          Revisões
+          <a ng-show="planos.currentSort.exp == 'revisoes' && planos.currentSort.reverse">v</a>
+          <a ng-show="planos.currentSort.exp == 'revisoes' && !planos.currentSort.reverse">^</a>
+        </th>
+        <th ng-click="planos.sort('agrupador')">
+          Agrupador
+          <a ng-show="planos.currentSort.exp == 'agrupador' && planos.currentSort.reverse">v</a>
+          <a ng-show="planos.currentSort.exp == 'agrupador' && !planos.currentSort.reverse">^</a>
         </th>
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
-      <tr ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)">
+      <tr
+        ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)">
         <td>{{item.plano.userName}}</td>
-        <!-- <td>{{item.plano.dataUltimaAlteracao | date:'medium'}}</td> -->
         <td>{{item.plano.dataUltimaAlteracaoFormatada}}</td>
         <td>{{item.status}}</td>
-        <td>{{item.revisorResponsavel}}</td>
-        <td class="col-md-3">
+        <td>
+          <ol>
+            <li ng-repeat="revisao in item.revisoes">
+              <a href="{{ revisao.url }}">{{ revisao.revisor }}</a>
+            </li>
+          </ol>
+        </td>
+        <td>{{item.agrupador}}</td>
+        <td class="col-md-2">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
               <a href="/revisar/{{projetofiltro}}/{{item.uid}}" class="btn btn-default btn-sm">Corrigir</a>
@@ -82,24 +95,8 @@
         </td>
       </tr>
       <tr>
-        <td colspan="4">Mostrando {{results.length}} registros de {{planos.lista.length}}</td>
+        <td colspan="6">Mostrando {{results.length}} registros de {{planos.lista.length}}</td>
       </tr>
     </table>
-
-    <!-- <div class="panel-footer" style="padding: 0">
-      <nav class="text-center">
-        <ul class="pagination" style="margin: 10px 0 5px 0">
-          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li class=""><a href="#">2</a></li>
-          <li class=""><a href="#">3</a></li>
-          <li class=""><a href="#">4</a></li>
-          <li class=""><a href="#">5</a></li>
-          <li class=""><a href="#">6</a></li>
-          <li class=""><a href="#">7</a></li>
-          <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-        </ul>
-      </nav>
-    </div> -->
   </div>
 </div>

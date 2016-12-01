@@ -52,7 +52,22 @@ export default class PlanosController {
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
             if (dados[key]['historico']) {
-              item.revisorResponsavel = dados[key]['historico']['1']['revisor'];
+              let revisoes = Object.keys(dados[key]['historico'])
+                .map((v) => {
+                  if (dados[key]['historico'][v]) {
+                    let revisor = dados[key]['historico'][v]['revisor'];
+                    if (revisor) {
+                      revisor = revisor.split(' ')[0];
+                      const url = `plano/visualizar/${projeto}/${key}/${v}`;
+                      return { revisor, url };
+                    }
+                  }
+                })
+                .filter(v => !!v);
+              item.revisoes = revisoes;
+            }
+            if (dados[key]['agrupador']) {
+              item.agrupador = dados[key]['agrupador'];
             }
             item.status = this.PlanoStatus.getStatus(dados[key].status, 'REVISOR');
             item.uid = key;
