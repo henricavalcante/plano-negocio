@@ -10,7 +10,6 @@ class Plano {
 
   enviarParaCorrecao(projeto, uid) {
     return this.PlanoStatus.setStatus(projeto, uid, this.PlanoStatus.STATUSES.ENVIADO_REVISAO);
-    // return this.FirebaseFactory.set(`/planos/${projeto}/${uid}/status`, this.PlanoStatus.STATUSES.ENVIADO_REVISAO);
   }
 
 }

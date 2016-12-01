@@ -46,18 +46,26 @@ export default class RevisarController {
   }
 
   saveRevisao(revisao) {
-    if (!revisao) return;
+    if (!revisao) throw new Exception('Revisão não encontrada');
 
     this
-      .FirebaseFactory
-      .update(`/planos/${this.projeto}/${this.uid}`, {
-        revisao: revisao,
-        status: this.PlanoStatus.STATUSES.REVISANDO
+      .PlanoStatus
+      .setStatus(this.projeto, this.uid, this.PlanoStatus.STATUSES.REVISANDO)
+      .then(()=> {
+        return this.FirebaseFactory
+          .update(`/planos/${this.projeto}/${this.uid}`, {
+            revisao: revisao,
+            revisor: this.FirebaseFactory.getAuth().displayName
+          })
       })
       .then(() => {
         this.$rootScope.addMensagem('Revisão salva com sucesso!');
 
         this.$rootScope.isLoading = false;
+        this.$scope.$apply();
+      })
+      .catch((m) => {
+        this.$rootScope.addMensagem(m, 'danger');
         this.$scope.$apply();
       });
   }
@@ -89,18 +97,29 @@ export default class RevisarController {
             revisor: this.FirebaseFactory.getAuth().displayName
           })
       })
+      .then(() => {
+        this.$rootScope.addMensagem('A revisão do plano foi finalizada e o plano de negócio enviado para o aluno com sucesso.');
+        this.$scope.$apply();
+      })
+      .catch((m) => {
+        this.$rootScope.addMensagem(m, 'danger');
+        this.$scope.$apply();
+      });
   }
 
   totalGeral(dados) {
     if (!dados) return;
-    return dados.reduce((p, x)=> p + (x.valor * x.quantidade), 0);
+    return dados.reduce((p, x)=> p + (this.toMoney(x.valor) * this.toMoney(x.quantidade)), 0);
   }
 
   totalSimples(dados) {
     if (!dados) return;
-    return Object.keys(dados).reduce((p, x)=> p + dados[x], 0);
+    return Object.keys(dados).reduce((p, x)=> p + this.toMoney(dados[x]), 0);
   }
 
+  toMoney(v) {
+    return parseFloat(v) || 0;
+  }
 }
 
 RevisarController.$inject = ['$scope', '$rootScope', '$stateParams', 'FirebaseFactory', '$state', 'PlanoStatus'];

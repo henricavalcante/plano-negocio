@@ -86,7 +86,7 @@ export default class PlanoController {
           this.taxaDeRetorno = this.investimentoTotal / this.lucro;
         }
 
-        if (this.status == 'REVISADO') {
+        if (this.status == this.PlanoStatus.REVISADO) {
           this.$rootScope.addMensagem('Seu plano foi revisado, promova as alterações necessárias e envie novamente para a correção.', 'warning', 10);
         }
 
@@ -277,12 +277,16 @@ export default class PlanoController {
 
   totalGeral(dados) {
     if (!dados) return;
-    return dados.reduce((p, x)=> p + (x.valor * x.quantidade), 0);
+    return dados.reduce((p, x)=> p + (this.toMoney(x.valor) * this.toMoney(x.quantidade)), 0);
   }
 
   totalSimples(dados) {
     if (!dados) return;
-    return Object.keys(dados).reduce((p, x)=> p + dados[x], 0);
+    return Object.keys(dados).reduce((p, x)=> p + this.toMoney(dados[x]), 0);
+  }
+
+  toMoney(v) {
+    return parseFloat(v) || 0;
   }
 
   passosConcluidos() {

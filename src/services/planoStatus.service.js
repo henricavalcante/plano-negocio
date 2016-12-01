@@ -58,6 +58,8 @@ class PlanoStatus {
   }
 
   setStatus(projeto, uid, status) {
+    if (!projeto) projeto = "semprojeto";
+
     let path = `/planos/${projeto}/${uid}/status`;
 
     return this.FirebaseFactory.get(path)
@@ -74,7 +76,23 @@ class PlanoStatus {
       });
 
       if (!isStatusAllowed) {
-        throw 'Nâo permitido';
+        if (statusAtual == this.STATUSES.ELABORANDO && status == this.STATUSES.ENVIADO_REVISAO) {
+          throw 'Você deve concluir todas as etapas do plano antes de enviar para correção.';
+        } else if (statusAtual == this.STATUSES.ENVIADO_REVISAO && status == this.STATUSES.ENVIADO_REVISAO) {
+          throw 'Seu plano de negócio já foi enviado para a revisão dos especialistas. A ferramenta continuará disponível para visualização, mas ficará bloqueada para edição até que a revisão seja finalizada. Isso poderá levar 7 dias úteis.';
+        } else if (statusAtual == this.STATUSES.REVISANDO && status == this.STATUSES.ENVIADO_REVISAO) {
+          throw 'Neste momento algum especialista está revisando o seu plano de negócios, aguarde a conclusão para que você possa efetuar as devidas correções.';
+        } else if (statusAtual == this.STATUSES.REVISADO && status == this.STATUSES.REVISADO) {
+          throw 'A revisão do plano já foi enviada para o aluno.';
+        } else if (statusAtual == this.STATUSES.ENVIADO_REVISAO && status == this.STATUSES.REVISADO) {
+          throw 'É necessário salvar o plano antes que ele seja enviado de volta para o aluno.';
+        } else if (statusAtual == this.STATUSES.REVISADO && status == this.STATUSES.REVISANDO) {
+          throw 'Não é posivel salvar alterações em um plano de negócios que já foi enviado para o aluno.';
+        } else {
+          throw `Não é permitido salvar este plano de negócio com o status ${status} pois o status atual do plano é ${statusAtual}`;
+        }
+
+
       } else {
         return status;
       }

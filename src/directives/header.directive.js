@@ -25,19 +25,16 @@ function header() {
       Plano
         .enviarParaCorrecao(projeto, uid)
         .then(() => {
-          $rootScope.addMensagem('eu plano de negócio acaba de ser enviado para a revisão dos especialistas. A ferramenta continuará disponível para visualização, mas ficará bloqueada para edição até que a revisão seja finalizada. Isso poderá levar 7 dias úteis.');
-
+          $rootScope.addMensagem('Seu plano de negócio acaba de ser enviado para a revisão dos especialistas. A ferramenta continuará disponível para visualização, mas ficará bloqueada para edição até que a revisão seja finalizada. Isso poderá levar 7 dias úteis.');
           $scope.$apply();
-
           $state.go('visualizar');
         })
         .catch((e) => {
-          $rootScope.addMensagem('Você deve concluir todas as etapas do plano antes de enviar para correção.');
-
+          console.log(e);
+          $rootScope.addMensagem(e, 'danger');
           $scope.$apply();
         });
     }
-
   };
 
   return {
