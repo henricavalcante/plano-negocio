@@ -15,7 +15,9 @@ export default class LoginController {
 
       Session.clear();
       Session.set('projeto', queryStringUser.projeto);
-      Session.set('agrupador', queryStringUser.agrupador);
+      if(queryStringUser.agrupador) {
+        Session.set('agrupador', queryStringUser.agrupador);
+      }
       Session.set('userName', queryStringUser.nome);
 
       this.signInWithEmailAndPassword(queryStringUser);
