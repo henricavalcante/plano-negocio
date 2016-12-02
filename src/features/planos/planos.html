@@ -74,7 +74,8 @@
         ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)">
         <td>{{item.plano.userName}}</td>
         <td>{{item.plano.dataUltimaAlteracaoFormatada}}</td>
-        <td>{{item.status}}</td>
+        <td>{{item.status}}
+          <span ng-if="item.statusKey == 'REVISANDO'">por <strong>{{ item.revisor }}</strong></span></td>
         <td>
           <ol>
             <li ng-repeat="revisao in item.revisoes">
@@ -85,7 +86,8 @@
         <td>{{item.agrupador}}</td>
         <td class="col-md-2">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group" ng-if="item.statusKey == 'ENVIADO_REVISAO' || item.statusKey == 'REVISANDO'">
+            <div class="btn-group" role="group"
+                 ng-if="item.statusKey == 'ENVIADO_REVISAO' || item.statusKey == 'REVISANDO'">
               <a href="/revisar/{{projetofiltro}}/{{item.uid}}" class="btn btn-default btn-sm">Corrigir</a>
             </div>
             <div class="btn-group" role="group">

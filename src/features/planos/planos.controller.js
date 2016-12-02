@@ -51,6 +51,9 @@ export default class PlanosController {
             let item = {};
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
+            if(dados[key].revisor) {
+              item.revisor = dados[key].revisor.split(' ')[0];
+            }
             if (dados[key]['historico']) {
               let revisoes = Object.keys(dados[key]['historico'])
                 .map((v) => {
