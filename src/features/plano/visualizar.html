@@ -189,23 +189,23 @@
       </tr>
       <tr>
         <td>Receitas Operacionais</td>
-        <td>{{plano.receitas | currency}}</td>
+        <td ng-class="{ danger: plano.receitas < 0 }">{{plano.receitas | currency}}</td>
       </tr>
       <tr>
         <td>Custos Variáveis Totais</td>
-        <td>{{plano.custosVariaveisTotais | currency}}</td>
+        <td ng-class="{ danger: plano.custosVariaveisTotais < 0 }">{{plano.custosVariaveisTotais | currency}}</td>
       </tr>
       <tr>
         <td>MARGEM DE CONTRIBUIÇÃO</td>
-        <td>{{plano.margemDeContribuicao | currency}}</td>
+        <td ng-class="{ danger: plano.margemDeContribuicao < 0 }">{{plano.margemDeContribuicao | currency}}</td>
       </tr>
       <tr>
         <td>Custos Fixos</td>
-        <td>{{plano.custosFixosTotais | currency}}</td>
+        <td ng-class="{ danger: plano.custosFixosTotais < 0 }">{{plano.custosFixosTotais | currency}}</td>
       </tr>
       <tr>
         <td>RESULTADO OPERACIONAL</td>
-        <td>{{plano.resultadoOperacional | currency}}</td>
+        <td ng-class="{ danger: plano.resultadoOperacional < 0 }">{{plano.resultadoOperacional | currency}}</td>
       </tr>
     </table>
   </div>
@@ -222,31 +222,31 @@
       </tr>
       <tr>
         <td>Investimento Fixo</td>
-        <td>{{ plano.investimento | currency }}</td>
+        <td ng-class="{ danger: plano.investimento < 0 }">{{ plano.investimento | currency }}</td>
       </tr>
       <tr>
         <td>Capital de Giro = (Custo Mensal x 2)</td>
-        <td>{{ plano.capitalDeGiro | currency }}</td>
+        <td ng-class="{ danger: plano.capitalDeGiro < 0 }">{{ plano.capitalDeGiro | currency }}</td>
       </tr>
       <tr>
         <td>Investimento Total</td>
-        <td>{{ plano.investimentoTotal | currency }}</td>
+        <td ng-class="{ danger: plano.investimentoTotal < 0 }">{{ plano.investimentoTotal | currency }}</td>
       </tr>
       <tr>
         <td>Receita Mensal</td>
-        <td>{{ plano.receitas | currency }}</td>
+        <td ng-class="{ danger: plano.receitas < 0 }">{{ plano.receitas | currency }}</td>
       </tr>
       <tr>
         <td>Custo Mensal = (Custos Fixos + Custos Variáveis)</td>
-        <td>{{ plano.despesas | currency }}</td>
+        <td ng-class="{ danger: plano.despesas < 0 }">{{ plano.despesas | currency }}</td>
       </tr>
       <tr>
         <td>Saldo Mensal</td>
-        <td>{{ plano.lucro | currency }}</td>
+        <td ng-class="{ danger: plano.lucro < 0 }">{{ plano.lucro | currency }}</td>
       </tr>
       <tr>
         <td>Tempo de Retorno (Meses) = (Investimento Total / Saldo Mensal)</td>
-        <td>{{ plano.taxaDeRetorno | number:2 }}</td>
+        <td ng-class="{ danger: plano.taxaDeRetorno < 0 }">{{ plano.taxaDeRetorno | number:2 }}</td>
       </tr>
     </table>
 
