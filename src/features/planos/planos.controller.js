@@ -1,11 +1,13 @@
 export default class PlanosController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter});
+  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
       return;
     }
+
+    this.isLoading = false;
 
     this.lista = [];
     this.noResults = false;
@@ -18,6 +20,15 @@ export default class PlanosController {
     this.order = {};
     this.currentSort = {};
 
+    // carregando filtros salvos na sessão
+    $scope.projetofiltro = Session.get('projetoFiltro');
+    $scope.criterioDeBusca = Session.get('criterioDeBuscaFiltro') || '';
+    $scope.statusfiltro = Session.get('statusfiltro');
+
+    if ($scope.projetofiltro) {
+      this.isLoading = true;
+      this.loadPlanos($scope.projetofiltro);
+    }
   }
 
   sort(column) {
@@ -36,6 +47,9 @@ export default class PlanosController {
     this.lista = [];
 
     if (!projeto) return;
+
+    this.$scope.criterioDeBusca = '';
+    this.saveFilterParam('projetoFiltro', projeto);
 
     this.$rootScope.isLoading = true;
 
@@ -76,11 +90,13 @@ export default class PlanosController {
           }
         }
 
+        this.isLoading = false;
         this.$rootScope.isLoading = false;
         this.$scope.$apply();
 
       });
     }).catch(err => {
+      this.isLoading = false;
       this.$rootScope.isLoading = false;
       console.log('Error:', err);
     });
@@ -122,6 +138,19 @@ export default class PlanosController {
     return this.ProjectName(id);
   }
 
+  saveFilterParam(key, value) {
+    this.Session.set(key, value);
+  }
+
 }
 
-PlanosController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'ProjectName', 'PlanoStatus', '$filter'];
+PlanosController.$inject = [
+  '$scope',
+  '$rootScope',
+  'FirebaseFactory',
+  '$state',
+  'ProjectName',
+  'PlanoStatus',
+  '$filter',
+  'Session'
+];

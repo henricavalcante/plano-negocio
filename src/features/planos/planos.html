@@ -18,20 +18,22 @@
         <div class="form-group col-md-4 col-sm-4">
           <label for="">Buscar</label>
           <input type="text" class="form-control" ng-model="criterioDeBusca"
-                 placeholder="Buscar por nome, data ou agrupador">
+            ng-keyup="planos.saveFilterParam('criterioDeBuscaFiltro', criterioDeBusca)"
+            placeholder="Buscar por nome, data ou agrupador">
         </div>
         <div class="form-group col-md-4 col-sm-4">
           <label for="">Status</label>
           <select
             class="form-control"
             ng-model="statusfiltro"
-            ng-options="status.key as status.value for status in planos.statuses">
+            ng-options="status.key as status.value for status in planos.statuses"
+            ng-change="planos.saveFilterParam('statusfiltro', statusfiltro)">
             <option value="">Todos</option>
           </select>
         </div>
       </div>
     </form>
-    <div class="col-md-12" ng-show="planos.lista.length == 0 && planos.noResults == false">
+    <div class="col-md-12" ng-show="planos.lista.length == 0 && planos.noResults == false && !planos.isLoading">
       <div class="alert alert-warning text-center" role="alert">
         Selecione um projeto para listar os planos.
       </div>
@@ -39,6 +41,11 @@
     <div class="col-md-12" ng-show="planos.noResults">
       <div class="alert alert-info text-center" role="alert">
         Nenhum resultado encontrado.
+      </div>
+    </div>
+    <div class="col-md-12" ng-show="planos.isLoading">
+      <div class="alert alert-info text-center" role="alert">
+        Aguarde...
       </div>
     </div>
     <table class="table table-striped table-bordered">
