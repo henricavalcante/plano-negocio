@@ -63,7 +63,7 @@ $provide.value("$locale", {
     "shortTime": "HH:mm"
   },
   "NUMBER_FORMATS": {
-    "CURRENCY_SYM": "R$",
+    "CURRENCY_SYM": "R$ ",
     "DECIMAL_SEP": ",",
     "GROUP_SEP": ".",
     "PATTERNS": [
@@ -74,7 +74,7 @@ $provide.value("$locale", {
         "maxFrac": 3,
         "minFrac": 0,
         "minInt": 1,
-        "negPre": "-",
+        "negPre": "- ",
         "negSuf": "",
         "posPre": "",
         "posSuf": ""
@@ -86,8 +86,8 @@ $provide.value("$locale", {
         "maxFrac": 2,
         "minFrac": 2,
         "minInt": 1,
-        "negPre": "(\u00a4",
-        "negSuf": ")",
+        "negPre": "-\u00a4",
+        "negSuf": "",
         "posPre": "\u00a4",
         "posSuf": ""
       }

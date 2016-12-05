@@ -1,0 +1,33 @@
+import angular from 'angular';
+import FirebaseFactory from './firebaseFactory.service';
+
+const STATUSES = {
+  NAO_SELECIONADO: 'Não selecionado',
+  SELECIONADO_CREDITO: 'Selecionado para crédito',
+  SELECIONADO_PREMIO: 'Selecionado para premiação',
+  PREMIADO: 'Premiado'
+};
+
+class PlanoSelecao {
+  constructor(FirebaseFactory) {
+    Object.assign(this, {STATUSES, FirebaseFactory});
+  }
+
+  setStatus(projeto, uid, status) {
+    if (!projeto) projeto = "semprojeto";
+
+    let path = `/planos/${projeto}/${uid}/selecao`;
+
+    return this.FirebaseFactory.set(path, status);
+  }
+
+  getStatuses(agent) {
+    return Object.keys(STATUSES).map((obj) => {
+      return {key: obj, value: this.getStatus(obj, agent)};
+    });
+  }
+}
+
+export default angular.module('services.PlanoSelecao', [FirebaseFactory])
+  .service('PlanoSelecao', PlanoSelecao)
+  .name;

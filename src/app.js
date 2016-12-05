@@ -15,6 +15,7 @@ import revisao from './directives/revisao.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
+import PlanoSelecao from './services/planoSelecao.service';
 import ProjectName from './services/projectName.service';
 import byStatus from './filters/byStatus.filter';
 import login from './features/login';
@@ -35,6 +36,7 @@ angular.module('app', [
   FirebaseFactory,
   Session,
   PlanoStatus,
+  PlanoSelecao,
   ProjectName,
   byStatus,
   login,
