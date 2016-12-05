@@ -17,6 +17,7 @@ import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
 import PlanoSelecao from './services/planoSelecao.service';
 import ProjectName from './services/projectName.service';
+import UserFactory from './factories/user.factory';
 import byStatus from './filters/byStatus.filter';
 import login from './features/login';
 import logout from './features/logout';
@@ -38,6 +39,7 @@ angular.module('app', [
   PlanoStatus,
   PlanoSelecao,
   ProjectName,
+  UserFactory,
   byStatus,
   login,
   logout,

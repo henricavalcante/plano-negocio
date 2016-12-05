@@ -1,6 +1,6 @@
 export default class LoginController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, Session, $location) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session, $location});
+  constructor($scope, $rootScope, FirebaseFactory, $state, Session, $location, User) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, Session, $location, User});
 
     this.isIframe = self!=top;
 
@@ -37,7 +37,12 @@ export default class LoginController {
 
     this.FirebaseFactory.signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
-        this.setCurrentUser(result);
+        this
+          .FirebaseFactory
+          .update(`users/${result.uid}`, new this.User(user))
+          .then(() => {
+            this.setCurrentUser(result);
+          });
       })
       .catch((err) => {
         switch (err.code) {
@@ -100,4 +105,4 @@ export default class LoginController {
   }
 }
 
-LoginController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session', '$location'];
+LoginController.$inject = ['$scope', '$rootScope', 'FirebaseFactory', '$state', 'Session', '$location', 'User'];
