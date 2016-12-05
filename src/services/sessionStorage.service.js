@@ -18,7 +18,7 @@ class Session {
   }
 
   upsertCurrentUser(newUser) {
-    var currentUser = this.get('currentUser');
+    var currentUser = this.get('currentUser') || {};
     this.set('currentUser', angular.extend(currentUser, newUser));
   }
 
