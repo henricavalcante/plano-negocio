@@ -1,0 +1,21 @@
+<div class="dropdown-mask" ng-if="isActive" ng-click="activate()"></div>
+<div class="dropdown">
+  <button
+    class="btn btn-default btn-sm dropdown-btn"
+    ng-click="activate()">
+    <span class="glyphicon glyphicon-cog"></span>
+  </button>
+  <div class="dropdown-body" ng-show="isActive">
+    <ul>
+      <li ng-repeat="item in list">
+        <label>
+          <input
+            type="checkbox"
+            ng-model="item.selected"
+            ng-click="update(item)">
+          <span ng-bind="item.value"></span>
+        </label>
+      </li>
+    </ul>
+  </div>
+</div>

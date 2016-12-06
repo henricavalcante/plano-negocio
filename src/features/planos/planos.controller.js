@@ -63,6 +63,10 @@ export default class PlanosController {
         for (var key in dados) {
           if (dados.hasOwnProperty(key)) {
             let item = {};
+            item.NAO_SELECIONADO = dados[key].NAO_SELECIONADO || false;
+            item.SELECIONADO_CREDITO = dados[key].SELECIONADO_CREDITO || false;
+            item.SELECIONADO_PREMIO = dados[key].SELECIONADO_PREMIO || false;
+            item.PREMIADO = dados[key].PREMIADO || false;
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
             if(dados[key].revisor) {

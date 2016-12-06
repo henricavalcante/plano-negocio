@@ -13,12 +13,11 @@ class PlanoSelecao {
     Object.assign(this, {STATUSES, FirebaseFactory});
   }
 
-  setStatus(projeto, uid, status) {
+  setStatus(projeto, uid, status, selected) {
     if (!projeto) projeto = "semprojeto";
 
-    let path = `/planos/${projeto}/${uid}/selecao`;
-
-    return this.FirebaseFactory.set(path, status);
+    let path = `/planos/${projeto}/${uid}/${status}`;
+    return this.FirebaseFactory.set(path, selected);
   }
 
   getStatuses(agent) {

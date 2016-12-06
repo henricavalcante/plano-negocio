@@ -75,6 +75,7 @@
           <a ng-show="planos.currentSort.exp == 'agrupador' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'agrupador' && !planos.currentSort.reverse">^</a>
         </th>
+        <th class="text-center"><span class="glyphicon glyphicon-cog"></span></th>
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
       <tr
@@ -91,6 +92,9 @@
           </ol>
         </td>
         <td>{{item.agrupador}}</td>
+        <td class="text-center">
+          <dropdown projetoid="projetofiltro" uid="item.uid" plano="item"></dropdown>
+        </td>
         <td class="col-md-2">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group"
@@ -104,7 +108,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="6">Mostrando {{results.length}} registros de {{planos.lista.length}}</td>
+        <td colspan="7">Mostrando {{results.length}} registros de {{planos.lista.length}}</td>
       </tr>
     </table>
   </div>

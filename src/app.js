@@ -12,6 +12,7 @@ import messages from './directives/messages.directive';
 import help from './directives/help.directive';
 import confirmClick from './directives/confirmClick.directive';
 import revisao from './directives/revisao.directive';
+import dropdown from './directives/dropdown.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
@@ -34,6 +35,7 @@ angular.module('app', [
   messages,
   help,
   confirmClick,
+  dropdown,
   FirebaseFactory,
   Session,
   PlanoStatus,
