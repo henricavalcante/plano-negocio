@@ -78,7 +78,8 @@
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
       <tr
-        ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)">
+        ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
+        id="{{ item.uid }}">
         <td>{{item.plano.userName}}</td>
         <td>{{item.plano.dataUltimaAlteracaoFormatada}}</td>
         <td>{{item.status}}

@@ -27,6 +27,12 @@ export default class PlanoController {
     ];
 
     this.$scope.editMode = false;
+
+    this.$scope.$watch('plano.dados.custosFixos.maoDeObra', (a) => {
+      if (this.dados.custosFixos) {
+        this.dados.custosFixos.encargos = a * 0.04;
+      }
+    });
   }
 
   save(data) {
