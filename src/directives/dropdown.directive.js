@@ -31,11 +31,11 @@ function dropdown() {
       PlanoSelecao
         .setStatus($scope.projetoid, $scope.uid, item.key, item.selected)
         .then(() => {
-          $rootScope.addMensagem('Firula atualizada com sucesso!', 'success', 2);
+          $rootScope.addMensagem('Plano atualizado com sucesso!', 'success', 2);
           $rootScope.$apply();
         })
         .catch(() => {
-          $rootScope.addMensagem('Deu pau ao salvar a firula!', 'danger', 4);
+          $rootScope.addMensagem('Deu pau ao atualizar as informações do plano!', 'danger', 4);
           $rootScope.$apply();
         });
     }

@@ -81,9 +81,9 @@
       <tr
         ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
         id="{{ item.uid }}">
-        <td>{{item.plano.userName}}</td>
-        <td>{{item.plano.dataUltimaAlteracaoFormatada}}</td>
-        <td>{{item.status}}
+        <td>{{ item.plano.userName }}</td>
+        <td>{{ item.plano.dataUltimaAlteracaoFormatada }}</td>
+        <td>{{ item.status }}
           <span ng-if="item.statusKey == 'REVISANDO'">por <strong>{{ item.revisor }}</strong></span></td>
         <td>
           <ol>
@@ -92,7 +92,7 @@
             </li>
           </ol>
         </td>
-        <td>{{item.agrupador}}</td>
+        <td>{{ item.agrupador }}</td>
         <td class="text-center">
           <dropdown projetoid="projetofiltro" uid="item.uid" plano="item"></dropdown>
         </td>
@@ -100,16 +100,16 @@
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group"
                  ng-if="item.statusKey == 'ENVIADO_REVISAO' || item.statusKey == 'REVISANDO'">
-              <a href="/revisar/{{projetofiltro}}/{{item.uid}}" class="btn btn-default btn-sm">Corrigir</a>
+              <a href="/revisar/{{ projetofiltro }}/{{ item.uid }}" class="btn btn-default btn-sm">Corrigir</a>
             </div>
             <div class="btn-group" role="group">
-              <a href="/plano/visualizar/{{projetofiltro}}/{{item.uid}}" class="btn btn-default btn-sm">Visualizar</a>
+              <a href="/plano/visualizar/{{ projetofiltro }}/{{ item.uid }}" class="btn btn-default btn-sm">Visualizar</a>
             </div>
           </div>
         </td>
       </tr>
       <tr>
-        <td colspan="7">Mostrando {{results.length}} registros de {{planos.lista.length}}</td>
+        <td colspan="7">Mostrando {{ results.length }} registros de {{ planos.lista.length }}</td>
       </tr>
     </table>
   </div>

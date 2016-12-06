@@ -2,7 +2,6 @@ import angular from 'angular';
 import FirebaseFactory from './firebaseFactory.service';
 
 const STATUSES = {
-  NAO_SELECIONADO: 'Não selecionado',
   SELECIONADO_CREDITO: 'Selecionado para crédito',
   SELECIONADO_PREMIO: 'Selecionado para premiação',
   PREMIADO: 'Premiado'
