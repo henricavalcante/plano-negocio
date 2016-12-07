@@ -1,7 +1,7 @@
 import angular from 'angular';
-import './dropdown.css'
+import './classificacao.css'
 
-function dropdown() {
+function classificacao() {
   const controller = function($scope, $rootScope, PlanoSelecao) {
     Object.assign(this, {$scope, $rootScope, PlanoSelecao});
 
@@ -44,11 +44,11 @@ function dropdown() {
   return {
     restrict: 'E',
     controller,
-    template: require('./dropdown.html'),
+    template: require('./classificacao.html'),
     scope: {projetoid: '=', uid: '=', plano: "="}
   };
 }
 
-export default angular.module('directives.dropdown', [])
-.directive('dropdown', dropdown)
+export default angular.module('directives.classificacao', [])
+.directive('classificacao', classificacao)
 .name;
