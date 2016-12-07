@@ -16,7 +16,7 @@ import classificacao from './directives/classificacao.directive';
 import FirebaseFactory from './services/firebaseFactory.service';
 import Session from './services/sessionStorage.service';
 import PlanoStatus from './services/planoStatus.service';
-import PlanoSelecao from './services/planoSelecao.service';
+import PlanoClassificacao from './services/planoClassificacao.service';
 import ProjectName from './services/projectName.service';
 import UserFactory from './factories/user.factory';
 import byStatus from './filters/byStatus.filter';
@@ -40,7 +40,7 @@ angular.module('app', [
   FirebaseFactory,
   Session,
   PlanoStatus,
-  PlanoSelecao,
+  PlanoClassificacao,
   ProjectName,
   UserFactory,
   byStatus,

@@ -4,12 +4,14 @@
     href="/planos">
     Voltar
   </a>
-
   <button
     class="btn btn-primary navbar-btn"
     ng-click="revisar.finishRevisao(revisar.plano, revisar.revisao)">
     Enviar para o aluno
   </button>
+  <div class="pull-right" style="margin-top: 8px;">
+    <classificacao projetoid="revisar.projeto" uid="revisar.uid" plano="revisar.plano" ng-if="revisar.plano"></classificacao>
+  </div>
 </subheader>
 <div class="col-md-12">
   <div class="panel panel-default">

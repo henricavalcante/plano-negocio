@@ -1,6 +1,6 @@
 export default class RevisarController {
-  constructor($scope, $rootScope, $stateParams, FirebaseFactory, $state, PlanoStatus) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, PlanoStatus});
+  constructor($scope, $rootScope, $stateParams, FirebaseFactory, $state, PlanoStatus, PlanoClassificacao) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, PlanoStatus, PlanoClassificacao});
 
     this.projeto = $stateParams.projeto;
     this.uid = $stateParams.uid;
@@ -20,10 +20,16 @@ export default class RevisarController {
             this.$state.go('logout');
             return;
           }
-
           this.status = dados.status;
           this.revisao = dados.revisao;
           this.plano = dados.plano;
+
+          for (var status in this.PlanoClassificacao.STATUSES) {
+            if (this.PlanoClassificacao.STATUSES.hasOwnProperty(status)) {
+              this.plano[status] = dados[status] || false;
+            }
+          }
+
           this.receitas = this.totalGeral(dados.plano.receitas);
           this.custosVariaveisTotais = this.totalGeral(dados.plano.custos);
           this.custosFixosTotais = this.totalSimples(dados.plano.custosFixos) * 1.05;
@@ -122,4 +128,4 @@ export default class RevisarController {
   }
 }
 
-RevisarController.$inject = ['$scope', '$rootScope', '$stateParams', 'FirebaseFactory', '$state', 'PlanoStatus'];
+RevisarController.$inject = ['$scope', '$rootScope', '$stateParams', 'FirebaseFactory', '$state', 'PlanoStatus', 'PlanoClassificacao'];

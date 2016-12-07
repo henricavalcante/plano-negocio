@@ -8,7 +8,7 @@ const STATUSES = {
   NAO_SELECIONADO: 'Não selecionado'
 };
 
-class PlanoSelecao {
+class PlanoClassificacao {
   constructor(FirebaseFactory) {
     Object.assign(this, {STATUSES, FirebaseFactory});
   }
@@ -27,6 +27,6 @@ class PlanoSelecao {
   }
 }
 
-export default angular.module('services.PlanoSelecao', [FirebaseFactory])
-  .service('PlanoSelecao', PlanoSelecao)
+export default angular.module('services.PlanoClassificacao', [FirebaseFactory])
+  .service('PlanoClassificacao', PlanoClassificacao)
   .name;

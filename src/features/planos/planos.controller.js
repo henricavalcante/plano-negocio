@@ -1,6 +1,6 @@
 export default class PlanosController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoSelecao) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoSelecao});
+  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoClassificacao) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoClassificacao});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -17,11 +17,11 @@ export default class PlanosController {
 
     this.classificacoes = [];
 
-    for (var key in PlanoSelecao.STATUSES) {
-      if (PlanoSelecao.STATUSES.hasOwnProperty(key)) {
+    for (var key in PlanoClassificacao.STATUSES) {
+      if (PlanoClassificacao.STATUSES.hasOwnProperty(key)) {
         this.classificacoes.push({
           key: key,
-          value: PlanoSelecao.STATUSES[key]
+          value: PlanoClassificacao.STATUSES[key]
         });
       }
     }
@@ -74,10 +74,13 @@ export default class PlanosController {
         for (var key in dados) {
           if (dados.hasOwnProperty(key)) {
             let item = {};
-            item.NAO_SELECIONADO = dados[key].NAO_SELECIONADO || false;
-            item.SELECIONADO_CREDITO = dados[key].SELECIONADO_CREDITO || false;
-            item.SELECIONADO_PREMIO = dados[key].SELECIONADO_PREMIO || false;
-            item.PREMIADO = dados[key].PREMIADO || false;
+
+            for (var status in this.PlanoClassificacao.STATUSES) {
+              if (this.PlanoClassificacao.STATUSES.hasOwnProperty(status)) {
+                item[status] = dados[key][status] || false;
+              }
+            }
+
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
             if(dados[key].revisor) {
@@ -171,5 +174,5 @@ PlanosController.$inject = [
   'PlanoStatus',
   '$filter',
   'Session',
-  'PlanoSelecao'
+  'PlanoClassificacao'
 ];
