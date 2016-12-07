@@ -1,6 +1,6 @@
 export default class PlanosController {
-  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session});
+  constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoSelecao) {
+    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoSelecao});
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -14,6 +14,17 @@ export default class PlanosController {
 
     this.projetos = [];
     this.loadProjects();
+
+    this.classificacoes = [];
+
+    for (var key in PlanoSelecao.STATUSES) {
+      if (PlanoSelecao.STATUSES.hasOwnProperty(key)) {
+        this.classificacoes.push({
+          key: key,
+          value: PlanoSelecao.STATUSES[key]
+        });
+      }
+    }
 
     this.statuses = PlanoStatus.getStatuses('REVISOR');
 
@@ -159,5 +170,6 @@ PlanosController.$inject = [
   'ProjectName',
   'PlanoStatus',
   '$filter',
-  'Session'
+  'Session',
+  'PlanoSelecao'
 ];

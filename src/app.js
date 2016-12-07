@@ -20,6 +20,7 @@ import PlanoSelecao from './services/planoSelecao.service';
 import ProjectName from './services/projectName.service';
 import UserFactory from './factories/user.factory';
 import byStatus from './filters/byStatus.filter';
+import byClassificacao from './filters/byClassificacao.filter';
 import login from './features/login';
 import logout from './features/logout';
 import resetPassword from './features/reset-password';
@@ -43,6 +44,7 @@ angular.module('app', [
   ProjectName,
   UserFactory,
   byStatus,
+  byClassificacao,
   login,
   logout,
   resetPassword,

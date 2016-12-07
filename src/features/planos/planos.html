@@ -5,7 +5,7 @@
     </div>
     <form name="" class="panel-body">
       <div class="row">
-        <div class="form-group col-md-4 col-sm-4">
+        <div class="form-group col-sm-3 col-xs-6">
           <label for="">Projeto</label>
           <select
             class="form-control"
@@ -15,19 +15,29 @@
             <option value="">Selecione</option>
           </select>
         </div>
-        <div class="form-group col-md-4 col-sm-4">
+        <div class="form-group col-sm-3 col-xs-6">
           <label for="">Buscar</label>
           <input type="text" class="form-control" ng-model="criterioDeBusca"
             ng-keyup="planos.saveFilterParam('criterioDeBuscaFiltro', criterioDeBusca)"
             placeholder="Buscar por nome, data ou agrupador">
         </div>
-        <div class="form-group col-md-4 col-sm-4">
+        <div class="form-group col-sm-3 col-xs-6">
           <label for="">Status</label>
           <select
             class="form-control"
             ng-model="statusfiltro"
             ng-options="status.key as status.value for status in planos.statuses"
             ng-change="planos.saveFilterParam('statusfiltro', statusfiltro)">
+            <option value="">Todos</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3 col-xs-6">
+          <label for="">Classificação</label>
+          <select
+            class="form-control"
+            ng-model="classificacaofiltro"
+            ng-options="classificacao.key as classificacao.value for classificacao in planos.classificacoes"
+            ng-change="planos.saveFilterParam('classificacaofiltro', classificacaofiltro)">
             <option value="">Todos</option>
           </select>
         </div>
@@ -79,7 +89,7 @@
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
       <tr
-        ng-repeat="item in results = (planos.lista | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
+        ng-repeat="item in results = (planos.lista | byClassificacao: classificacaofiltro | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
         id="{{ item.uid }}">
         <td>{{ item.plano.userName }}</td>
         <td>{{ item.plano.dataUltimaAlteracaoFormatada }}</td>
