@@ -37,7 +37,7 @@
             class="form-control"
             ng-model="classificacaofiltro"
             ng-options="classificacao.key as classificacao.value for classificacao in planos.classificacoes"
-            ng-change="planos.saveFilterParam('classificacaofiltro', classificacaofiltro)">
+            ng-change="planos.loadPlanos(projetofiltro)">
             <option value="">Todos</option>
           </select>
         </div>
