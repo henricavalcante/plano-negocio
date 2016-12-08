@@ -4,7 +4,8 @@ import FirebaseFactory from './firebaseFactory.service';
 const STATUSES = {
   SELECIONADO_CREDITO: 'Selecionado para crédito',
   SELECIONADO_PREMIO: 'Selecionado para premiação',
-  PREMIADO: 'Premiado'
+  PREMIADO: 'Premiado',
+  NAO_SELECIONADO: 'Não selecionado'
 };
 
 class PlanoSelecao {
