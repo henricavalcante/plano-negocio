@@ -37,6 +37,14 @@
         Visualizar
       </a>
 
+      <button
+        class="btn btn-default navbar-btn"
+        ng-if="$location.path() === '/plano/visualizar'"
+        onclick="window.print();">
+        <span class="glyphicon glyphicon-print"></span>
+        Imprimir
+      </button>
+
       <a
         confirm-click="enviarParaCorrecao()"
         confirm-click-message="Deseja enviar seu plano de negócio para a revisão?"
