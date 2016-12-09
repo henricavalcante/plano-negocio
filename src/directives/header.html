@@ -39,7 +39,7 @@
 
       <button
         class="btn btn-default navbar-btn"
-        ng-if="$location.path() === '/plano/visualizar'"
+        ng-if="$location.path().split('/')[2] === 'visualizar'"
         onclick="window.print();">
         <span class="glyphicon glyphicon-print"></span>
         Imprimir
