@@ -33,6 +33,8 @@ export default class PlanoController {
         this.dados.custosFixos.encargos = a * 0.04;
       }
     });
+
+    this.tipoUsuario = this.Session.get('tipoUsuario');
   }
 
   save(data) {
@@ -75,21 +77,34 @@ export default class PlanoController {
         this.$rootScope.isLoading = false;
 
         if (dados) {
+
           this.$rootScope.planoStatus = this.PlanoStatus.getStatus(dados.status, this.Session.get('tipoUsuario'));
           this.status = dados.status;
           this.revisao = versao ? dados.historico[versao].revisao : dados.revisao;
           this.dados = versao ? dados.historico[versao].plano : dados.plano;
+
+          document.title = 'Plano de Negócio - ' + dados.plano.nome;
+
           this.receitas = this.totalGeral(dados.plano.receitas);
           this.custosVariaveisTotais = this.totalGeral(dados.plano.custos);
           this.custosFixosTotais = this.totalSimples(dados.plano.custosFixos) * 1.05;
-          this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
-          this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
-          this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
-          this.lucro = this.receitas - this.despesas;
-          this.capitalDeGiro = this.despesas * 2;
           this.investimento = this.totalGeral(dados.plano.investimentos);
-          this.investimentoTotal = this.investimento + this.capitalDeGiro;
-          this.taxaDeRetorno = this.investimentoTotal / this.lucro;
+
+          this.mesesCapitalDeGiro = this.Session.get('mesesCapitalDeGiro') || 2;
+
+          this.updateTotals();
+
+          this.$scope.$watch('plano.mesesCapitalDeGiro', (a) => {
+            this.Session.set('mesesCapitalDeGiro', this.mesesCapitalDeGiro);
+            this.updateTotals();
+          });
+
+          this.mostrarCorrecao = this.Session.get('visualizacaoMostrarCorrecao');
+
+          this.$scope.$watch('plano.mostrarCorrecao', (a) => {
+            this.Session.set('visualizacaoMostrarCorrecao', this.mostrarCorrecao);
+            this.updateTotals();
+          });
         }
 
         if (this.status == this.PlanoStatus.REVISADO) {
@@ -101,6 +116,16 @@ export default class PlanoController {
     }).catch(err => {
       console.log('Error:', err);
     });
+  }
+
+  updateTotals(dados) {
+    this.despesas = this.custosVariaveisTotais + this.custosFixosTotais;
+    this.margemDeContribuicao = this.receitas - this.custosVariaveisTotais;
+    this.resultadoOperacional = this.margemDeContribuicao - this.custosFixosTotais;
+    this.lucro = this.receitas - this.despesas;
+    this.capitalDeGiro = this.despesas * this.mesesCapitalDeGiro;
+    this.investimentoTotal = this.investimento + this.capitalDeGiro;
+    this.taxaDeRetorno = this.investimentoTotal / this.lucro;
   }
 
   // investimento
