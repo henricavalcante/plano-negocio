@@ -56,6 +56,7 @@ export default class PlanosController {
   }
 
   loadPlanos(projeto) {
+    this.countRevisoes = 0;
     this.noResults = false;
     this.lista = [];
 

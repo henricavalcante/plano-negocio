@@ -23,6 +23,7 @@ export default class RevisarController {
           this.status = dados.status;
           this.revisao = dados.revisao;
           this.plano = dados.plano;
+          this.bloqueio = dados.bloqueio;
 
           for (var status in this.PlanoClassificacao.STATUSES) {
             if (this.PlanoClassificacao.STATUSES.hasOwnProperty(status)) {
@@ -82,6 +83,11 @@ export default class RevisarController {
     this
       .PlanoStatus
       .setStatus(this.projeto, this.uid, this.PlanoStatus.STATUSES.REVISADO)
+      .then(
+        () => this
+          .FirebaseFactory
+          .set(`/planos/${this.projeto}/${this.uid}/bloqueio`, this.bloqueio)
+      )
       .then(
         () => this
           .FirebaseFactory

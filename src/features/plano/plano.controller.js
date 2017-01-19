@@ -80,6 +80,7 @@ export default class PlanoController {
 
           this.$rootScope.planoStatus = this.PlanoStatus.getStatus(dados.status, this.Session.get('tipoUsuario'));
           this.status = dados.status;
+          this.bloqueio = dados.bloqueio;
           this.revisao = versao ? dados.historico[versao].revisao : dados.revisao;
           this.dados = versao ? dados.historico[versao].plano : dados.plano;
 
@@ -108,7 +109,12 @@ export default class PlanoController {
         }
 
         if (this.status == this.PlanoStatus.REVISADO) {
-          this.$rootScope.addMensagem('Seu plano foi revisado, promova as alterações necessárias e envie novamente para a correção.', 'warning', 10);
+          if (this.bloqueio) {
+            this.$rootScope.addMensagem('Seu plano foi revisado e não é mais possível enviar novamente para correção.', 'warning', 10);
+          }
+          else {
+            this.$rootScope.addMensagem('Seu plano foi revisado, promova as alterações necessárias e envie novamente para a correção.', 'warning', 10);
+          }
         }
 
         this.$scope.$apply();
