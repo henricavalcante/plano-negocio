@@ -17,6 +17,8 @@ export default class PlanosController {
 
     this.classificacoes = [];
 
+    this.countRevisoes = 0;
+
     for (var key in PlanoClassificacao.STATUSES) {
       if (PlanoClassificacao.STATUSES.hasOwnProperty(key)) {
         this.classificacoes.push({
@@ -100,6 +102,7 @@ export default class PlanosController {
                 })
                 .filter(v => !!v);
               item.revisoes = revisoes;
+              this.countRevisoes += revisoes.length;
             }
             if (dados[key]['agrupador']) {
               item.agrupador = dados[key]['agrupador'];
