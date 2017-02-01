@@ -17,7 +17,7 @@ export default class PlanosController {
 
     this.classificacoes = [];
 
-    this.countRevisoes = 0;
+    this.resetResumo();
 
     for (var key in PlanoClassificacao.STATUSES) {
       if (PlanoClassificacao.STATUSES.hasOwnProperty(key)) {
@@ -55,8 +55,18 @@ export default class PlanosController {
     this.currentSort = {exp: this.order[column], reverse: this.order[column + 'Desc']};
   }
 
+  resetResumo() {
+    this.resumo = {
+      revisoes: 0,
+      plano0Revisoes: 0,
+      plano1Revisao: 0,
+      plano2Revisoes: 0,
+      plano3ouMaisRevisoes: 0
+    }
+  }
+
   loadPlanos(projeto) {
-    this.countRevisoes = 0;
+    this.resetResumo();
     this.noResults = false;
     this.lista = [];
 
@@ -86,9 +96,11 @@ export default class PlanosController {
 
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
+
             if(dados[key].revisor) {
               item.revisor = dados[key].revisor.split(' ')[0];
             }
+
             if (dados[key]['historico']) {
               let revisoes = Object.keys(dados[key]['historico'])
                 .map((v) => {
@@ -103,11 +115,25 @@ export default class PlanosController {
                 })
                 .filter(v => !!v);
               item.revisoes = revisoes;
-              this.countRevisoes += revisoes.length;
+              this.resumo.revisoes += revisoes.length;
+              switch (revisoes.length) {
+                case 1:
+                  this.resumo.plano1Revisao++;
+                  break;
+                case 2:
+                  this.resumo.plano2Revisoes++;
+                  break;
+                default:
+                  this.resumo.plano3ouMaisRevisoes++;
+              }
+            } else {
+              this.resumo.plano0Revisoes++;
             }
+
             if (dados[key]['agrupador']) {
               item.agrupador = dados[key]['agrupador'];
             }
+
             item.status = this.PlanoStatus.getStatus(dados[key].status, 'REVISOR');
             item.uid = key;
             item.plano.dataUltimaAlteracaoFormatada = this.$filter('date')(item.plano.dataUltimaAlteracao, 'medium');

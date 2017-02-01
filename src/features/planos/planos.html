@@ -122,7 +122,34 @@
         <td colspan="7">Mostrando {{ results.length }} registros de {{ planos.lista.length }}</td>
       </tr>
       <tr>
-        <td colspan="7">Total de revisões: {{ planos.countRevisoes }}</td>
+        <td></td>
+        <td>Quantidade de Planos</td>
+        <td colspan="5">Quantidade de Revisões</td>
+      </tr>
+      <tr>
+        <td>Planos sem revisão: </td>
+        <td>{{ planos.resumo.plano0Revisoes }}</td>
+        <td colspan="5">0</td>
+      </tr>
+      <tr>
+        <td>Planos com uma revisão: </td>
+        <td>{{ planos.resumo.plano1Revisao }}</td>
+        <td colspan="5">{{ planos.resumo.plano1Revisao }}</td>
+      </tr>
+      <tr>
+        <td>Planos com duas revisões: </td>
+        <td>{{ planos.resumo.plano2Revisoes }}</td>
+        <td colspan="5">{{ planos.resumo.plano2Revisoes * 2 }}</td>
+      </tr>
+      <tr>
+        <td>Planos com três ou mais: </td>
+        <td>{{ planos.resumo.plano3ouMaisRevisoes }}</td>
+        <td colspan="5">{{ planos.resumo.revisoes - (planos.resumo.plano1Revisao + planos.resumo.plano2Revisoes * 2) }}</td>
+      </tr>
+      <tr>
+        <td>Total: </td>
+        <td>{{ planos.lista.length }}</td>
+        <td colspan="5">{{ planos.resumo.revisoes }}</td>
       </tr>
     </table>
   </div>
