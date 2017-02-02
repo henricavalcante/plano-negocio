@@ -96,6 +96,7 @@ export default class PlanosController {
 
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
+            item.bloqueio = dados[key].bloqueio;
 
             if(dados[key].revisor) {
               item.revisor = dados[key].revisor.split(' ')[0];

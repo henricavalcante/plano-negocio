@@ -89,13 +89,11 @@ class PlanoStatus {
             throw 'É necessário salvar o plano antes que ele seja enviado de volta para o aluno.';
           } else if (statusAtual == this.STATUSES.REVISADO && status == this.STATUSES.REVISANDO) {
             throw 'Não é posivel salvar alterações em um plano de negócios que já foi enviado para o aluno.';
-          } else if (statusAtual == this.STATUSES.REVISADO && status == this.STATUSES.ENVIADO_REVISAO && bloqueio) {
+          } else if (bloqueio) {
             throw 'Esse plano foi corrigido, recebido a revisão e enviado para avaliação final para crédito. Aguarde a confirmação do resultado da seleção para crédito.';
           } else {
             throw `Não é permitido salvar este plano de negócio com o status ${status} pois o status atual do plano é ${statusAtual}`;
           }
-
-
         } else {
           return status;
         }

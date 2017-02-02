@@ -90,7 +90,7 @@
       </tr>
       <tr
         ng-repeat="item in results = (planos.lista | byClassificacao: classificacaofiltro | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
-        id="{{ item.uid }}">
+        id="{{ item.uid }}" ng-class="{'bg-danger': item.bloqueio }">
         <td>{{ item.plano.userName }}</td>
         <td>{{ item.plano.dataUltimaAlteracaoFormatada }}</td>
         <td>{{ item.status }}

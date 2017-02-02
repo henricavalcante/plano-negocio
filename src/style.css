@@ -23,3 +23,8 @@ body {
 .navbar-brand a:hover {
     color: #555;
 }
+
+ol {
+    border-bottom: 0;
+    margin-left: -22px;
+}
