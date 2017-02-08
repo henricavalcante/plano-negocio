@@ -2,18 +2,18 @@ import angular from 'angular';
 
 class Session {
   constructor() {
-    this.suported = 'sessionStorage' in window;
+    this.suported = 'localStorage' in window;
   }
 
   set(key, value) {
     if (this.suported) {
-      sessionStorage.setItem(key, JSON.stringify(value));
+      localStorage.setItem(key, JSON.stringify(value));
     }
   }
 
   get(key) {
     if (this.suported) {
-      return JSON.parse(sessionStorage.getItem(key));
+      return JSON.parse(localStorage.getItem(key));
     }
   }
 
@@ -31,7 +31,7 @@ class Session {
   }
 
   clear() {
-    sessionStorage.clear();
+    localStorage.clear();
   }
 
 }
