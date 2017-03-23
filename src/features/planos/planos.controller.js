@@ -55,6 +55,14 @@ export default class PlanosController {
     this.currentSort = {exp: this.order[column], reverse: this.order[column + 'Desc']};
   }
 
+  toggleBloqueio(item, projeto) {
+    let bloqueio = !item.bloqueio;
+
+    item.bloqueio = bloqueio;
+    this.FirebaseFactory
+      .set(`/planos/${projeto}/${item.uid}/bloqueio`, bloqueio);
+  }
+
   resetResumo() {
     this.resumo = {
       revisoes: 0,

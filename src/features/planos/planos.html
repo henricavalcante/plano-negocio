@@ -96,6 +96,7 @@
         <td>{{ item.status }}
           <span ng-if="item.statusKey == 'REVISANDO'">por <strong>{{ item.revisor }}</strong></span></td>
         <td>
+          <span ng-if="item.revisor && !item.revisoes">Resp. <strong>{{ item.revisor }}</strong></span>
           <ol>
             <li ng-repeat="revisao in item.revisoes">
               <a href="{{ revisao.url }}">{{ revisao.revisor }}</a>
@@ -113,7 +114,13 @@
               <a href="/revisar/{{ projetofiltro }}/{{ item.uid }}" class="btn btn-default btn-sm">Corrigir</a>
             </div>
             <div class="btn-group" role="group">
-              <a href="/plano/visualizar/{{ projetofiltro }}/{{ item.uid }}" class="btn btn-default btn-sm">Visualizar</a>
+              <a href="/plano/visualizar/{{ projetofiltro }}/{{ item.uid }}" class="btn btn-default btn-sm">Visual.</a>
+            </div>
+            <div ng-if="!item.bloqueio" class="btn-group" role="group">
+              <a href="#" class="btn btn-default btn-sm" ng-click="planos.toggleBloqueio(item, projetofiltro)">Bloq.</a>
+            </div>
+            <div ng-if="item.bloqueio" class="btn-group" role="group">
+              <a href="#" class="btn btn-default btn-sm" ng-click="planos.toggleBloqueio(item, projetofiltro)">Desbloq.</a>
             </div>
           </div>
         </td>

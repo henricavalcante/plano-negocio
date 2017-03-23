@@ -86,7 +86,7 @@ export default class RevisarController {
       .then(
         () => this
           .FirebaseFactory
-          .set(`/planos/${this.projeto}/${this.uid}/bloqueio`, this.bloqueio)
+          .set(`/planos/${this.projeto}/${this.uid}/bloqueio`, !!this.bloqueio)
       )
       .then(
         () => this
