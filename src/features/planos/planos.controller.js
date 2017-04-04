@@ -69,7 +69,8 @@ export default class PlanosController {
       plano0Revisoes: 0,
       plano1Revisao: 0,
       plano2Revisoes: 0,
-      plano3ouMaisRevisoes: 0
+      plano3ouMaisRevisoes: 0,
+      status: {}
     }
   }
 
@@ -144,8 +145,21 @@ export default class PlanosController {
             }
 
             item.status = this.PlanoStatus.getStatus(dados[key].status, 'REVISOR');
+
+            if (!this.resumo.status[item.status]) {
+              this.resumo.status[item.status] = 0
+            }
+            this.resumo.status[item.status]++;
+
             item.uid = key;
             item.plano.dataUltimaAlteracaoFormatada = this.$filter('date')(item.plano.dataUltimaAlteracao, 'medium');
+
+            if(dados[key].status === 'REVISADO' && !dados[key]['historico']) {
+
+              this.FirebaseFactory.set(`/planos/${projeto}/${key}/status`, 'ENVIADO_REVISAO');
+            }
+
+
             this.lista.push(item);
           }
         }
