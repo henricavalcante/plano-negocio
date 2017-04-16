@@ -1,6 +1,16 @@
 export default class PlanosController {
   constructor($scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoClassificacao) {
-    Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, ProjectName, PlanoStatus, $filter, Session, PlanoClassificacao});
+    Object.assign(this, {
+      $scope,
+      $rootScope,
+      FirebaseFactory,
+      $state,
+      ProjectName,
+      PlanoStatus,
+      $filter,
+      Session,
+      PlanoClassificacao
+    });
 
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
@@ -107,7 +117,7 @@ export default class PlanosController {
             item.statusKey = dados[key].status;
             item.bloqueio = dados[key].bloqueio;
 
-            if(dados[key].revisor) {
+            if (dados[key].revisor) {
               item.revisor = dados[key].revisor.split(' ')[0];
             }
 
@@ -119,7 +129,7 @@ export default class PlanosController {
                     if (revisor) {
                       revisor = revisor.split(' ')[0];
                       const url = `plano/visualizar/${projeto}/${key}/${v}`;
-                      return { revisor, url };
+                      return {revisor, url};
                     }
                   }
                 })
@@ -154,11 +164,11 @@ export default class PlanosController {
             item.uid = key;
             item.plano.dataUltimaAlteracaoFormatada = this.$filter('date')(item.plano.dataUltimaAlteracao, 'medium');
 
-            if(dados[key].status === 'REVISADO' && !dados[key]['historico']) {
+            if (dados[key].status === 'REVISADO' && !dados[key]['historico']) {
 
               this.FirebaseFactory.set(`/planos/${projeto}/${key}/status`, 'ENVIADO_REVISAO');
+              dados[key].status = 'ENVIADO_REVISAO'
             }
-
 
             this.lista.push(item);
           }
