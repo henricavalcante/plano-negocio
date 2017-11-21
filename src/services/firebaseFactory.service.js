@@ -32,7 +32,7 @@ class FirebaseFactory {
 
   get(path) {
 
-    var auth = '';
+    let auth = '';
 
     if (this.getAccessToken()) {
       auth = `?auth=${this.getAccessToken()}`;
@@ -77,12 +77,11 @@ class FirebaseFactory {
   }
 
   authTwitter() {
-    var provider = new firebase.auth.TwitterAuthProvider();
+    let provider = new firebase.auth.TwitterAuthProvider();
 
     return firebase.auth().signInWithPopup(provider).then((user) => {
       return this.firebase.auth().currentUser;
     });
-    ;
   }
 
   resetPasswordWithEmail(email) {

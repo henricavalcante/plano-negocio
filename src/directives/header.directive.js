@@ -1,7 +1,7 @@
 'use strict';
 import angular from 'angular';
 import Plano from '../services/plano.service';
-import FirebaseFactory from '../services/FirebaseFactory.service';
+import FirebaseFactory from '../services/firebaseFactory.service';
 import Session from '../services/sessionStorage.service';
 
 function header() {

@@ -1,6 +1,6 @@
 import angular from 'angular';
 import './navigation.css';
-import FirebaseFactory from '../services/FirebaseFactory.service';
+import FirebaseFactory from '../services/firebaseFactory.service';
 
 function navigation() {
   const navigationController = function($scope, $rootScope, FirebaseFactory) {

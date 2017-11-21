@@ -12,7 +12,7 @@ function classificacao() {
     for (var key in PlanoClassificacao.STATUSES) {
       if (PlanoClassificacao.STATUSES.hasOwnProperty(key)) {
         $scope.list.push({
-          selected: $scope.plano[key] || false,
+          selected: $scope.plano.classificacao[key] || false,
           key: key,
           value: PlanoClassificacao.STATUSES[key]
         });
