@@ -2,7 +2,7 @@ export default class PlanoController {
   constructor($scope, $rootScope, FirebaseFactory, $state, $stateParams, Session, PlanoStatus) {
     Object.assign(this, {$scope, $rootScope, FirebaseFactory, $state, $stateParams, Session, PlanoStatus});
 
-    if (!FirebaseFactory.getAuth()) {
+    if (!FirebaseFactory.getAuth() && $state.$current.name !== 'visualizarByParams') {
       $state.go('logout');
       return;
     }

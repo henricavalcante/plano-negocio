@@ -27,6 +27,8 @@ import resetPassword from './features/reset-password';
 import plano from './features/plano';
 import revisar from './features/revisar';
 import correcao from './features/planos';
+import lista from './features/lista';
+import listaPublica from './features/listaPublica';
 
 angular.module('app', [
   uirouter,
@@ -51,5 +53,7 @@ angular.module('app', [
   plano,
   correcao,
   revisar,
-  revisao
+  revisao,
+  lista,
+  listaPublica
 ]).config(config);

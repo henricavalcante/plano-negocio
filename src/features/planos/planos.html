@@ -111,7 +111,7 @@
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group"
                  ng-if="item.statusKey == 'ENVIADO_REVISAO' || item.statusKey == 'REVISANDO'">
-              <a href="/revisar/{{ projetofiltro }}/{{ item.uid }}" class="btn btn-default btn-sm">Corrigir</a>
+              <a href="/revisar/{{ projetofiltro }}/{{ item.uid }}" target="_BLANK" class="btn btn-default btn-sm">Corrigir</a>
             </div>
             <div class="btn-group" role="group">
               <a href="/plano/visualizar/{{ projetofiltro }}/{{ item.uid }}" class="btn btn-default btn-sm">Visual.</a>

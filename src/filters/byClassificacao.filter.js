@@ -6,8 +6,12 @@ function byClassificacao() {
 
   return (objs, param) => {
 
+    if (!param) return objs;
+
     return objs.filter((obj) => {
-      return obj[param] == true || param == null;
+      if (obj.classificacao) {
+        return obj.classificacao[param] == true;
+      }
     });
   }
 }

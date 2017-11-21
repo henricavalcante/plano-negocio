@@ -1,0 +1,90 @@
+<div class="col-md-12">
+  <h2>{{ lista.projeto | uppercase }}</h2>
+  <h3>{{ titulo | uppercase }}</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Planos</h3>
+    </div>
+    <form name="" class="panel-body">
+      <div class="row hidden-print">
+        <div class="form-group col-sm-3 col-xs-6">
+          <label for="">Projeto</label>
+          <select
+            class="form-control"
+            ng-options="projeto.id as projeto.name for projeto in lista.projetos"
+            ng-model="projetofiltro"
+            ng-change="lista.loadPlanos(projetofiltro)">
+            <option value="">Selecione</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3 col-xs-6">
+          <label for="">Buscar</label>
+          <input type="text" class="form-control" ng-model="criterioDeBusca"
+                 ng-keyup="lista.saveFilterParam('criterioDeBuscaFiltro', criterioDeBusca)"
+                 placeholder="Buscar por nome, data ou agrupador">
+        </div>
+        <div class="form-group col-sm-3 col-xs-6">
+          <label for="">Ttulo</label>
+          <textarea class="form-control" ng-model="titulo"></textarea>
+        </div>
+        <div class="form-group col-sm-3 col-xs-6">
+          <label for="">Classificação</label>
+          <select
+            class="form-control"
+            ng-model="lista.classificacaofiltro"
+            ng-options="classificacao.key as classificacao.value for classificacao in lista.classificacoes">
+            <option value="">Todos</option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+    <div class="col-md-12" ng-show="lista.lista.length == 0 && lista.noResults == false && !lista.isLoading">
+      <div class="alert alert-warning text-center" role="alert">
+        Selecione um projeto para listar os lista.
+      </div>
+    </div>
+    <div class="col-md-12" ng-show="lista.noResults">
+      <div class="alert alert-info text-center" role="alert">
+        Nenhum resultado encontrado.
+      </div>
+    </div>
+    <div class="col-md-12" ng-show="lista.isLoading">
+      <div class="alert alert-info text-center" role="alert">
+        Aguarde...
+      </div>
+    </div>
+
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th ng-click="lista.sort('userName')">
+          Aluno
+          <a ng-show="lista.currentSort.exp == 'userName' && lista.currentSort.reverse">v</a>
+          <a ng-show="lista.currentSort.exp == 'userName' && !lista.currentSort.reverse">^</a>
+        </th>
+        <th ng-click="lista.sort('nome')">
+          Plano
+          <a ng-show="lista.currentSort.exp == 'nome' && lista.currentSort.reverse">v</a>
+          <a ng-show="lista.currentSort.exp == 'nome' && !lista.currentSort.reverse">^</a>
+        </th>
+        <th ng-click="lista.sort('agrupador')">
+          Agrupador
+          <a ng-show="lista.currentSort.exp == 'agrupador' && lista.currentSort.reverse">v</a>
+          <a ng-show="lista.currentSort.exp == 'agrupador' && !lista.currentSort.reverse">^</a>
+        </th>
+      </tr>
+      <tr
+        ng-repeat="item in results = (lista.lista | byClassificacao: lista.classificacaofiltro | filter: criterioDeBusca | orderBy:lista.currentSort.exp: lista.currentSort.reverse)"
+        id="{{ ::item.uid }}">
+        <td>{{ ::item.userName }}</td>
+        <td>{{ ::item.nome }}</td>
+        <td>{{ ::item.agrupador }}</td>
+      </tr>
+    </table>
+
+    <div ng-if="lista.lista.length">
+      <br><br>
+      Mostrando um total de {{ results.length }} alunos.
+    </div>
+  </div>
+</div>

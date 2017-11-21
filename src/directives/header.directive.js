@@ -12,6 +12,7 @@ function header() {
 
     FirebaseFactory.firebase.auth().onAuthStateChanged((currentUser) => {
       if (currentUser) {
+        $scope.auth = true;
         $scope.displayName = currentUser.displayName || Session.get('userName');
       } else {
         $scope.displayName = 'Ferramenta de plano de negócios';

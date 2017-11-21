@@ -10,7 +10,8 @@ const ProjectName = () => {
     32: 'Treinamento',
     57: 'Empreendedor Juvenil - Ceará 2016',
     60: 'Juventude Empreendedora - Alagoas 2016',
-    68: 'Plano de Negócios em Grupo CE 2016'
+    68: 'Plano de Negócios em Grupo CE 2016',
+    75: 'Juventude Empreendedora - Alagoas 2017'
   };
 
   return function(id) {

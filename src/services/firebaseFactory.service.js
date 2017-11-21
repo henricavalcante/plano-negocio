@@ -31,7 +31,18 @@ class FirebaseFactory {
   }
 
   get(path) {
-    return fetch(`${this.config.databaseURL}/${path}.json?auth=${this.getAccessToken()}`);
+
+    var auth = '';
+
+    if (this.getAccessToken()) {
+      auth = `?auth=${this.getAccessToken()}`;
+    }
+
+    return fetch(`${this.config.databaseURL}/${path}.json${auth}`);
+  }
+
+  getShallow(path) {
+    return fetch(`${this.config.databaseURL}/${path}.json?shallow=true&auth=${this.getAccessToken()}`);
   }
 
   update(path, data) {
@@ -43,7 +54,9 @@ class FirebaseFactory {
   }
 
   getAccessToken() {
-    return this.getAuth().stsTokenManager.accessToken;
+    if (this.getAuth()) {
+      return this.getAuth().stsTokenManager.accessToken;
+    }
   }
 
   signInWithEmailAndPassword(email, password) {

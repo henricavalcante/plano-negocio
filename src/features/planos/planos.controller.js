@@ -84,6 +84,22 @@ export default class PlanosController {
     }
   }
 
+  atualizarLista(item, projeto, key) {
+
+    let lista = [
+      'agrupador',
+      'bloqueio',
+      'classificacao',
+      'status',
+      'statusKey'].reduce((lista, attr) => ( lista[attr] = item[attr] || '', lista ), {});
+
+    lista = [
+      'userName',
+      'nome'].reduce((lista, attr) => ( lista[attr] = item.plano[attr] || '', lista ), lista);
+
+    this.FirebaseFactory.update(`/lista/${projeto}/${key}`, lista);
+  }
+
   loadPlanos(projeto) {
     this.resetResumo();
     this.noResults = false;
@@ -103,19 +119,23 @@ export default class PlanosController {
 
         if (dados == null) this.noResults = true;
 
+        //this.FirebaseFactory.set(`/lista/${projeto}/`, { 1: 1});
+
         for (var key in dados) {
           if (dados.hasOwnProperty(key)) {
-            let item = {};
+            let item = {
+              classificacao: {}
+            };
 
             for (var status in this.PlanoClassificacao.STATUSES) {
               if (this.PlanoClassificacao.STATUSES.hasOwnProperty(status)) {
-                item[status] = dados[key][status] || false;
+                item.classificacao[status] = dados[key][status] || false;
               }
             }
 
             item.plano = dados[key].plano;
             item.statusKey = dados[key].status;
-            item.bloqueio = dados[key].bloqueio;
+            item.bloqueio = dados[key].bloqueio || false;
 
             if (dados[key].revisor) {
               item.revisor = dados[key].revisor.split(' ')[0];
@@ -167,8 +187,10 @@ export default class PlanosController {
             if (dados[key].status === 'REVISADO' && !dados[key]['historico']) {
 
               this.FirebaseFactory.set(`/planos/${projeto}/${key}/status`, 'ENVIADO_REVISAO');
-              dados[key].status = 'ENVIADO_REVISAO'
+              item.statusKey = 'ENVIADO_REVISAO'
             }
+            
+            //this.atualizarLista(item, projeto, key);
 
             this.lista.push(item);
           }
