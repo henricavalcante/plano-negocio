@@ -24,10 +24,11 @@ export default class RevisarController {
           this.revisao = dados.revisao;
           this.plano = dados.plano;
           this.bloqueio = dados.bloqueio;
+          this.plano.classificacao = {};
 
           for (var status in this.PlanoClassificacao.STATUSES) {
             if (this.PlanoClassificacao.STATUSES.hasOwnProperty(status)) {
-              this.plano[status] = dados[status] || false;
+              this.plano.classificacao[status] = dados[status] || false;
             }
           }
 
