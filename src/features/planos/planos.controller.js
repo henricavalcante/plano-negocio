@@ -25,7 +25,10 @@ export default class PlanosController {
     this.projetos = [];
     this.loadProjects();
 
-    this.classificacoes = [];
+    this.classificacoes = [{
+        key: 'SEM_CLASSIFICACAO',
+        value: 'Sem classificação'
+    }];
 
     this.resetResumo();
 

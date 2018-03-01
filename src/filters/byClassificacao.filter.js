@@ -10,7 +10,24 @@ function byClassificacao() {
 
     return objs.filter((obj) => {
       if (obj.classificacao) {
-        return obj.classificacao[param] == true;
+
+        let shouldBeListed;
+
+        if (param === 'SEM_CLASSIFICACAO') {
+          let hasClassification = false;
+
+          for (let key in obj.classificacao) {
+            if (obj.classificacao.hasOwnProperty(key) && obj.classificacao[key]) {
+              hasClassification = true;
+            }
+          }
+          shouldBeListed = !hasClassification;
+        }
+        else {
+          shouldBeListed = obj.classificacao[param];
+        }
+
+        return shouldBeListed;
       }
     });
   }
