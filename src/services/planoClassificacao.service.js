@@ -2,6 +2,7 @@ import angular from 'angular';
 import FirebaseFactory from './firebaseFactory.service';
 
 const STATUSES = {
+  SELECIONADO: 'Selecionado',
   SELECIONADO_CREDITO: 'Selecionado para crédito',
   SELECIONADO_PREMIO: 'Selecionado para premiação',
   PREMIADO: 'Premiado',
@@ -10,7 +11,7 @@ const STATUSES = {
 
 class PlanoClassificacao {
   constructor(FirebaseFactory) {
-    Object.assign(this, {STATUSES, FirebaseFactory});
+    Object.assign(this, { STATUSES, FirebaseFactory });
   }
 
   setStatus(projeto, uid, status, selected) {

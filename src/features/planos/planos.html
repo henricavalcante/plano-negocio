@@ -3,10 +3,12 @@
     <div class="panel-heading">
       <h3 class="panel-title">Planos</h3>
     </div>
+
     <form name="" class="panel-body">
       <div class="row">
         <div class="form-group col-sm-3 col-xs-6">
           <label for="">Projeto</label>
+
           <select
             class="form-control"
             ng-options="plano.id as plano.name for plano in planos.projetos"
@@ -15,26 +17,31 @@
             <option value="">Selecione</option>
           </select>
         </div>
+
         <div class="form-group col-sm-3 col-xs-6">
           <label for="">Buscar</label>
+
           <input type="text" class="form-control" ng-model="criterioDeBusca"
             ng-keyup="planos.saveFilterParam('criterioDeBuscaFiltro', criterioDeBusca)"
             placeholder="Buscar por nome, data ou agrupador">
         </div>
+
         <div class="form-group col-sm-3 col-xs-6">
           <label for="">Status</label>
-          <select
-            class="form-control"
+
+          <select class="form-control"
             ng-model="statusfiltro"
             ng-options="status.key as status.value for status in planos.statuses"
             ng-change="planos.saveFilterParam('statusfiltro', statusfiltro)">
+
             <option value="">Todos</option>
           </select>
         </div>
+
         <div class="form-group col-sm-3 col-xs-6">
           <label for="">Classificação</label>
-          <select
-            class="form-control"
+
+          <select class="form-control"
             ng-model="classificacaofiltro"
             ng-options="classificacao.key as classificacao.value for classificacao in planos.classificacoes"
             ng-change="planos.loadPlanos(projetofiltro)">
@@ -43,21 +50,25 @@
         </div>
       </div>
     </form>
+
     <div class="col-md-12" ng-show="planos.lista.length == 0 && planos.noResults == false && !planos.isLoading">
       <div class="alert alert-warning text-center" role="alert">
         Selecione um projeto para listar os planos.
       </div>
     </div>
+
     <div class="col-md-12" ng-show="planos.noResults">
       <div class="alert alert-info text-center" role="alert">
         Nenhum resultado encontrado.
       </div>
     </div>
+
     <div class="col-md-12" ng-show="planos.isLoading">
       <div class="alert alert-info text-center" role="alert">
         Aguarde...
       </div>
     </div>
+
     <table class="table table-striped table-bordered">
       <tr>
         <th ng-click="planos.sort('plano.userName')">
@@ -65,36 +76,51 @@
           <a ng-show="planos.currentSort.exp == 'plano.userName' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'plano.userName' && !planos.currentSort.reverse">^</a>
         </th>
+
         <th ng-click="planos.sort('plano.dataUltimaAlteracao')">
           Ult. alteração
           <a ng-show="planos.currentSort.exp == 'plano.dataUltimaAlteracao' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'plano.dataUltimaAlteracao' && !planos.currentSort.reverse">^</a>
         </th>
+
         <th ng-click="planos.sort('status')">
           Status
           <a ng-show="planos.currentSort.exp == 'status' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'status' && !planos.currentSort.reverse">^</a>
         </th>
+
         <th ng-click="planos.sort('revisoes')">
           Revisões
           <a ng-show="planos.currentSort.exp == 'revisoes' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'revisoes' && !planos.currentSort.reverse">^</a>
         </th>
+
         <th ng-click="planos.sort('agrupador')">
           Agrupador
           <a ng-show="planos.currentSort.exp == 'agrupador' && planos.currentSort.reverse">v</a>
           <a ng-show="planos.currentSort.exp == 'agrupador' && !planos.currentSort.reverse">^</a>
         </th>
-        <th class="text-center"><span class="glyphicon glyphicon-cog"></span></th>
+
+        <th class="text-center">
+          <span class="hide-copy">Classificação</span>
+          <span class="glyphicon glyphicon-cog"></span>
+        </th>
+
         <th class="col-md-2 col-sm-3">Ações</th>
       </tr>
-      <tr
-        ng-repeat="item in results = (planos.lista | byClassificacao: classificacaofiltro | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
+
+      <tr ng-repeat="item in results = (planos.lista | byClassificacao: classificacaofiltro | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
         id="{{ item.uid }}" ng-class="{'bg-danger': item.bloqueio }">
         <td>{{ item.plano.userName }}</td>
+
         <td>{{ item.plano.dataUltimaAlteracaoFormatada }}</td>
+
         <td>{{ item.status }}
-          <span ng-if="item.statusKey == 'REVISANDO'">por <strong>{{ item.revisor }}</strong></span></td>
+          <span ng-if="item.statusKey == 'REVISANDO'">por <strong>{{ item.revisor }}</strong></span>
+          <span class="hide-copy" ng-if="!item.bloqueio"> (Liberado) </span>
+          <span class="hide-copy" ng-if="item.bloqueio"> (Bloqueado) </span>
+        </td>
+
         <td>
           <span ng-if="item.revisor && !item.revisoes">Resp. <strong>{{ item.revisor }}</strong></span>
           <ol>
@@ -103,10 +129,13 @@
             </li>
           </ol>
         </td>
+
         <td>{{ item.agrupador }}</td>
+
         <td class="text-center">
           <classificacao projetoid="projetofiltro" uid="item.uid" plano="item"></classificacao>
         </td>
+
         <td class="col-md-2">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group"

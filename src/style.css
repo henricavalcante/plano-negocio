@@ -29,3 +29,8 @@ ol {
     margin-bottom: 0;
     margin-left: -22px;
 }
+
+.hide-copy {
+    color: rgba(0,0,0,0);
+    font-size: 0;
+}
