@@ -1,5 +1,4 @@
 import angular from 'angular';
-import './classificacao.css'
 
 function classificacao() {
   const controller = function($scope, $rootScope, PlanoClassificacao) {

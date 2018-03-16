@@ -12,6 +12,8 @@ export default class PlanosController {
       PlanoClassificacao
     });
 
+    console.log(PlanoClassificacao.setStatus);
+
     if (!FirebaseFactory.getAuth()) {
       $state.go('logout');
       return;
@@ -26,8 +28,8 @@ export default class PlanosController {
     this.loadProjects();
 
     this.classificacoes = [{
-        key: 'SEM_CLASSIFICACAO',
-        value: 'Sem classificação'
+      key: 'SEM_CLASSIFICACAO',
+      value: 'Sem classificação'
     }];
 
     this.resetResumo();
@@ -251,6 +253,26 @@ export default class PlanosController {
     this.Session.set(key, value);
   }
 
+  classificarTodos(projetoid, key, status) {
+    for (let i=0; i < this.lista.length; i++) {
+      if (this.lista[i].checkboxSelected) {
+        this.PlanoClassificacao
+          .setStatus(projetoid, this.lista[i].uid, key, status)
+          .then(() => {
+              this.$rootScope.addMensagem('Classificação atualizada com sucesso!', 'success', 2);
+              this.$rootScope.$apply();
+              if (i = this.lista.length - 1) {
+                location.reload();
+              }
+          })
+          .catch(() => {
+              this.$rootScope.addMensagem('Problemas ao atualizar a classificação do plano!', 'danger', 4);
+              this.$rootScope.$apply();
+          })
+      }
+    }
+
+  }
 }
 
 PlanosController.$inject = [

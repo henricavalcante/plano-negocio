@@ -71,6 +71,37 @@
 
     <table class="table table-striped table-bordered">
       <tr>
+        <th>
+          <div class="dropdown-mask" ng-if="mostrarClassificarTodos"
+               ng-click="mostrarClassificarTodos = false"></div>
+          <div class="dropdown">
+            <button class="btn btn-default btn-sm dropdown-btn"
+                    ng-click="mostrarClassificarTodos = !mostrarClassificarTodos">
+              <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            <div class="dropdown-body-all" ng-show="mostrarClassificarTodos">
+              <ul>
+                  <li>Classificar todos os selecionados como:</li>
+                  <li ng-repeat="classificacao in planos.classificacoes" ng-if="classificacao.key !== 'SEM_CLASSIFICACAO'">
+                      <button class="btn btn-default btn-sm" ng-click="planos.classificarTodos(projetofiltro, classificacao.key, true)">
+                          <span class="glyphicon glyphicon-ok"></span>
+                      </button>
+                      <button class="btn btn-default btn-sm" ng-click="planos.classificarTodos(projetofiltro, classificacao.key, false)">
+                          <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                      {{ classificacao.value }}
+                  </li>
+
+                  <li><button
+                          class="btn btn-default btn-sm"
+                          ng-click="mostrarClassificarTodos = false">
+                      Fechar
+                  </button></li>
+              </ul>
+            </div>
+          </div>
+        </th>
+
         <th ng-click="planos.sort('plano.userName')">
           Aluno
           <a ng-show="planos.currentSort.exp == 'plano.userName' && planos.currentSort.reverse">v</a>
@@ -111,6 +142,8 @@
 
       <tr ng-repeat="item in results = (planos.lista | byClassificacao: classificacaofiltro | byStatus: statusfiltro | filter: criterioDeBusca | orderBy:planos.currentSort.exp: planos.currentSort.reverse)"
         id="{{ item.uid }}" ng-class="{'bg-danger': item.bloqueio }">
+        <td><input type="checkbox" ng-model="item.checkboxSelected"/></td>
+
         <td>{{ item.plano.userName }}</td>
 
         <td>{{ item.plano.dataUltimaAlteracaoFormatada }}</td>
